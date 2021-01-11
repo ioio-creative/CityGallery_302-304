@@ -52,6 +52,7 @@ public class Game303ImageLoader : MonoBehaviour {
         for (int cnt = 0; cnt < files1945.Length; cnt++) {
             using (WWW www = new WWW (files1945[cnt])) {
                 yield return www;
+                //www.texture.filterMode = FilterMode.Point;
                 textures1945.Add (www.texture);
             }
         }
@@ -59,6 +60,7 @@ public class Game303ImageLoader : MonoBehaviour {
         for (int cnt = 0; cnt < files1985.Length; cnt++) {
             using (WWW www = new WWW (files1985[cnt])) {
                 yield return www;
+                //www.texture.filterMode = FilterMode.Point;
                 textures1985.Add (www.texture);
             }
         }
@@ -66,6 +68,7 @@ public class Game303ImageLoader : MonoBehaviour {
         for (int cnt = 0; cnt < files2019.Length; cnt++) {
             using (WWW www = new WWW (files2019[cnt])) {
                 yield return www;
+                //www.texture.filterMode = FilterMode.Point;
                 textures2019.Add (www.texture);
             }
         }
@@ -80,24 +83,36 @@ public class Game303ImageLoader : MonoBehaviour {
             Game303SequenceView.instance.buildingSequences.Add (new SpriteSequence ());
         }
         for (int cnt = 0; cnt < textures1900.Count; cnt++) {
+            var texture = textures1900[cnt];
+            texture.filterMode = FilterMode.Point;
+
             Sprite sprite = Sprite.Create (textures1900[cnt],
                 new Rect (0.0f, 0.0f, textures1900[cnt].width, textures1900[cnt].height),
                 new Vector2 (0.5f, 0.5f), 1);
             Game303SequenceView.instance.buildingSequences[0].sprites.Add (sprite);
         }
         for (int cnt = 0; cnt < textures1945.Count; cnt++) {
+            var texture = textures1945[cnt];
+            texture.filterMode = FilterMode.Point;
+
             Sprite sprite = Sprite.Create (textures1945[cnt],
                 new Rect (0.0f, 0.0f, textures1945[cnt].width, textures1945[cnt].height),
                 new Vector2 (0.5f, 0.5f), 1);
             Game303SequenceView.instance.buildingSequences[1].sprites.Add (sprite);
         }
         for (int cnt = 0; cnt < textures1985.Count; cnt++) {
+            var texture = textures1985[cnt];
+            texture.filterMode = FilterMode.Point;
+
             Sprite sprite = Sprite.Create (textures1985[cnt],
                 new Rect (0.0f, 0.0f, textures1985[cnt].width, textures1985[cnt].height),
                 new Vector2 (0.5f, 0.5f), 1);
             Game303SequenceView.instance.buildingSequences[2].sprites.Add (sprite);
         }
         for (int cnt = 0; cnt < textures2019.Count; cnt++) {
+            var texture = textures2019[cnt];
+            texture.filterMode = FilterMode.Point;
+
             Sprite sprite = Sprite.Create (textures2019[cnt],
                 new Rect (0.0f, 0.0f, textures2019[cnt].width, textures2019[cnt].height),
                 new Vector2 (0.5f, 0.5f), 1);
