@@ -83,7 +83,11 @@ public class Game303Manager : StateMachine {
     }
 
     protected override void OnSelectYearStatusEnter () {
-        if (previousStatus == Status.Confirm) {
+        if (previousStatus == Status.SelectYear)
+        {
+            return;
+        }
+        else if (previousStatus == Status.Confirm) {
             Game303View.instance.PassSand ();
             Game303SequenceView.instance.Clear (sandEffectClearBackObjectTime);
             Game303View.instance.SelectYear (yearIndex, sandEffectClearBackObjectTime);
