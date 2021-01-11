@@ -8,6 +8,7 @@ public class Game302View : MonoBehaviour {
 	public static Game302View instance;
 
     [Header ("Global")]
+    [SerializeField] private Transform viewParent;
     [SerializeField] private Transform line;
 
     [Header ("Tutorial")]
@@ -23,6 +24,7 @@ public class Game302View : MonoBehaviour {
     [SerializeField] private List<Transform> yearTextBigs = new List<Transform> ();
 
     [Header ("Debug")]
+    [SerializeField] private Vector2 viewScale;
     [SerializeField] private Vector2 triangleStartPosition;
 
     void Awake () {
@@ -30,6 +32,7 @@ public class Game302View : MonoBehaviour {
     }
 
     void Start () {
+        viewScale = viewParent.localScale;
         triangleStartPosition = triangle.position;
     }
 
@@ -80,7 +83,7 @@ public class Game302View : MonoBehaviour {
     }
 
     public void SelectYear (int index) {
-        yearContainer.DOMoveX (index * -112, 0.5f);
+        yearContainer.DOMoveX (index * -112 * viewScale.x, 0.5f);
     }
 
     public void ShowConfirmPage () {
