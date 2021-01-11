@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI.Extensions;
 
 public class LRWave : MonoBehaviour
 {
@@ -173,11 +176,12 @@ public class LRWave : MonoBehaviour
 
     private void RenderWave()
     {
+
         line.positionCount = samples;
         if (superpositionPoints != null && superpositionPoints.Length == samples)
         {
             line.SetPositions(superpositionPoints);
-        }
+        }      
     }
 
     public void ResetTimeShift()
