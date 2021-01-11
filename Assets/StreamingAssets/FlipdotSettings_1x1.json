@@ -1,0 +1,17 @@
+{
+  "comPort": "COM4",
+  "ip": "10.0.1.222",
+  "panels": [
+      {
+        "startX": 0,
+        "startY": 0,
+        "width":  28,
+        "height": 7
+      }      
+  ],
+  "baudRate": 57600,
+  "parity": 0,
+  "dataBits": 8,
+  "stopBits":  1,
+  "lineStride": 28
+}

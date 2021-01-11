@@ -1,0 +1,110 @@
+{
+  "panels": [
+      {
+        "id": 3,
+        "startX": 0,
+        "startY": 7,
+        "width":  28,
+        "height": 7,
+        "rxPort": 5005
+      },
+      {
+        "id": 4,
+        "startX": 0, 
+        "startY": 0, 
+        "width":  28,
+        "height": 7,
+        "rxPort": 5005
+      },
+      {
+        "id": 5,
+        "startX": 28,
+        "startY": 7,
+        "width":  28,
+        "height": 7,
+        "rxPort": 5005
+      },
+      {
+        "id": 6,
+        "startX": 28,
+        "startY": 0,
+        "width":  28,
+        "height": 7,
+        "rxPort": 5005
+      },
+      {
+        "id": 7,
+        "startX": 0, 
+        "startY": 21,
+        "width":  28,
+        "height": 7,
+        "rxPort": 5005
+      },
+      {
+        "id": 8,
+        "startX": 0, 
+        "startY": 14,
+        "width":  28,
+        "height": 7,
+        "rxPort": 5005
+      },
+      {
+        "id": 9,
+        "startX": 28,
+        "startY": 21,
+        "width":  28,
+        "height": 7,
+        "rxPort": 5005
+      },
+      {
+        "id": 10,
+        "startX": 28,
+        "startY": 14,
+        "width":  28,
+        "height": 7,
+        "rxPort": 5005
+      },
+      {
+        "id": 11,
+        "startX": 0,
+        "startY": 35,
+        "width":  28,
+        "height": 7,
+        "rxPort": 5004
+      },
+      {
+        "id": 12,
+        "startX": 0,
+        "startY": 28,
+        "width":  28,
+        "height": 7,
+        "rxPort": 5004
+      },
+      {
+        "id": 3,
+        "startX": 28,
+        "startY": 35,
+        "width":  28,
+        "height": 7,
+        "rxPort": 5006
+      },
+      {
+        "id": 4,
+        "startX": 28,
+        "startY": 28,
+        "width":  28,
+        "height": 7,
+        "rxPort": 5006
+      }
+  ],
+  "comPort": "COM4",
+  "ip": "10.0.1.222",
+  "rxPorts":[
+    5004, 5006
+  ],
+  "baudRate": 57600,
+  "parity": 0,
+  "dataBits": 8,
+  "stopBits":  1,
+  "lineStride": 56
+}
