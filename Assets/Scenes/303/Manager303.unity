@@ -722,6 +722,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BodyManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7334626223500479609, guid: 05b5324211d4fb64988c6ff55e89b4ce,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7334626223500479613, guid: 05b5324211d4fb64988c6ff55e89b4ce,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -782,6 +787,12 @@ PrefabInstance:
       propertyPath: _KinectDebugCam
       value: 
       objectReference: {fileID: 1513380343}
+    - target: {fileID: 7334626223500479615, guid: 05b5324211d4fb64988c6ff55e89b4ce,
+        type: 3}
+      propertyPath: _BodyPrefab
+      value: 
+      objectReference: {fileID: 7582392166921913591, guid: e5d3a584463b77d42b944d6fff0d3568,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05b5324211d4fb64988c6ff55e89b4ce, type: 3}
 --- !u!1 &1513380342

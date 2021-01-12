@@ -61,8 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _BodyManager: {fileID: 7334626223500479612}
   _KinectDebugCam: {fileID: 0}
-  _BodyPrefab: {fileID: 8122716399952376623, guid: 965192153923d594880e7101cecb4829,
-    type: 3}
+  _BodyPrefab: {fileID: 0}
   playersList: {fileID: 11400000, guid: 0e489df9b3cd2364f8e62fda43ab0fcd, type: 2}
 --- !u!114 &7334626223500479614
 MonoBehaviour:

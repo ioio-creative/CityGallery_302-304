@@ -81,7 +81,8 @@ public class SocketNaviEvent : MonoBehaviour
 
     private void OnNavigationIndex(SocketIOEvent obj)
     {
-        int idx = -1;
+        int idx = 0;
+        Debug.Log("[SocketIO]Received Packet: " + obj.data.type);
         obj.data.GetField(ref idx, "index");
         Debug.Log("[SocketIO]Received NavigationIndex:[" + idx + "]");
 
@@ -91,6 +92,7 @@ public class SocketNaviEvent : MonoBehaviour
     private void OnSelectIndex(SocketIOEvent obj)
     {
         int idx = -1;
+        Debug.Log("[SocketIO]Received Packet: " + obj.data.type);
         obj.data.GetField(ref idx, "index");
         Debug.Log("[SocketIO]Received SelectIndex:[" + idx + "]");
 
@@ -126,11 +128,15 @@ public class SocketNaviEvent : MonoBehaviour
 
     public void EmitNavigationIndex(int idx)
     {
+        var packet = GetJsonArg(idx);
         IoComponent.Emit(naviIdxEvnt, GetJsonArg(idx));
+        Debug.Log("[SocketIO]Sent Packet: " + packet.ToString());
     }
 
     public void EmitSelectLang(int idx)
     {
+        var packet = GetJsonArg(idx);
         IoComponent.Emit(langIdxEvnt, GetJsonArg(idx));
+        Debug.Log("[SocketIO]Sent Packet: " + packet.ToString());
     }
 }

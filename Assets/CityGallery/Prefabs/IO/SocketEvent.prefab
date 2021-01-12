@@ -71,7 +71,7 @@ MonoBehaviour:
   naviEnterEvnt: userEnter
   naviLeaveEvnt: userLeave
   naviIdxEvnt: navigationIndex
-  selectIdxEvnt: navigationSelect
+  selectIdxEvnt: selectIndex
   langIdxEvnt: selectLang
   naviLeftEvnt: navigationLeft
   naviRightEvnt: navigationRight
