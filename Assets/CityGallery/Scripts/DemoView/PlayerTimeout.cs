@@ -6,7 +6,7 @@ using SOVariables;
 
 public class PlayerTimeout : MonoBehaviour
 {
-    public UnityEvent AllPlayerLeft;
+    public UnityEvent AllPlayersLeft;
 
     [SerializeField]
     private FloatReferenceArray bodyDistances;
@@ -47,7 +47,7 @@ public class PlayerTimeout : MonoBehaviour
             if (timer > leavingTimeout)
             {
                 isIdle = true;
-                AllPlayerLeft?.Invoke();
+                AllPlayersLeft?.Invoke();
                 Debug.Log("Player Left");
                 timer = 0;
             }
@@ -76,7 +76,7 @@ public class PlayerTimeout : MonoBehaviour
     private IEnumerator LeaveRoomAfterTimeout(float timeout)
     {
         yield return new WaitForSeconds(timeout);
-        AllPlayerLeft?.Invoke();
+        AllPlayersLeft?.Invoke();
         Debug.Log("Player Left");
         timeoutRoutine = null;
         StopAllCoroutines();

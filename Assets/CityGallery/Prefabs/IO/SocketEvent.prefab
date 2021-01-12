@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 791912034289143340}
+  - component: {fileID: 3363820713123579656}
   - component: {fileID: 791912034289143339}
   - component: {fileID: 791912034289143343}
   - component: {fileID: 791912034289143376}
@@ -35,6 +36,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3363820713123579656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791912034289143338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39f9ef89192eda4397088d0817b26ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  url: ws://127.0.0.1:4567/socket.io/?EIO=4&transport=websocket
+  autoConnect: 0
+  reconnectDelay: 5000
+  ackExpirationTime: 1800
+  pingInterval: 25
+  pingTimeout: 60
 --- !u!114 &791912034289143339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,7 +66,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ab6bcceb48b9674688e8eb10af5e7db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IoComponent: {fileID: 0}
+  IoComponent: {fileID: 3363820713123579656}
+  loadSocketUrlFromConfig: 0
   naviEnterEvnt: userEnter
   naviLeaveEvnt: userLeave
   naviIdxEvnt: navigationIndex
@@ -129,8 +149,8 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1846959602013279599}
-        m_MethodName: OnEventRaised
+      - m_Target: {fileID: 791912034289143339}
+        m_MethodName: EmitNavigationIndex
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -156,8 +176,8 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1846959602013279599}
-        m_MethodName: OnEventRaised
+      - m_Target: {fileID: 791912034289143339}
+        m_MethodName: EmitSelectLang
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -11,6 +11,8 @@ public class SystemConfig : MonoBehaviour
     [SerializeField]
     private string configJsonFile;
 
+
+    public ConfigJson Config => config;
     [SerializeField]
     private ConfigJson config;
 
@@ -22,14 +24,13 @@ public class SystemConfig : MonoBehaviour
         string configPath = UnityPaths.GetFullPathUnderStreamingAssets(configJsonFile);        
         config = ConfigJson.LoadJsonData(System.IO.File.ReadAllText(configPath));
     }
-
-    public bool IsDebug() => Instance.config.debug;
 }
 
 [Serializable]
 public struct ConfigJson
 {
     public bool debug;
+    public string socketUrl;
 
     public static ConfigJson LoadJsonData(string jsonData) => JsonUtility.FromJson<ConfigJson>(jsonData);
 }
