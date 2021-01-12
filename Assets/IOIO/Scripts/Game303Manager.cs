@@ -143,8 +143,10 @@ public class Game303Manager : StateMachine {
     }
 
     public void SelectYear (int index) {
-        yearIndex = index;
-        Game303View.instance.SelectYear (yearIndex);
+        if (index > 0 && index < Game303View.instance.YearTextCount ()) {
+            yearIndex = index;
+            Game303View.instance.SelectYear (yearIndex);
+        }
     }
 
 }
