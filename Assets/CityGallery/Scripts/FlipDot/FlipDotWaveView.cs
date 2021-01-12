@@ -23,18 +23,30 @@ public class FlipDotWaveView : MonoBehaviour
 
     //view lambda parameters
     [SerializeField]
-    private float lambdaMultiplier;
-    private float refLambda;
+    [Tooltip("X: shortest wavelength; Y: longest wavelength")]
+    private Vector2 lambdaRange;
 
+    [SerializeField]
     private float lambdaModifier;
     private float lambdaDampVelocity;
 
-
     //view amp parameters
     [SerializeField]
+    [Tooltip("")]
     private float ampMultiplier;
 
+    [SerializeField]
+    private float ampModifier;
     private float ampDampVelocity;
+
+    //view speed parameters
+    [SerializeField]
+    [Tooltip("X: lowest speed; Y: highest speed")]
+    private Vector2 speedRange;
+
+    [SerializeField]
+    private float speedModifier;
+    private float speedDampVelocity;
 
     //view width parameters
     [SerializeField]
@@ -71,9 +83,17 @@ public class FlipDotWaveView : MonoBehaviour
             mappedDist01 = Mathf.InverseLerp(-inRangeDistance, -enterGameDistance, -closestDist);
             //lambda
             lambdaModifier = Mathf.SmoothDamp(lambdaModifier, mappedDist01, ref lambdaDampVelocity, 0.2f);
-            wave.Harmonics[0].Lambda = refLambda - refLambda * lambdaModifier * lambdaMultiplier;
+            wave.Harmonics[0].Lambda =  -Mathf.Lerp(-lambdaRange.y, -lambdaRange.x, lambdaModifier);
+            //lambdaRange.y + (lambdaRang.x - lambdaRange.y) * lambdaModifier;
+
             //amp
-            //ampMultiplier = Mathf.
+            ampModifier = Mathf.SmoothDamp(ampModifier, mappedDist01 * ampMultiplier, ref ampDampVelocity, 0.2f);
+            wave.Harmonics[0].Amp = ampModifier;
+
+            //speed
+            speedModifier = Mathf.SmoothDamp(speedModifier, mappedDist01, ref speedDampVelocity, 0.2f);
+            wave.Harmonics[0].Speed = speedRange.x + (speedRange.y - speedRange.x) * speedModifier;
+                //Mathf.Lerp(speedRange.x, speedRange.y, speedModifier);
 
             //width
             lr.widthMultiplier = Mathf.SmoothDamp(lr.widthMultiplier, Mathf.Lerp(lineWidthMin, lineWidthMax, mappedDist01), ref widthDampVelocity, 1f);
@@ -83,7 +103,12 @@ public class FlipDotWaveView : MonoBehaviour
             //smooth return to ref value
             //lambda
             lambdaModifier = Mathf.SmoothDamp(lambdaModifier, 0, ref lambdaDampVelocity, 1f);
-            wave.Harmonics[0].Lambda = refLambda + lambdaModifier;
+            wave.Harmonics[0].Lambda = -Mathf.Lerp(-lambdaRange.y, -lambdaRange.x, lambdaModifier);
+
+            //amp
+            ampModifier = Mathf.SmoothDamp(ampModifier, 0, ref ampDampVelocity, 0.2f);
+            wave.Harmonics[0].Amp = ampModifier;
+
             //width
             lr.widthMultiplier = Mathf.SmoothDamp(lr.widthMultiplier, lineWidthMin, ref widthDampVelocity, 1f);
         }
@@ -109,14 +134,14 @@ public class FlipDotWaveView : MonoBehaviour
 
     private void InitializeLambdaParams()
     {
-        refLambda = wave.Harmonics[0].Lambda;
+        //refLambda = wave.Harmonics[0].Lambda;
         lr = wave.GetComponent<LineRenderer>();
     }
 
     private void ResetView()
     {
         //lambda
-        wave.Harmonics[0].Lambda = refLambda;
+        wave.Harmonics[0].Lambda = lambdaRange.y;
         lambdaModifier = 0;
         //width
         lr.widthMultiplier = lineWidthMin;

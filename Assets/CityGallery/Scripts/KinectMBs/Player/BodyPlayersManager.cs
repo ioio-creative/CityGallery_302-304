@@ -21,7 +21,7 @@ public class BodyPlayersManager : MonoBehaviour
 
     private void Start()
     {
-        _KinectDebugCam.enabled = SystemConfig.Instance.IsDebug();
+        _KinectDebugCam.enabled = SystemConfig.Instance.Config.debug;
     }
 
     private void Update()

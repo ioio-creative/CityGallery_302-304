@@ -1,5 +1,6 @@
 ﻿using RoboRyanTron.Unite2017.Events;
 using SocketIO;
+using SocketIO.Custom;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +10,9 @@ public class SocketNaviEvent : MonoBehaviour
 {
     [Header("Pre-set settings")]
     [SerializeField]
-    private SocketIOComponent IoComponent;
+    private SocketIOControl IoComponent;
+    [SerializeField]
+    private bool loadSocketUrlFromConfig;
 
     [Header("socket events")]
     public string naviEnterEvnt = "userEnter";
@@ -27,10 +30,31 @@ public class SocketNaviEvent : MonoBehaviour
     [SerializeField]
     private GameIntEvent selectIdxSOEventServer;
 
-    private void Start()
+    private IEnumerator Start()
     {
-        IoComponent.On(naviIdxEvnt, OnNavigationIndex);
-        IoComponent.On(selectIdxEvnt, OnSelectIndex);
+        if (IoComponent != null)
+        {
+            if (IoComponent.IsConnected)
+            {
+                IoComponent.Close();
+                yield return new WaitUntil(() => !IoComponent.IsConnected);
+            }
+
+            if (loadSocketUrlFromConfig)
+            {
+                
+                IoComponent.url = SystemConfig.Instance.Config.socketUrl;
+                
+            }
+
+            IoComponent.On("connect", OnConnected);
+            IoComponent.On("disconnect", OnDisconnected);
+            IoComponent.On(naviIdxEvnt, OnNavigationIndex);
+            IoComponent.On(selectIdxEvnt, OnSelectIndex);
+
+            IoComponent.Connect();
+        }
+        yield return null;
     }
 
     private void Update()
@@ -43,6 +67,16 @@ public class SocketNaviEvent : MonoBehaviour
         {
             EmitLeave();
         }
+    }
+
+    private void OnConnected(SocketIOEvent obj)
+    {
+        Debug.Log(name + ": OnConnceted");
+    }
+
+    private void OnDisconnected(SocketIOEvent obj)
+    {
+        Debug.Log(name + ": OnDisconnected");
     }
 
     private void OnNavigationIndex(SocketIOEvent obj)

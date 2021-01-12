@@ -74,6 +74,7 @@ public class LRWave : MonoBehaviour
     private float[] mouseXMask;
 
     [SerializeField]
+    [Tooltip("max deltaX for cursor")]
     private float maxMouseDX;
     private float dxMouse;
     [SerializeField]
@@ -116,13 +117,12 @@ public class LRWave : MonoBehaviour
     }
     
 
-    private void Start()
+    private void Update()
     {
-
-    }
-
-    private void FixedUpdate()
-    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ResetTimeShift();
+        }
         if (cursorInteractive)
         {
             UpdateAndGetMouseXSpeed(); 
@@ -133,15 +133,11 @@ public class LRWave : MonoBehaviour
             CalculateMouseFXPoints();
             AddMouseFXToWave(); 
         }
+        //RenderWave();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ResetTimeShift();
-        }
-                          
         RenderWave();
     }
 
