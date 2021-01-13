@@ -82,7 +82,8 @@ public class Game303Manager : StateMachine {
     protected override void OnReadyStatusEnter () {
         Game303FlipdotView.instance.ShowLine ();
         Game303FlipdotView.instance.HideTutorialPage ();
-        Game303TutorialView.instance.HideRightHandPage ();
+        Game303TutorialView.instance.HideConfirmPage ();
+        Game303TutorialView.instance.ShowReadyPage ();
     }
 
     protected override void OnReadyStatusStay () {

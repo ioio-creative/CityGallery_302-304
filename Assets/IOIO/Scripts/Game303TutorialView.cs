@@ -44,6 +44,7 @@ public class Game303TutorialView : MonoBehaviour {
     [SerializeField] private Transform confirmDescLongTC;
 
     [Header ("Ready")]
+    [SerializeField] private Transform readyButton;
     [SerializeField] private Transform readyTextTC;
     [SerializeField] private Transform readyDescShortTC;
     [SerializeField] private Transform readyDescLongTC;
@@ -67,6 +68,7 @@ public class Game303TutorialView : MonoBehaviour {
     }
 
     public void ShowSelectLanguagePage () {
+        mainCircle.DOScale (1, 0.5f);
         mainCircleFillbar.GetComponent<Image> ().DOFillAmount (0, 0.5f);
     }
 
@@ -81,7 +83,7 @@ public class Game303TutorialView : MonoBehaviour {
 
     public void ShowLeftHandPage () {
         mainCircleFillbar.GetComponent<Image> ().DOFillAmount (0.25f, 0.5f);
-        leftHandMan.DOScale (1, 0.5f);
+        leftHandMan.DOScaleX (1, 0.5f);
         leftHandDescShortTC.DOScale (1, 0.5f);
         leftHandDescLongTC.DOScale (1, 0.5f);
         tutorialLeft.DOScale (1, 0.5f);
@@ -92,14 +94,14 @@ public class Game303TutorialView : MonoBehaviour {
     }
 
     public void HideLeftHandPage () {
-        leftHandMan.DOScale (0, 0.5f);
+        leftHandMan.DOScaleX (0, 0.5f);
         leftHandDescShortTC.DOScale (0, 0.5f);
         leftHandDescLongTC.DOScale (0, 0.5f);
     }
 
     public void ShowRightHandPage () {
         mainCircleFillbar.GetComponent<Image> ().DOFillAmount (0.5f, 0.5f);
-        rightHandMan.DOScale (1, 0.5f);
+        rightHandMan.DOScaleX (1, 0.5f);
         rightHandDescShortTC.DOScale (1, 0.5f);
         rightHandDescLongTC.DOScale (1, 0.5f);
         tutorialLeft.DOScale (1, 0.5f);
@@ -110,7 +112,7 @@ public class Game303TutorialView : MonoBehaviour {
     }
 
     public void HideRightHandPage () {
-        rightHandMan.DOScale (0, 0.5f);
+        rightHandMan.DOScaleX (0, 0.5f);
         rightHandDescShortTC.DOScale (0, 0.5f);
         rightHandDescLongTC.DOScale (0, 0.5f);
     }
@@ -120,6 +122,22 @@ public class Game303TutorialView : MonoBehaviour {
         confirmButton.DOScale (1, 0.5f);
         confirmDescShortTC.DOScale (1, 0.5f);
         confirmDescLongTC.DOScale (1, 0.5f);
+    }
+
+    public void HideConfirmPage () {
+        confirmButton.DOKill ();
+        confirmButton.DOScale (0, 0);
+        confirmDescShortTC.DOScale (0, 0.5f);
+        confirmDescLongTC.DOScale (0, 0.5f);
+    }
+
+    public void ShowReadyPage () {
+        mainCircleFillbar.GetComponent<Image> ().DOFillAmount (1, 0.5f);
+        mainCircle.DOScale (0, 0f);
+        readyButton.DOScale (1, 0f);
+        readyTextTC.DOScale (1, 0.5f);
+        readyDescShortTC.DOScale (1, 0.5f);
+        readyDescLongTC.DOScale (1, 0.5f);
     }
 
     public void SwitchLanguage (Language language) {
@@ -160,11 +178,13 @@ public class Game303TutorialView : MonoBehaviour {
     }
 
     public void OnConfirmButtonClick () {
-
+        Game303Manager.instance.ChangeStatus (Status.Ready);
     }
 
     public void OnReadyButtonClick () {
-
+        if (Game303Manager.instance.CheckStatus (Status.Ready)) {
+            Game303Manager.instance.ChangeStatus (Status.SelectYear);
+        }
     }
 
     public void OnReplayButtonClick () {
