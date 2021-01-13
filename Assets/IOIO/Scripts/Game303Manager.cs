@@ -31,13 +31,13 @@ public class Game303Manager : StateMachine {
     protected override void OnIdleStatusEnter () {
         if (previousStatus == Status.Confirm ||
             previousStatus == Status.SelectYear) {
-            Game303View.instance.PassSand ();
-            Game303View.instance.HideSelectYearPage ();
-            Game303View.instance.HideMountain (sandEffectClearBackObjectTime);
+            Game303FlipdotView.instance.PassSand ();
+            Game303FlipdotView.instance.HideSelectYearPage ();
+            Game303FlipdotView.instance.HideMountain (sandEffectClearBackObjectTime);
             Game303SequenceView.instance.Clear (sandEffectClearBackObjectTime);
         }
         else {
-            Game303View.instance.HideTutorialPage ();
+            Game303FlipdotView.instance.HideTutorialPage ();
         }
     }
 
@@ -46,7 +46,7 @@ public class Game303Manager : StateMachine {
     }
 
     protected override void OnPlayerInStatusEnter () {
-        Game303View.instance.HideLine ();
+        Game303FlipdotView.instance.HideLine ();
     }
 
     protected override void OnPlayerInStatusStay () {
@@ -62,8 +62,8 @@ public class Game303Manager : StateMachine {
     }
 
     protected override void OnTutorialStatusEnter () {
-        Game303View.instance.HideLine ();
-        Game303View.instance.ShowTutorialPage ();
+        Game303FlipdotView.instance.HideLine ();
+        Game303FlipdotView.instance.ShowTutorialPage ();
         Select (Direction.Left);
     }
 
@@ -72,8 +72,8 @@ public class Game303Manager : StateMachine {
     }
 
     protected override void OnReadyStatusEnter () {
-        Game303View.instance.ShowLine ();
-        Game303View.instance.HideTutorialPage ();
+        Game303FlipdotView.instance.ShowLine ();
+        Game303FlipdotView.instance.HideTutorialPage ();
     }
 
     protected override void OnReadyStatusStay () {
@@ -86,15 +86,15 @@ public class Game303Manager : StateMachine {
             return;
         }
         else if (previousStatus == Status.Confirm) {
-            Game303View.instance.PassSand ();
+            Game303FlipdotView.instance.PassSand ();
             Game303SequenceView.instance.Clear (sandEffectClearBackObjectTime);
-            Game303View.instance.SelectYear (yearIndex, sandEffectClearBackObjectTime);
+            Game303FlipdotView.instance.SelectYear (yearIndex, sandEffectClearBackObjectTime);
         }
         else {
-            Game303View.instance.PassSand ();
-            Game303View.instance.HideLine (sandEffectClearBackObjectTime);
-            Game303View.instance.ShowMountain (sandEffectClearBackObjectTime);
-            Game303View.instance.SelectYear (0, sandEffectClearBackObjectTime);
+            Game303FlipdotView.instance.PassSand ();
+            Game303FlipdotView.instance.HideLine (sandEffectClearBackObjectTime);
+            Game303FlipdotView.instance.ShowMountain (sandEffectClearBackObjectTime);
+            Game303FlipdotView.instance.SelectYear (0, sandEffectClearBackObjectTime);
             yearIndex = 0;
         }
     }
@@ -104,8 +104,8 @@ public class Game303Manager : StateMachine {
     }
 
     protected override void OnConfirmStatusEnter () {
-        Game303View.instance.PassSand ();
-        Game303View.instance.HideSelectYearPage ();
+        Game303FlipdotView.instance.PassSand ();
+        Game303FlipdotView.instance.HideSelectYearPage ();
         Game303SequenceView.instance.Play (yearIndex, Game303ConfigData.instance.sandEffectMoveTime);
     }
 
@@ -117,33 +117,33 @@ public class Game303Manager : StateMachine {
         if (CheckStatus (Status.Tutorial)) {
             if (direction == Direction.Left) {
                 circleSelect = Direction.Left;
-                Game303View.instance.SelectLeftCircle ();
+                Game303FlipdotView.instance.SelectLeftCircle ();
             }
             if (direction == Direction.Right) {
                 circleSelect = Direction.Right;
-                Game303View.instance.SelectRightCircle ();
+                Game303FlipdotView.instance.SelectRightCircle ();
             }
         }
         if (CheckStatus (Status.SelectYear)) {
             if (direction == Direction.Left) {
                 if (yearIndex > 0) {
                     yearIndex -= 1;
-                    Game303View.instance.SelectYear (yearIndex);
+                    Game303FlipdotView.instance.SelectYear (yearIndex);
                 }
             }
             if (direction == Direction.Right) {
-                if (yearIndex < Game303View.instance.YearTextCount () - 1) {
+                if (yearIndex < Game303FlipdotView.instance.YearTextCount () - 1) {
                     yearIndex += 1;
-                    Game303View.instance.SelectYear (yearIndex);
+                    Game303FlipdotView.instance.SelectYear (yearIndex);
                 }
             }
         }
     }
 
     public void SelectYear (int index) {
-        if (index > 0 && index < Game303View.instance.YearTextCount ()) {
+        if (index > 0 && index < Game303FlipdotView.instance.YearTextCount ()) {
             yearIndex = index;
-            Game303View.instance.SelectYear (yearIndex);
+            Game303FlipdotView.instance.SelectYear (yearIndex);
         }
     }
 

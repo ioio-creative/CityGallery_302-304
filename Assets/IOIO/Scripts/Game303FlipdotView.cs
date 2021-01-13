@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class Game303View : MonoBehaviour {
+public class Game303FlipdotView : MonoBehaviour {
 
-	public static Game303View instance;
+	public static Game303FlipdotView instance;
 
     [Header ("Global")]
     [SerializeField] private Transform line;
