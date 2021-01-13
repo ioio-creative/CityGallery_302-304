@@ -9,6 +9,7 @@ public class Game303Manager : StateMachine {
     [SerializeField] private Language currentLanguage;
     [SerializeField] private bool leftCircleSelected;
     [SerializeField] private bool rightCircleSelected;
+    [SerializeField] private bool confirmPageShowed;
     [SerializeField] private int yearIndex;
 
     public float sandEffectClearBackObjectTime;
@@ -66,6 +67,7 @@ public class Game303Manager : StateMachine {
     protected override void OnTutorialStatusEnter () {
         leftCircleSelected = false;
         rightCircleSelected = false;
+        confirmPageShowed = false;
         Game303FlipdotView.instance.HideLine ();    
         Game303FlipdotView.instance.ShowTutorialPage ();
         Game303TutorialView.instance.HideSelectLanguagePage ();
@@ -74,8 +76,11 @@ public class Game303Manager : StateMachine {
 
     protected override void OnTutorialStatusStay () {
         if (leftCircleSelected && rightCircleSelected) {
-            Game303TutorialView.instance.HideRightHandPage ();
-            Game303TutorialView.instance.ShowConfirmPage ();
+            if (!confirmPageShowed) {
+                confirmPageShowed = true;
+                Game303TutorialView.instance.HideRightHandPage ();
+                Game303TutorialView.instance.ShowConfirmPage ();
+            }
         }
     }
 

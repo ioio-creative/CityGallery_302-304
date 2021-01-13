@@ -2979,6 +2979,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0050d464393bcd045b8eac6231f8f2cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pageCoverIdleColor: {r: 0.003921569, g: 0.9019608, b: 0.9019608, a: 0.21960784}
+  pageCoverEffectColor: {r: 0, g: 1, b: 0, a: 0.21960784}
+  mainCircleFillbarIdleColor: {r: 0.17254902, g: 0.8980393, b: 0.8980393, a: 1}
+  mainCircleFillbarEffectColor: {r: 0, g: 1, b: 0, a: 1}
   waveAnimator: {fileID: 158774786}
   colorCover: {fileID: 625888694}
   mainCircle: {fileID: 948492559}

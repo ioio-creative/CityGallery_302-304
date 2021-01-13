@@ -8,6 +8,12 @@ public class Game303TutorialView : MonoBehaviour {
 
     public static Game303TutorialView instance;
 
+    [Header ("Color")]
+    [SerializeField] private Color pageCoverIdleColor;
+    [SerializeField] private Color pageCoverEffectColor;
+    [SerializeField] private Color mainCircleFillbarIdleColor;
+    [SerializeField] private Color mainCircleFillbarEffectColor;
+
     [Header ("Global")]
     [SerializeField] private Animator waveAnimator;
     [SerializeField] private Transform colorCover;
@@ -82,6 +88,8 @@ public class Game303TutorialView : MonoBehaviour {
     }
 
     public void ShowLeftHandPage () {
+        PlayWaveEffect ();
+        WholePageColorEffect ();
         mainCircleFillbar.GetComponent<Image> ().DOFillAmount (0.25f, 0.5f);
         leftHandMan.DOScaleX (1, 0.5f);
         leftHandDescShortTC.DOScale (1, 0.5f);
@@ -100,6 +108,8 @@ public class Game303TutorialView : MonoBehaviour {
     }
 
     public void ShowRightHandPage () {
+        PlayWaveEffect ();
+        WholePageColorEffect ();
         mainCircleFillbar.GetComponent<Image> ().DOFillAmount (0.5f, 0.5f);
         rightHandMan.DOScaleX (1, 0.5f);
         rightHandDescShortTC.DOScale (1, 0.5f);
@@ -118,6 +128,8 @@ public class Game303TutorialView : MonoBehaviour {
     }
 
     public void ShowConfirmPage () {
+        PlayWaveEffect ();
+        WholePageColorEffect ();
         mainCircleFillbar.GetComponent<Image> ().DOFillAmount (0.75f, 0.5f);
         confirmButton.DOScale (1, 0.5f);
         confirmDescShortTC.DOScale (1, 0.5f);
@@ -132,12 +144,28 @@ public class Game303TutorialView : MonoBehaviour {
     }
 
     public void ShowReadyPage () {
+        PlayWaveEffect ();
+        WholePageColorEffect ();
         mainCircleFillbar.GetComponent<Image> ().DOFillAmount (1, 0.5f);
         mainCircle.DOScale (0, 0f);
         readyButton.DOScale (1, 0f);
         readyTextTC.DOScale (1, 0.5f);
         readyDescShortTC.DOScale (1, 0.5f);
         readyDescLongTC.DOScale (1, 0.5f);
+        skipButton.DOScale (0, 0.5f);
+        replayButton.DOScale (1, 0.5f);
+    }
+
+    public void WholePageColorEffect () {
+        float effectTime = 0.3f;
+
+        colorCover.DOKill ();
+        mainCircleFillbar.DOKill ();
+
+        colorCover.GetComponent<MaskableGraphic> ().DOColor (pageCoverEffectColor, effectTime);
+        colorCover.GetComponent<MaskableGraphic> ().DOColor (pageCoverIdleColor, effectTime).SetDelay (effectTime);
+        mainCircleFillbar.GetComponent<MaskableGraphic> ().DOColor (mainCircleFillbarEffectColor, effectTime);
+        mainCircleFillbar.GetComponent<MaskableGraphic> ().DOColor (mainCircleFillbarIdleColor, effectTime).SetDelay (effectTime);
     }
 
     public void SwitchLanguage (Language language) {
