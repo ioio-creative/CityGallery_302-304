@@ -70,6 +70,7 @@ public class Game303FlipdotView : MonoBehaviour {
         rightCircle.DOScale (1, 0.2f);
         leftCircleSelect.DOScale (1, 0).SetDelay (0.2f);
         rightCircleSelect.DOScale (0, 0);
+        tutorialSelector.DOScale (1, 0.5f);
         tutorialSelector.DOMoveX (tutorialSelectorStartPosition.x, 0.2f);
     }
 
@@ -78,12 +79,13 @@ public class Game303FlipdotView : MonoBehaviour {
         rightCircle.DOScale (2.2f, 0.2f);
         leftCircleSelect.DOScale (0, 0);
         rightCircleSelect.DOScale (1, 0).SetDelay (0.2f);
+        tutorialSelector.DOScale (1, 0.5f);
         tutorialSelector.DOMoveX (-tutorialSelectorStartPosition.x, 0.2f);
     }
 
     public void ShowTutorialPage () {
-        SelectLeftCircle ();
-        tutorialSelector.DOScale (1, 0.5f);
+        leftCircle.DOScale (1, 0.2f);
+        rightCircle.DOScale (1, 0.2f);
     }
 
     public void HideTutorialPage () {

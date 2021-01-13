@@ -176,5 +176,9 @@ public enum Status {
 }
 
 public enum Direction {
-    Left, Right,
+    None, Left, Right,
+}
+
+public enum Language {
+    TC, EN,
 }

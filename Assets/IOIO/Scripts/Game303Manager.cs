@@ -6,7 +6,7 @@ public class Game303Manager : StateMachine {
 
 	public static Game303Manager instance;
 
-    [SerializeField] private Direction circleSelect;
+    [SerializeField] private Language currentLanguage;
     [SerializeField] private int yearIndex;
 
     public float sandEffectClearBackObjectTime;
@@ -62,9 +62,10 @@ public class Game303Manager : StateMachine {
     }
 
     protected override void OnTutorialStatusEnter () {
-        Game303FlipdotView.instance.HideLine ();
+        Game303FlipdotView.instance.HideLine ();    
         Game303FlipdotView.instance.ShowTutorialPage ();
-        Select (Direction.Left);
+        Game303TutorialView.instance.HideSelectLanguagePage ();
+        Game303TutorialView.instance.ShowLeftHandPage ();
     }
 
     protected override void OnTutorialStatusStay () {
@@ -116,11 +117,9 @@ public class Game303Manager : StateMachine {
     public void Select (Direction direction) {
         if (CheckStatus (Status.Tutorial)) {
             if (direction == Direction.Left) {
-                circleSelect = Direction.Left;
                 Game303FlipdotView.instance.SelectLeftCircle ();
             }
             if (direction == Direction.Right) {
-                circleSelect = Direction.Right;
                 Game303FlipdotView.instance.SelectRightCircle ();
             }
         }
@@ -145,6 +144,11 @@ public class Game303Manager : StateMachine {
             yearIndex = index;
             Game303FlipdotView.instance.SelectYear (yearIndex);
         }
+    }
+
+    public void SelectLanguage (Language language) {
+        currentLanguage = language;
+        Game303TutorialView.instance.SwitchLanguage (language);
     }
 
 }
