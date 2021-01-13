@@ -21,7 +21,7 @@ public class Game303Manager : StateMachine {
         Game303Mediator.instance.selectDelegate += Select;
         Game303Mediator.instance.selectYearDelegate += SelectYear;
         Game303Mediator.instance.changeStatusDelegate += ChangeStatus;
-        ChangeStatus (Status.Idle);
+        ChangeStatus (Status.SelectLanguage);
     }
 
     protected override void OnAnyStatusStay () {
@@ -35,11 +35,9 @@ public class Game303Manager : StateMachine {
             Game303View.instance.HideSelectYearPage ();
             Game303View.instance.HideMountain (sandEffectClearBackObjectTime);
             Game303SequenceView.instance.Clear (sandEffectClearBackObjectTime);
-            //Game303View.instance.ShowLine (2);
         }
         else {
             Game303View.instance.HideTutorialPage ();
-            //Game303View.instance.ShowLine ();
         }
     }
 
@@ -56,7 +54,7 @@ public class Game303Manager : StateMachine {
     }
 
     protected override void OnSelectLanguageStatusEnter () {
-        //Game303View.instance.ShowLine ();
+
     }
 
     protected override void OnSelectLanguageStatusStay () {
