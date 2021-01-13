@@ -7,6 +7,7 @@ public class Game303TutorialView : MonoBehaviour {
     public static Game303TutorialView instance;
 
     [Header ("Global")]
+    [SerializeField] private Animator waveAnimator;
     [SerializeField] private Transform colorCover;
     [SerializeField] private Transform mainCircle;
     [SerializeField] private Transform welcomeLeft;
@@ -49,11 +50,17 @@ public class Game303TutorialView : MonoBehaviour {
     }
 
     void Start () {
-        
+
     }
 
     void Update () {
-        
+        if (Input.GetKeyDown (KeyCode.N)) {
+            PlayWaveEffect ();
+        }
+    }
+
+    public void PlayWaveEffect () {
+        waveAnimator.SetTrigger ("Play");
     }
 
     public void OnSelectPageTCButtonClick () {
