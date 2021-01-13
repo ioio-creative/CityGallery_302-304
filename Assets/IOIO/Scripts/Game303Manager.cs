@@ -7,6 +7,8 @@ public class Game303Manager : StateMachine {
 	public static Game303Manager instance;
 
     [SerializeField] private Language currentLanguage;
+    [SerializeField] private bool leftCircleSelected;
+    [SerializeField] private bool rightCircleSelected;
     [SerializeField] private int yearIndex;
 
     public float sandEffectClearBackObjectTime;
@@ -54,7 +56,7 @@ public class Game303Manager : StateMachine {
     }
 
     protected override void OnSelectLanguageStatusEnter () {
-
+        Game303TutorialView.instance.ShowSelectLanguagePage ();
     }
 
     protected override void OnSelectLanguageStatusStay () {
@@ -62,6 +64,8 @@ public class Game303Manager : StateMachine {
     }
 
     protected override void OnTutorialStatusEnter () {
+        leftCircleSelected = false;
+        rightCircleSelected = false;
         Game303FlipdotView.instance.HideLine ();    
         Game303FlipdotView.instance.ShowTutorialPage ();
         Game303TutorialView.instance.HideSelectLanguagePage ();
@@ -69,12 +73,16 @@ public class Game303Manager : StateMachine {
     }
 
     protected override void OnTutorialStatusStay () {
-
+        if (leftCircleSelected && rightCircleSelected) {
+            Game303TutorialView.instance.HideRightHandPage ();
+            Game303TutorialView.instance.ShowConfirmPage ();
+        }
     }
 
     protected override void OnReadyStatusEnter () {
         Game303FlipdotView.instance.ShowLine ();
         Game303FlipdotView.instance.HideTutorialPage ();
+        Game303TutorialView.instance.HideRightHandPage ();
     }
 
     protected override void OnReadyStatusStay () {
@@ -117,9 +125,17 @@ public class Game303Manager : StateMachine {
     public void Select (Direction direction) {
         if (CheckStatus (Status.Tutorial)) {
             if (direction == Direction.Left) {
+                if (!leftCircleSelected) {
+                    leftCircleSelected = true;
+                    Game303TutorialView.instance.HideLeftHandPage ();
+                    Game303TutorialView.instance.ShowRightHandPage ();
+                }
                 Game303FlipdotView.instance.SelectLeftCircle ();
             }
             if (direction == Direction.Right) {
+                if (leftCircleSelected) {
+                    rightCircleSelected = true;
+                }
                 Game303FlipdotView.instance.SelectRightCircle ();
             }
         }

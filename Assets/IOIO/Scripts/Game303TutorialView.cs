@@ -12,6 +12,7 @@ public class Game303TutorialView : MonoBehaviour {
     [SerializeField] private Animator waveAnimator;
     [SerializeField] private Transform colorCover;
     [SerializeField] private Transform mainCircle;
+    [SerializeField] private Transform mainCircleFillbar;
     [SerializeField] private Transform welcomeLeft;
     [SerializeField] private Transform welcomeRight;
     [SerializeField] private Transform tutorialLeft;
@@ -65,6 +66,10 @@ public class Game303TutorialView : MonoBehaviour {
         waveAnimator.SetTrigger ("Play");
     }
 
+    public void ShowSelectLanguagePage () {
+        mainCircleFillbar.GetComponent<Image> ().DOFillAmount (0, 0.5f);
+    }
+
     public void HideSelectLanguagePage () {
         tcButtonBig.DOScale (0, 0.5f);
         enButtonBig.DOScale (0, 0.5f);
@@ -75,6 +80,7 @@ public class Game303TutorialView : MonoBehaviour {
     }
 
     public void ShowLeftHandPage () {
+        mainCircleFillbar.GetComponent<Image> ().DOFillAmount (0.25f, 0.5f);
         leftHandMan.DOScale (1, 0.5f);
         leftHandDescShortTC.DOScale (1, 0.5f);
         leftHandDescLongTC.DOScale (1, 0.5f);
@@ -89,6 +95,31 @@ public class Game303TutorialView : MonoBehaviour {
         leftHandMan.DOScale (0, 0.5f);
         leftHandDescShortTC.DOScale (0, 0.5f);
         leftHandDescLongTC.DOScale (0, 0.5f);
+    }
+
+    public void ShowRightHandPage () {
+        mainCircleFillbar.GetComponent<Image> ().DOFillAmount (0.5f, 0.5f);
+        rightHandMan.DOScale (1, 0.5f);
+        rightHandDescShortTC.DOScale (1, 0.5f);
+        rightHandDescLongTC.DOScale (1, 0.5f);
+        tutorialLeft.DOScale (1, 0.5f);
+        tutorialRight.DOScale (1, 0.5f);
+        skipButton.DOScale (1, 0.5f);
+        tcButtonSmall.DOScale (1, 0.5f);
+        enButtonSmall.DOScale (1, 0.5f);
+    }
+
+    public void HideRightHandPage () {
+        rightHandMan.DOScale (0, 0.5f);
+        rightHandDescShortTC.DOScale (0, 0.5f);
+        rightHandDescLongTC.DOScale (0, 0.5f);
+    }
+
+    public void ShowConfirmPage () {
+        mainCircleFillbar.GetComponent<Image> ().DOFillAmount (0.75f, 0.5f);
+        confirmButton.DOScale (1, 0.5f);
+        confirmDescShortTC.DOScale (1, 0.5f);
+        confirmDescLongTC.DOScale (1, 0.5f);
     }
 
     public void SwitchLanguage (Language language) {
