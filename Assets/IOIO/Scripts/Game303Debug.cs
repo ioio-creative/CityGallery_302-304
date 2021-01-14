@@ -15,6 +15,16 @@ public class Game303Debug : MonoBehaviour {
     }
 
     void Update () {
+        if (Input.GetKeyDown (KeyCode.Keypad1)) {
+            Game303Mediator.instance.SetColorCoverAlpha (0.1f);
+        }
+        if (Input.GetKeyDown (KeyCode.Keypad2)) {
+            Game303Mediator.instance.SetColorCoverAlpha (0.2f);
+        }
+        if (Input.GetKeyDown (KeyCode.Keypad3)) {
+            Game303Mediator.instance.SetColorCoverAlpha (0.3f);
+        }
+
         if (Input.GetKeyDown (KeyCode.A)) {
             Game303Mediator.instance.SelectLeft ();
         }

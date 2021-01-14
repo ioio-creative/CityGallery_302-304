@@ -22,6 +22,7 @@ public class Game303Manager : StateMachine {
     void Start () {
         Game303ConfigData.instance.LoadConfig ();
         sandEffectClearBackObjectTime = Game303ConfigData.instance.sandEffectMoveTime / 4;
+        Game303Mediator.instance.setColorCoverAlphaDelegate += SetColorCoverAlpha;
         Game303Mediator.instance.selectDelegate += Select;
         Game303Mediator.instance.selectYearDelegate += SelectYear;
         Game303Mediator.instance.changeStatusDelegate += ChangeStatus;
@@ -190,6 +191,10 @@ public class Game303Manager : StateMachine {
             yearIndex = index;
             Game303FlipdotView.instance.SelectYear (yearIndex);
         }
+    }
+
+    public void SetColorCoverAlpha (float alpha) {
+        Game303TutorialView.instance.SetColorCoverAlpha (alpha);
     }
 
     public void SelectLanguage (Language language) {

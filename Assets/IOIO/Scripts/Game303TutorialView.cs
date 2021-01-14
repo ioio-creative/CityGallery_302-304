@@ -84,6 +84,23 @@ public class Game303TutorialView : MonoBehaviour {
         }
     }
 
+    public void WholePageColorEffect () {
+        float effectTime = 0.3f;
+
+        colorCover.DOKill ();
+        mainCircleFillbar.DOKill ();
+
+        colorCover.GetComponent<MaskableGraphic> ().DOColor (pageCoverEffectColor, effectTime);
+        colorCover.GetComponent<MaskableGraphic> ().DOColor (pageCoverIdleColor, effectTime).SetDelay (effectTime);
+        mainCircleFillbar.GetComponent<MaskableGraphic> ().DOColor (mainCircleFillbarEffectColor, effectTime);
+        mainCircleFillbar.GetComponent<MaskableGraphic> ().DOColor (mainCircleFillbarIdleColor, effectTime).SetDelay (effectTime);
+    }
+
+    public void SetColorCoverAlpha (float alpha) {
+        colorCover.DOKill ();
+        colorCover.GetComponent<MaskableGraphic> ().DOFade (alpha, 0);
+    }
+
     public void ShowIdlePage () {
         colorCover.DOKill ();
         colorCover.GetComponent<MaskableGraphic> ().DOColor (pageCoverNoPlayerColor, 0.5f);
@@ -222,18 +239,6 @@ public class Game303TutorialView : MonoBehaviour {
             yield return new WaitForSeconds (delay);
             UnactivePageBlock ();
         }
-    }
-
-    public void WholePageColorEffect () {
-        float effectTime = 0.3f;
-
-        colorCover.DOKill ();
-        mainCircleFillbar.DOKill ();
-
-        colorCover.GetComponent<MaskableGraphic> ().DOColor (pageCoverEffectColor, effectTime);
-        colorCover.GetComponent<MaskableGraphic> ().DOColor (pageCoverIdleColor, effectTime).SetDelay (effectTime);
-        mainCircleFillbar.GetComponent<MaskableGraphic> ().DOColor (mainCircleFillbarEffectColor, effectTime);
-        mainCircleFillbar.GetComponent<MaskableGraphic> ().DOColor (mainCircleFillbarIdleColor, effectTime).SetDelay (effectTime);
     }
 
     public void SwitchLanguage (Language language) {
