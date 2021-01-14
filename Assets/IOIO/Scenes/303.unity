@@ -1427,46 +1427,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 964341677}
     m_Modifications:
-    - target: {fileID: 8880238743749353066, guid: ededa1973328579489941b3f507836cb,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8880238743846025264, guid: ededa1973328579489941b3f507836cb,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8880238744409771535, guid: ededa1973328579489941b3f507836cb,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8880238744411811155, guid: ededa1973328579489941b3f507836cb,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8880238744798678508, guid: ededa1973328579489941b3f507836cb,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8880238745107008146, guid: ededa1973328579489941b3f507836cb,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8880238745213488640, guid: ededa1973328579489941b3f507836cb,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8880238745381697464, guid: ededa1973328579489941b3f507836cb,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8880238745648575358, guid: ededa1973328579489941b3f507836cb,
         type: 3}
       propertyPath: m_LocalPosition.x
