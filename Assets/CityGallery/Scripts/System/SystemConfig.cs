@@ -16,6 +16,9 @@ public class SystemConfig : MonoBehaviour
     [SerializeField]
     private ConfigJson config;
 
+    [SerializeField]
+    private Vector2 screenDimension;
+
 
     private void Awake()
     {
@@ -23,6 +26,13 @@ public class SystemConfig : MonoBehaviour
         
         string configPath = UnityPaths.GetFullPathUnderStreamingAssets(configJsonFile);        
         config = ConfigJson.LoadJsonData(System.IO.File.ReadAllText(configPath));
+
+        screenDimension = new Vector2(config.displayWidth, config.displayHeight);
+
+        if (screenDimension.x > 0 && screenDimension.y > 0)
+        {
+            Display.main.SetParams((int)screenDimension.x, (int)screenDimension.y, 0, 0);
+        }
     }
 }
 
@@ -31,6 +41,9 @@ public struct ConfigJson
 {
     public bool debug;
     public string socketUrl;
+
+    public int displayWidth;
+    public int displayHeight;
 
     public static ConfigJson LoadJsonData(string jsonData) => JsonUtility.FromJson<ConfigJson>(jsonData);
 }

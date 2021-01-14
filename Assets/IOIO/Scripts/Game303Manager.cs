@@ -195,9 +195,15 @@ public class Game303Manager : StateMachine {
 
     //By Hugo
     [SerializeField] private GameIntEvent onSelectLangEvnt;
+    [SerializeField] private GameEvent onPlayerEnterEvnt;
     private void RaiseLanguageSelectSOEvent()
     {
         onSelectLangEvnt.Raise((int)currentLanguage);
+    }
+
+    private void RaisePlayerEnterSOEvent()
+    {
+        onPlayerEnterEvnt.Raise();
     }
 
 }

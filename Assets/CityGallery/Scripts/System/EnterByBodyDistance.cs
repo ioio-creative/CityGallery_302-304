@@ -12,20 +12,22 @@ public class EnterByBodyDistance : MonoBehaviour
     private float enterDist;
     private float minDist;
 
-    private bool eventRaised = false;
-    public UnityEvent OnEnterThresholdReached;
+    private bool isIdle = true;
+    public UnityEvent OnEnterThresholdFromIdle;
 
+    
     private void Update()
     {
-        if (!eventRaised)
+        if (Game303Manager.instance.CheckStatus(Status.Idle))
         {
             if (bodyDistances.FloatRefs.Length > 0)
             {
                 minDist = Mathf.Min(bodyDistances.GetArray());
                 if (minDist < enterDist)
                 {
-                    OnEnterThresholdReached?.Invoke();
-                    eventRaised = true;
+                    OnEnterThresholdFromIdle?.Invoke();
+                    Game303Manager.instance.ChangeStatus(Status.Tutorial);
+                    isIdle = false;
                 }
             } 
         }
