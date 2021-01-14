@@ -1,4 +1,4 @@
 {
 	"debug": false,
-	"socketUrl": "ws://10.0.1.40:80/socket.io/?EIO=4&transport=websocket"
+	"socketUrl": "ws://10.0.1.105:80/socket.io/?EIO=4&transport=websocket"
 }

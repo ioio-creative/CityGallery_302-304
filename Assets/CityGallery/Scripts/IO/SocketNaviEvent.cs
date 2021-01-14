@@ -136,7 +136,7 @@ public class SocketNaviEvent : MonoBehaviour
     public void EmitSelectLang(int idx)
     {
         var packet = GetJsonArg("index", idx);
-        IoComponent.Emit(naviIdxEvnt, packet);
+        IoComponent.Emit(langIdxEvnt, packet);
         Debug.Log("[SocketIO]Sent Packet: " + packet.ToString());
     }
 
