@@ -4925,6 +4925,7 @@ MonoBehaviour:
   tcButtonSmall: {fileID: 8880238745381697465}
   enButtonSmall: {fileID: 8880238744411811152}
   pageBlock: {fileID: 8880238745538063331}
+  idlePageText: {fileID: 6098837421015174531}
   tcButtonBig: {fileID: 8880238743749353067}
   enButtonBig: {fileID: 8880238743846025265}
   selectLanguageDescTC: {fileID: 8880238745326292902}

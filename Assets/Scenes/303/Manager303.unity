@@ -568,6 +568,9 @@ MonoBehaviour:
   config:
     debug: 0
     socketUrl: 
+    displayWidth: 0
+    displayHeight: 0
+  screenDimension: {x: 0, y: 0}
 --- !u!114 &1144475080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -580,11 +583,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d416b8c3ce7d67b45af94577dd5e3f0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodyDistances: {fileID: 0}
+  bodyDistances: {fileID: 11400000, guid: b10eca0a12f6ce744b0da1001b7efd7f, type: 2}
   enterDist: 0
-  OnEnterThresholdReached:
+  OnEnterThresholdFromIdle:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: e3529b7886d35e9499d5094ed352d57c, type: 2}
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1307023790
 PrefabInstance:
   m_ObjectHideFlags: 0

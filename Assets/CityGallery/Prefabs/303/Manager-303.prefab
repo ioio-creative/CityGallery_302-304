@@ -252,3 +252,4 @@ MonoBehaviour:
   yearIndex: 0
   sandEffectClearBackObjectTime: 0
   onSelectLangEvnt: {fileID: 11400000, guid: 47e2150b75e19d44f9c2cc4118b812ab, type: 2}
+  onPlayerEnterEvnt: {fileID: 11400000, guid: b9ba6838bb84dab4b88b6d9c8c225960, type: 2}
