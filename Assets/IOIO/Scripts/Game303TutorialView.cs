@@ -8,7 +8,8 @@ public class Game303TutorialView : MonoBehaviour {
 
     public static Game303TutorialView instance;
 
-    [Header ("Color")]
+    [Header ("Setting")]
+    [SerializeField] private float waveCooldownTime;
     [SerializeField] private Color pageCoverIdleColor;
     [SerializeField] private Color pageCoverEffectColor;
     [SerializeField] private Color mainCircleFillbarIdleColor;
@@ -55,7 +56,9 @@ public class Game303TutorialView : MonoBehaviour {
     [SerializeField] private Transform readyTextTC;
     [SerializeField] private Transform readyDescShortTC;
     [SerializeField] private Transform readyDescLongTC;
-
+   
+    [Header ("Debug")]
+    [SerializeField] private float waveCooldownTimer;
     private IEnumerator unactivePageBlockCoroutine;
 
     void Awake () {
@@ -67,13 +70,14 @@ public class Game303TutorialView : MonoBehaviour {
     }
 
     void Update () {
-        if (Input.GetKeyDown (KeyCode.N)) {
-            PlayWaveEffect ();
-        }
+        waveCooldownTimer += Time.deltaTime;
     }
 
     public void PlayWaveEffect () {
-        waveAnimator.SetTrigger ("Play");
+        if (waveCooldownTimer >= waveCooldownTime) {
+            waveCooldownTimer = 0;
+            waveAnimator.SetTrigger ("Play");
+        }
     }
 
     public void ShowSelectLanguagePage () {
