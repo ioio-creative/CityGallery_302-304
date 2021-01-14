@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using RoboRyanTron.Unite2017.Events;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -177,6 +178,15 @@ public class Game303Manager : StateMachine {
     public void SelectLanguage (Language language) {
         currentLanguage = language;
         Game303TutorialView.instance.SwitchLanguage (language);
+        //By Hugo
+        RaiseLanguageSelectSOEvent();
+    }
+
+    //By Hugo
+    [SerializeField] private GameIntEvent onSelectLangEvnt;
+    private void RaiseLanguageSelectSOEvent()
+    {
+        onSelectLangEvnt.Raise((int)currentLanguage);
     }
 
 }

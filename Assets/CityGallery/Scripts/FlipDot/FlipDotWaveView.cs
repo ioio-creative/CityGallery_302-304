@@ -21,6 +21,8 @@ public class FlipDotWaveView : MonoBehaviour
     private FloatReference closestDist;
     private float mappedDist01;
 
+    private bool isIdle = false;
+
     //view lambda parameters
     [SerializeField]
     [Tooltip("X: shortest wavelength; Y: longest wavelength")]
@@ -72,7 +74,7 @@ public class FlipDotWaveView : MonoBehaviour
     private void Update()
     {
         float minDist = manualDistance ? closestDist.Value : inRangeDistance + 1;
-        if (manualDistance || AnybodyWithinRange(out minDist))
+        if (!isIdle && (manualDistance || AnybodyWithinRange(out minDist)))
         {
             if (!manualDistance)
             {
@@ -145,6 +147,11 @@ public class FlipDotWaveView : MonoBehaviour
         lambdaModifier = 0;
         //width
         lr.widthMultiplier = lineWidthMin;
+    }
+
+    public void FlipDotWaveIdleToggle(bool on)
+    {
+        isIdle = on;
     }
 
 }

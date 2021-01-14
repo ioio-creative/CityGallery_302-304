@@ -63,7 +63,7 @@ public class SocketNaviEvent : MonoBehaviour
         {
             EmitEnter();
         }
-        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (Input.GetKeyDown(KeyCode.Backspace))
         {
             EmitLeave();
         }
@@ -82,7 +82,6 @@ public class SocketNaviEvent : MonoBehaviour
     private void OnNavigationIndex(SocketIOEvent obj)
     {
         int idx = 0;
-        Debug.Log("[SocketIO]Received Packet: " + obj.data.type);
         obj.data.GetField(ref idx, "index");
         Debug.Log("[SocketIO]Received NavigationIndex:[" + idx + "]");
 
@@ -92,16 +91,17 @@ public class SocketNaviEvent : MonoBehaviour
     private void OnSelectIndex(SocketIOEvent obj)
     {
         int idx = -1;
-        Debug.Log("[SocketIO]Received Packet: " + obj.data.type);
         obj.data.GetField(ref idx, "index");
         Debug.Log("[SocketIO]Received SelectIndex:[" + idx + "]");
 
         selectIdxSOEventServer.Raise(idx);
     }
 
-    private JSONObject GetJsonArg(int sendInt)
+    private JSONObject GetJsonArg(string fieldName, int sendInt)
     {
-        return new JSONObject(sendInt);
+        var sendDic = new Dictionary<string, JSONObject>();
+        sendDic.Add(fieldName, new JSONObject(sendInt));
+        return new JSONObject(sendDic);
     }
 
     public void EmitNaviLeft()
@@ -128,15 +128,27 @@ public class SocketNaviEvent : MonoBehaviour
 
     public void EmitNavigationIndex(int idx)
     {
-        var packet = GetJsonArg(idx);
-        IoComponent.Emit(naviIdxEvnt, GetJsonArg(idx));
+        var packet = GetJsonArg("index", idx);
+        IoComponent.Emit(naviIdxEvnt, packet);
         Debug.Log("[SocketIO]Sent Packet: " + packet.ToString());
     }
 
     public void EmitSelectLang(int idx)
     {
-        var packet = GetJsonArg(idx);
-        IoComponent.Emit(langIdxEvnt, GetJsonArg(idx));
+        var packet = GetJsonArg("index", idx);
+        IoComponent.Emit(naviIdxEvnt, packet);
         Debug.Log("[SocketIO]Sent Packet: " + packet.ToString());
+    }
+
+    public struct JsonIntArg
+    {
+        public object data;
+    }
+
+    public struct JsonData
+    {
+        public object index;
+
+
     }
 }

@@ -245,6 +245,10 @@ MonoBehaviour:
   currentStatus: 0
   statusTimer: 0
   changeStatus: 0
-  circleSelect: 0
+  currentLanguage: 0
+  leftCircleSelected: 0
+  rightCircleSelected: 0
+  confirmPageShowed: 0
   yearIndex: 0
   sandEffectClearBackObjectTime: 0
+  onSelectLangEvnt: {fileID: 11400000, guid: 47e2150b75e19d44f9c2cc4118b812ab, type: 2}
