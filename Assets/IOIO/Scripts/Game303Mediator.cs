@@ -6,6 +6,9 @@ public class Game303Mediator : MonoBehaviour {
 
 	public static Game303Mediator instance;
 
+    public delegate void SetColorCoverAlphaDelegate (float alpha);
+    public SetColorCoverAlphaDelegate setColorCoverAlphaDelegate;
+
     public delegate void SelectDelegate (Direction direction);
     public SelectDelegate selectDelegate;
 
@@ -17,6 +20,10 @@ public class Game303Mediator : MonoBehaviour {
 
     void Awake () {
         instance = this;
+    }
+
+    public void SetColorCoverAlpha (float alpha) {
+        setColorCoverAlphaDelegate.Invoke (alpha);
     }
 
     public void SelectLeft () {

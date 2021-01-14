@@ -22,10 +22,11 @@ public class Game303Manager : StateMachine {
     void Start () {
         Game303ConfigData.instance.LoadConfig ();
         sandEffectClearBackObjectTime = Game303ConfigData.instance.sandEffectMoveTime / 4;
+        Game303Mediator.instance.setColorCoverAlphaDelegate += SetColorCoverAlpha;
         Game303Mediator.instance.selectDelegate += Select;
         Game303Mediator.instance.selectYearDelegate += SelectYear;
         Game303Mediator.instance.changeStatusDelegate += ChangeStatus;
-        ChangeStatus (Status.SelectLanguage);
+        ChangeStatus (Status.Idle);
     }
 
     protected override void OnAnyStatusStay () {
@@ -39,12 +40,17 @@ public class Game303Manager : StateMachine {
             Game303FlipdotView.instance.HideSelectYearPage ();
             Game303FlipdotView.instance.HideMountain (sandEffectClearBackObjectTime);
             Game303SequenceView.instance.Clear (sandEffectClearBackObjectTime);
-            Game303TutorialView.instance.UnactivePageBlock (Game303ConfigData.instance.sandEffectMoveTime);
-            Game303TutorialView.instance.HideReadyPage ();
         }
         else {
             Game303FlipdotView.instance.HideTutorialPage ();
         }
+        Game303TutorialView.instance.HideSelectLanguagePage ();
+        Game303TutorialView.instance.HideLeftHandPage ();
+        Game303TutorialView.instance.HideRightHandPage ();
+        Game303TutorialView.instance.HideConfirmPage ();
+        Game303TutorialView.instance.HideReadyPage ();
+        Game303TutorialView.instance.UnactivePageBlock (Game303ConfigData.instance.sandEffectMoveTime);
+        Game303TutorialView.instance.ShowIdlePage ();
     }
 
     protected override void OnIdleStatusStay () {
@@ -52,7 +58,7 @@ public class Game303Manager : StateMachine {
     }
 
     protected override void OnPlayerInStatusEnter () {
-        Game303FlipdotView.instance.HideLine ();
+
     }
 
     protected override void OnPlayerInStatusStay () {
@@ -66,7 +72,8 @@ public class Game303Manager : StateMachine {
             Game303FlipdotView.instance.HideSelectYearPage ();
             Game303FlipdotView.instance.HideMountain (sandEffectClearBackObjectTime);
             Game303SequenceView.instance.Clear (sandEffectClearBackObjectTime);
-        }     
+        }
+        Game303TutorialView.instance.HideIdlePage ();
         Game303TutorialView.instance.HideLeftHandPage ();
         Game303TutorialView.instance.HideRightHandPage ();
         Game303TutorialView.instance.HideConfirmPage ();
@@ -184,6 +191,10 @@ public class Game303Manager : StateMachine {
             yearIndex = index;
             Game303FlipdotView.instance.SelectYear (yearIndex);
         }
+    }
+
+    public void SetColorCoverAlpha (float alpha) {
+        Game303TutorialView.instance.SetColorCoverAlpha (alpha);
     }
 
     public void SelectLanguage (Language language) {
