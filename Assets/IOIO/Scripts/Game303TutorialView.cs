@@ -79,6 +79,12 @@ public class Game303TutorialView : MonoBehaviour {
     public void ShowSelectLanguagePage () {
         mainCircle.DOScale (1, 0.5f);
         mainCircleFillbar.GetComponent<Image> ().DOFillAmount (0, 0.5f);
+        tcButtonBig.DOScale (1, 0.5f);
+        enButtonBig.DOScale (1, 0.5f);
+        selectLanguageDescTC.DOScale (1, 0.5f);
+        selectLanguageDescEN.DOScale (1, 0.5f);
+        welcomeLeft.DOScale (1, 0.5f);
+        welcomeRight.DOScale (1, 0.5f);
     }
 
     public void HideSelectLanguagePage () {
@@ -161,11 +167,16 @@ public class Game303TutorialView : MonoBehaviour {
     }
 
     public void HideReadyPage () {
+        tutorialLeft.DOScale (0, 0.5f);
+        tutorialRight.DOScale (0, 0.5f);
         readyButton.DOScale (0, 0f);
         readyTextTC.DOScale (0, 0.5f);
         readyDescShortTC.DOScale (0, 0.5f);
         readyDescLongTC.DOScale (0, 0.5f);
         replayButton.DOScale (0, 0.5f);
+        skipButton.DOScale (0, 0.5f);
+        tcButtonSmall.DOScale (0, 0.5f);
+        enButtonSmall.DOScale (0, 0.5f);
     }
 
     public void ActivePageBlock () {

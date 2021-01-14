@@ -60,6 +60,17 @@ public class Game303Manager : StateMachine {
     }
 
     protected override void OnSelectLanguageStatusEnter () {
+        if (previousStatus == Status.Confirm ||
+            previousStatus == Status.SelectYear) {
+            Game303FlipdotView.instance.PassSand ();
+            Game303FlipdotView.instance.HideSelectYearPage ();
+            Game303FlipdotView.instance.HideMountain (sandEffectClearBackObjectTime);
+            Game303SequenceView.instance.Clear (sandEffectClearBackObjectTime);
+        }     
+        Game303TutorialView.instance.HideLeftHandPage ();
+        Game303TutorialView.instance.HideRightHandPage ();
+        Game303TutorialView.instance.HideConfirmPage ();
+        Game303TutorialView.instance.HideReadyPage ();
         Game303TutorialView.instance.UnactivePageBlock (Game303ConfigData.instance.sandEffectMoveTime);
         Game303TutorialView.instance.ShowSelectLanguagePage ();
     }
