@@ -27,6 +27,7 @@ public class Game303TutorialView : MonoBehaviour {
     [SerializeField] private Transform replayButton;
     [SerializeField] private Transform tcButtonSmall;
     [SerializeField] private Transform enButtonSmall;
+    [SerializeField] private Transform pageBlock;
 
     [Header ("Select Language")]
     [SerializeField] private Transform tcButtonBig;
@@ -54,6 +55,8 @@ public class Game303TutorialView : MonoBehaviour {
     [SerializeField] private Transform readyTextTC;
     [SerializeField] private Transform readyDescShortTC;
     [SerializeField] private Transform readyDescLongTC;
+
+    private IEnumerator unactivePageBlockCoroutine;
 
     void Awake () {
         instance = this;
@@ -91,6 +94,7 @@ public class Game303TutorialView : MonoBehaviour {
         PlayWaveEffect ();
         WholePageColorEffect ();
         mainCircleFillbar.GetComponent<Image> ().DOFillAmount (0.25f, 0.5f);
+        mainCircle.DOScale (1, 0f);
         leftHandMan.DOScaleX (1, 0.5f);
         leftHandDescShortTC.DOScale (1, 0.5f);
         leftHandDescLongTC.DOScale (1, 0.5f);
@@ -156,6 +160,34 @@ public class Game303TutorialView : MonoBehaviour {
         replayButton.DOScale (1, 0.5f);
     }
 
+    public void HideReadyPage () {
+        readyButton.DOScale (0, 0f);
+        readyTextTC.DOScale (0, 0.5f);
+        readyDescShortTC.DOScale (0, 0.5f);
+        readyDescLongTC.DOScale (0, 0.5f);
+        replayButton.DOScale (0, 0.5f);
+    }
+
+    public void ActivePageBlock () {
+        StopCoroutine (unactivePageBlockCoroutine);
+        pageBlock.GetComponent<MaskableGraphic> ().raycastTarget = true;
+        pageBlock.GetComponent<MaskableGraphic> ().DOFade (1, 0.5f);
+    }
+
+    public void UnactivePageBlock () {
+        pageBlock.GetComponent<MaskableGraphic> ().raycastTarget = false;
+        pageBlock.GetComponent<MaskableGraphic> ().DOFade (0, 0.5f);
+    }
+
+    public void UnactivePageBlock (float delay) {
+        unactivePageBlockCoroutine = Flow ();
+        StartCoroutine (unactivePageBlockCoroutine);
+        IEnumerator Flow () {
+            yield return new WaitForSeconds (delay);
+            UnactivePageBlock ();
+        }
+    }
+
     public void WholePageColorEffect () {
         float effectTime = 0.3f;
 
@@ -202,7 +234,7 @@ public class Game303TutorialView : MonoBehaviour {
     }
 
     public void OnSkipTutorialButtonClick () {
-
+        Game303Manager.instance.ChangeStatus (Status.SelectYear);
     }
 
     public void OnConfirmButtonClick () {
@@ -216,7 +248,7 @@ public class Game303TutorialView : MonoBehaviour {
     }
 
     public void OnReplayButtonClick () {
-
+        Game303Manager.instance.ChangeStatus (Status.Tutorial);
     }
 
 }

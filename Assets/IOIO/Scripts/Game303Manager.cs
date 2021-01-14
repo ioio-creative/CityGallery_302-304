@@ -38,6 +38,8 @@ public class Game303Manager : StateMachine {
             Game303FlipdotView.instance.HideSelectYearPage ();
             Game303FlipdotView.instance.HideMountain (sandEffectClearBackObjectTime);
             Game303SequenceView.instance.Clear (sandEffectClearBackObjectTime);
+            Game303TutorialView.instance.UnactivePageBlock (Game303ConfigData.instance.sandEffectMoveTime);
+            Game303TutorialView.instance.HideReadyPage ();
         }
         else {
             Game303FlipdotView.instance.HideTutorialPage ();
@@ -57,6 +59,7 @@ public class Game303Manager : StateMachine {
     }
 
     protected override void OnSelectLanguageStatusEnter () {
+        Game303TutorialView.instance.UnactivePageBlock (Game303ConfigData.instance.sandEffectMoveTime);
         Game303TutorialView.instance.ShowSelectLanguagePage ();
     }
 
@@ -68,7 +71,8 @@ public class Game303Manager : StateMachine {
         leftCircleSelected = false;
         rightCircleSelected = false;
         confirmPageShowed = false;
-        Game303FlipdotView.instance.HideLine ();    
+        Game303FlipdotView.instance.HideLine ();
+        Game303TutorialView.instance.HideReadyPage ();
         Game303FlipdotView.instance.ShowTutorialPage ();
         Game303TutorialView.instance.HideSelectLanguagePage ();
         Game303TutorialView.instance.ShowLeftHandPage ();
@@ -96,14 +100,16 @@ public class Game303Manager : StateMachine {
     }
 
     protected override void OnSelectYearStatusEnter () {
+        Game303FlipdotView.instance.HideTutorialPage ();
+        Game303TutorialView.instance.ActivePageBlock ();
         if (previousStatus == Status.SelectYear)
         {
             return;
         }
         else if (previousStatus == Status.Confirm) {
             Game303FlipdotView.instance.PassSand ();
-            Game303SequenceView.instance.Clear (sandEffectClearBackObjectTime);
             Game303FlipdotView.instance.SelectYear (yearIndex, sandEffectClearBackObjectTime);
+            Game303SequenceView.instance.Clear (sandEffectClearBackObjectTime);
         }
         else {
             Game303FlipdotView.instance.PassSand ();
