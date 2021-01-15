@@ -23,6 +23,8 @@ public class Game303TutorialView : MonoBehaviour {
     [Header ("Global")]
     [SerializeField] private Animator waveAnimator;
     [SerializeField] private Transform colorCover;
+    [SerializeField] private Transform leftLine;
+    [SerializeField] private Transform rightLine;
     [SerializeField] private Transform mainCircle;
     [SerializeField] private Transform mainCircleFillbar;
     [SerializeField] private Transform welcomeLeft;
@@ -111,6 +113,8 @@ public class Game303TutorialView : MonoBehaviour {
         idlePageText.GetComponent<MaskableGraphic> ().DOFade (1, 0.5f);
         mainCircle.DOScale (0, 0f);
         mainCircleFillbar.DOScale (0, 0f);
+        leftLine.DOScaleX (1.5f, 0.5f);
+        rightLine.DOScaleX (1.5f, 0.5f);
     }
 
     public void HideIdlePage () {
@@ -131,6 +135,8 @@ public class Game303TutorialView : MonoBehaviour {
         selectLanguageDescEN.DOScale (1, 0.5f);
         welcomeLeft.DOScale (1, 0.5f);
         welcomeRight.DOScale (1, 0.5f);
+        leftLine.DOScaleX (1, 0).SetDelay (0.5f);
+        rightLine.DOScaleX (1, 0).SetDelay (0.5f);
     }
 
     public void HideSelectLanguagePage () {
