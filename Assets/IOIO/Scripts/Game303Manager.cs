@@ -95,6 +95,8 @@ public class Game303Manager : StateMachine {
         Game303FlipdotView.instance.ShowTutorialPage ();
         Game303TutorialView.instance.HideSelectLanguagePage ();
         Game303TutorialView.instance.ShowLeftHandPage ();
+
+        RaiseTutorialSOEvent();
     }
 
     protected override void OnTutorialStatusStay () {
@@ -131,9 +133,9 @@ public class Game303Manager : StateMachine {
             Game303SequenceView.instance.Clear (sandEffectClearBackObjectTime);
         }
         else {
-            if (previousStatus == Status.Ready)
+            if (previousStatus == Status.Ready || previousStatus == Status.Tutorial)
             {
-                RaisePlayerEnterSOEvent();
+                RaisePlayerEnterSOEventFromIdle();
             }
 
             Game303FlipdotView.instance.PassSand ();
@@ -212,6 +214,7 @@ public class Game303Manager : StateMachine {
 
     //By Hugo
     [SerializeField] private GameIntEvent onSelectLangEvnt;
+    [SerializeField] private GameEvent onTutorialEvnt;
     [SerializeField] private GameEvent onPlayerEnterEvnt;
     [SerializeField] private GameIntEvent onNaviIdxEvnt;
     private void RaiseLanguageSelectSOEvent()
@@ -219,9 +222,15 @@ public class Game303Manager : StateMachine {
         onSelectLangEvnt.Raise((int)currentLanguage);
     }
 
-    private void RaisePlayerEnterSOEvent()
+    private void RaiseTutorialSOEvent()
+    {
+        onTutorialEvnt.Raise();
+    }
+
+    private void RaisePlayerEnterSOEventFromIdle()
     {
         onPlayerEnterEvnt.Raise();
+        onNaviIdxEvnt.Raise(0);
     }
 
 }

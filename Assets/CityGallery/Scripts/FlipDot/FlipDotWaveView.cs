@@ -1,4 +1,5 @@
-﻿using SOVariables;
+﻿using DG.Tweening;
+using SOVariables;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -161,6 +162,11 @@ public class FlipDotWaveView : MonoBehaviour
         {
             ResetView();
         }
+    }
+
+    public void HideWave()
+    {
+        DOTween.To(() => lr.widthMultiplier, f => lr.widthMultiplier = f, 0, 0.2f);
     }
 
 }
