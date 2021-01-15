@@ -1427,16 +1427,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 964341677}
     m_Modifications:
-    - target: {fileID: 348644966723269580, guid: ededa1973328579489941b3f507836cb,
-        type: 3}
-      propertyPath: m_Maskable
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 348644966723269580, guid: ededa1973328579489941b3f507836cb,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8880238745648575358, guid: ededa1973328579489941b3f507836cb,
         type: 3}
       propertyPath: m_LocalPosition.x

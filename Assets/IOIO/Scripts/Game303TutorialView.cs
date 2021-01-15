@@ -15,6 +15,10 @@ public class Game303TutorialView : MonoBehaviour {
     [SerializeField] private Color pageCoverEffectColor;
     [SerializeField] private Color mainCircleFillbarIdleColor;
     [SerializeField] private Color mainCircleFillbarEffectColor;
+    [SerializeField] private Sprite skipButtonTC;
+    [SerializeField] private Sprite skipButtonEN;
+    [SerializeField] private Sprite replayButtonTC;
+    [SerializeField] private Sprite replayButtonEN;
 
     [Header ("Global")]
     [SerializeField] private Animator waveAnimator;
@@ -42,24 +46,24 @@ public class Game303TutorialView : MonoBehaviour {
 
     [Header ("Left Hand")]
     [SerializeField] private Transform leftHandMan;
-    [SerializeField] private Transform leftHandDescShortTC;
-    [SerializeField] private Transform leftHandDescLongTC;
+    [SerializeField] private Transform leftHandDescShort;
+    [SerializeField] private Transform leftHandDescLong;
 
     [Header ("Right Hand")]
     [SerializeField] private Transform rightHandMan;
-    [SerializeField] private Transform rightHandDescShortTC;
-    [SerializeField] private Transform rightHandDescLongTC;
+    [SerializeField] private Transform rightHandDescShort;
+    [SerializeField] private Transform rightHandDescLong;
 
     [Header ("Confirm")]
     [SerializeField] private Transform confirmButton;
-    [SerializeField] private Transform confirmDescShortTC;
-    [SerializeField] private Transform confirmDescLongTC;
+    [SerializeField] private Transform confirmDescShort;
+    [SerializeField] private Transform confirmDescLong;
 
     [Header ("Ready")]
     [SerializeField] private Transform readyButton;
-    [SerializeField] private Transform readyTextTC;
-    [SerializeField] private Transform readyDescShortTC;
-    [SerializeField] private Transform readyDescLongTC;
+    [SerializeField] private Transform readyText;
+    [SerializeField] private Transform readyDescShort;
+    [SerializeField] private Transform readyDescLong;
    
     [Header ("Debug")]
     [SerializeField] private float waveCooldownTimer;
@@ -144,8 +148,8 @@ public class Game303TutorialView : MonoBehaviour {
         mainCircleFillbar.GetComponent<Image> ().DOFillAmount (0.25f, 0.5f);
         mainCircle.DOScale (1, 0f);
         leftHandMan.DOScaleX (1, 0.5f);
-        leftHandDescShortTC.DOScale (1, 0.5f);
-        leftHandDescLongTC.DOScale (1, 0.5f);
+        leftHandDescShort.DOScale (1, 0.5f);
+        leftHandDescLong.DOScale (1, 0.5f);
         tutorialLeft.DOScale (1, 0.5f);
         tutorialRight.DOScale (1, 0.5f);
         skipButton.DOScale (1, 0.5f);
@@ -155,8 +159,8 @@ public class Game303TutorialView : MonoBehaviour {
 
     public void HideLeftHandPage () {
         leftHandMan.DOScaleX (0, 0.5f);
-        leftHandDescShortTC.DOScale (0, 0.5f);
-        leftHandDescLongTC.DOScale (0, 0.5f);
+        leftHandDescShort.DOScale (0, 0.5f);
+        leftHandDescLong.DOScale (0, 0.5f);
     }
 
     public void ShowRightHandPage () {
@@ -164,8 +168,8 @@ public class Game303TutorialView : MonoBehaviour {
         WholePageColorEffect ();
         mainCircleFillbar.GetComponent<Image> ().DOFillAmount (0.5f, 0.5f);
         rightHandMan.DOScaleX (1, 0.5f);
-        rightHandDescShortTC.DOScale (1, 0.5f);
-        rightHandDescLongTC.DOScale (1, 0.5f);
+        rightHandDescShort.DOScale (1, 0.5f);
+        rightHandDescLong.DOScale (1, 0.5f);
         tutorialLeft.DOScale (1, 0.5f);
         tutorialRight.DOScale (1, 0.5f);
         skipButton.DOScale (1, 0.5f);
@@ -175,8 +179,8 @@ public class Game303TutorialView : MonoBehaviour {
 
     public void HideRightHandPage () {
         rightHandMan.DOScaleX (0, 0.5f);
-        rightHandDescShortTC.DOScale (0, 0.5f);
-        rightHandDescLongTC.DOScale (0, 0.5f);
+        rightHandDescShort.DOScale (0, 0.5f);
+        rightHandDescLong.DOScale (0, 0.5f);
     }
 
     public void ShowConfirmPage () {
@@ -184,15 +188,15 @@ public class Game303TutorialView : MonoBehaviour {
         WholePageColorEffect ();
         mainCircleFillbar.GetComponent<Image> ().DOFillAmount (0.75f, 0.5f);
         confirmButton.DOScale (1, 0.5f);
-        confirmDescShortTC.DOScale (1, 0.5f);
-        confirmDescLongTC.DOScale (1, 0.5f);
+        confirmDescShort.DOScale (1, 0.5f);
+        confirmDescLong.DOScale (1, 0.5f);
     }
 
     public void HideConfirmPage () {
         confirmButton.DOKill ();
         confirmButton.DOScale (0, 0);
-        confirmDescShortTC.DOScale (0, 0.5f);
-        confirmDescLongTC.DOScale (0, 0.5f);
+        confirmDescShort.DOScale (0, 0.5f);
+        confirmDescLong.DOScale (0, 0.5f);
     }
 
     public void ShowReadyPage () {
@@ -201,9 +205,9 @@ public class Game303TutorialView : MonoBehaviour {
         mainCircleFillbar.GetComponent<Image> ().DOFillAmount (1, 0.5f);
         mainCircle.DOScale (0, 0f);
         readyButton.DOScale (1, 0f);
-        readyTextTC.DOScale (1, 0.5f);
-        readyDescShortTC.DOScale (1, 0.5f);
-        readyDescLongTC.DOScale (1, 0.5f);
+        readyText.DOScale (1, 0.5f);
+        readyDescShort.DOScale (1, 0.5f);
+        readyDescLong.DOScale (1, 0.5f);
         skipButton.DOScale (0, 0.5f);
         replayButton.DOScale (1, 0.5f);
     }
@@ -212,9 +216,9 @@ public class Game303TutorialView : MonoBehaviour {
         tutorialLeft.DOScale (0, 0.5f);
         tutorialRight.DOScale (0, 0.5f);
         readyButton.DOScale (0, 0f);
-        readyTextTC.DOScale (0, 0.5f);
-        readyDescShortTC.DOScale (0, 0.5f);
-        readyDescLongTC.DOScale (0, 0.5f);
+        readyText.DOScale (0, 0.5f);
+        readyDescShort.DOScale (0, 0.5f);
+        readyDescLong.DOScale (0, 0.5f);
         replayButton.DOScale (0, 0.5f);
         skipButton.DOScale (0, 0.5f);
         tcButtonSmall.DOScale (0, 0.5f);
@@ -247,12 +251,62 @@ public class Game303TutorialView : MonoBehaviour {
             enButtonSmall.Find ("Fill").GetComponent<MaskableGraphic> ().DOFade (0, 0);
             tcButtonSmall.Find ("Text").GetComponent<MaskableGraphic> ().color = Color.black;
             enButtonSmall.Find ("Text").GetComponent<MaskableGraphic> ().color = Color.white;
+
+            skipButton.GetComponent<Image> ().sprite = skipButtonTC;
+            replayButton.GetComponent<Image> ().sprite = replayButtonTC;
+
+            leftHandDescShort.Find ("TC").DOScale (1, 0);
+            leftHandDescLong.Find ("TC").DOScale (1, 0);
+            rightHandDescShort.Find ("TC").DOScale (1, 0);
+            rightHandDescLong.Find ("TC").DOScale (1, 0);
+            confirmButton.Find ("TC").DOScale (1, 0);
+            confirmDescShort.Find ("TC").DOScale (1, 0);
+            confirmDescLong.Find ("TC").DOScale (1, 0);
+            readyDescShort.Find ("TC").DOScale (1, 0);
+            readyDescLong.Find ("TC").DOScale (1, 0);
+            readyText.Find ("TC").DOScale (1, 0);
+
+            leftHandDescShort.Find ("EN").DOScale (0, 0);
+            leftHandDescLong.Find ("EN").DOScale (0, 0);
+            rightHandDescShort.Find ("EN").DOScale (0, 0);
+            rightHandDescLong.Find ("EN").DOScale (0, 0);
+            confirmButton.Find ("EN").DOScale (0, 0);
+            confirmDescShort.Find ("EN").DOScale (0, 0);
+            confirmDescLong.Find ("EN").DOScale (0, 0);
+            readyDescShort.Find ("EN").DOScale (0, 0);
+            readyDescLong.Find ("EN").DOScale (0, 0);
+            readyText.Find ("EN").DOScale (0, 0);
         }
         else if (language == Language.EN) {
             tcButtonSmall.Find ("Fill").GetComponent<MaskableGraphic> ().DOFade (0, 0);
             enButtonSmall.Find ("Fill").GetComponent<MaskableGraphic> ().DOFade (1, 0);
             tcButtonSmall.Find ("Text").GetComponent<MaskableGraphic> ().color = Color.white;
             enButtonSmall.Find ("Text").GetComponent<MaskableGraphic> ().color = Color.black;
+
+            skipButton.GetComponent<Image> ().sprite = skipButtonEN;
+            replayButton.GetComponent<Image> ().sprite = replayButtonEN;
+
+            leftHandDescShort.Find ("TC").DOScale (0, 0);
+            leftHandDescLong.Find ("TC").DOScale (0, 0);
+            rightHandDescShort.Find ("TC").DOScale (0, 0);
+            rightHandDescLong.Find ("TC").DOScale (0, 0);
+            confirmButton.Find ("TC").DOScale (0, 0);
+            confirmDescShort.Find ("TC").DOScale (0, 0);
+            confirmDescLong.Find ("TC").DOScale (0, 0);
+            readyDescShort.Find ("TC").DOScale (0, 0);
+            readyDescLong.Find ("TC").DOScale (0, 0);
+            readyText.Find ("TC").DOScale (0, 0);
+
+            leftHandDescShort.Find ("EN").DOScale (1, 0);
+            leftHandDescLong.Find ("EN").DOScale (1, 0);
+            rightHandDescShort.Find ("EN").DOScale (1, 0);
+            rightHandDescLong.Find ("EN").DOScale (1, 0);
+            confirmButton.Find ("EN").DOScale (1, 0);
+            confirmDescShort.Find ("EN").DOScale (1, 0);
+            confirmDescLong.Find ("EN").DOScale (1, 0);
+            readyDescShort.Find ("EN").DOScale (1, 0);
+            readyDescLong.Find ("EN").DOScale (1, 0);
+            readyText.Find ("EN").DOScale (1, 0);
         }
     }
 
