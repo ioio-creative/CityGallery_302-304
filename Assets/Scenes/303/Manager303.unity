@@ -611,7 +611,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 545
+    m_Bits: 33
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -907,11 +907,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7334626223500479614, guid: 05b5324211d4fb64988c6ff55e89b4ce,
-        type: 3}
-      propertyPath: manualDistance
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7334626223500479615, guid: 05b5324211d4fb64988c6ff55e89b4ce,
         type: 3}
