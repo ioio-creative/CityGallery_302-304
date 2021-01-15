@@ -12,7 +12,7 @@ public class Game303Mediator : MonoBehaviour {
     public delegate void SelectDelegate (Direction direction);
     public SelectDelegate selectDelegate;
 
-    public delegate void SelectYearDelegate (int index);
+    public delegate int SelectYearDelegate (int index);
     public SelectYearDelegate selectYearDelegate;
 
     public delegate void ChangeStatusDelegate (Status status);
@@ -34,8 +34,8 @@ public class Game303Mediator : MonoBehaviour {
         selectDelegate.Invoke (Direction.Right);
     }
 
-    public void SelectYear (int index) {
-        selectYearDelegate.Invoke (index);
+    public int SelectYear (int index) {
+        return selectYearDelegate.Invoke (index);
     }
 
     public void ChangeStatus (Status targetStatus) {

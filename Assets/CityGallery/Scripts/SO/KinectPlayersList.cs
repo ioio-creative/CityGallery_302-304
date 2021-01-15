@@ -8,27 +8,27 @@ using Kinect = Windows.Kinect;
 public class KinectPlayersList : ScriptableObject
 {
     [SerializeField]
-    private List<KinectPlayer302> players;
-    public List<KinectPlayer302> TrackedPlayers => players;
+    private List<KinectPlayer> players;
+    public List<KinectPlayer> TrackedPlayers => players;
     
     [SerializeField]
-    private KinectPlayer302 selectedPlayer;
-    public KinectPlayer302 SelectedPlayer => selectedPlayer;
+    private KinectPlayer selectedPlayer;
+    public KinectPlayer SelectedPlayer => selectedPlayer;
 
     public void SetPlayersFromDictionary(Dictionary
         <ulong, KinectPlayer>.ValueCollection dictValues)
     {
-        players = new List<KinectPlayer302>(dictValues.ToArray().Cast<KinectPlayer302>());
+        players = new List<KinectPlayer>(dictValues.ToArray().Cast<KinectPlayer>());
     }
 
-    public KinectPlayer302 SelectPlayer(Kinect.CameraSpacePoint refPoint, Kinect.JointType refJointType, Kinect.Vector4 refFloor)
+    public KinectPlayer SelectPlayer(Kinect.CameraSpacePoint refPoint, Kinect.JointType refJointType, Kinect.Vector4 refFloor)
     {
         if (players.Count <=0 )
         {
             return null;
         }
         
-        KinectPlayer302 selection = null;
+        KinectPlayer selection = null;
         float distComparer = 10000f;
         foreach (var player in TrackedPlayers)
         {

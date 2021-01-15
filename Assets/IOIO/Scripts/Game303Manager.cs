@@ -131,6 +131,11 @@ public class Game303Manager : StateMachine {
             Game303SequenceView.instance.Clear (sandEffectClearBackObjectTime);
         }
         else {
+            if (previousStatus == Status.Ready)
+            {
+                RaisePlayerEnterSOEvent();
+            }
+
             Game303FlipdotView.instance.PassSand ();
             Game303FlipdotView.instance.HideLine (sandEffectClearBackObjectTime);
             Game303FlipdotView.instance.ShowMountain (sandEffectClearBackObjectTime);
@@ -186,11 +191,12 @@ public class Game303Manager : StateMachine {
         }
     }
 
-    public void SelectYear (int index) {
-        if (index > 0 && index < Game303FlipdotView.instance.YearTextCount ()) {
+    public int SelectYear (int index) {
+        if (index >= 0 && index < Game303FlipdotView.instance.YearTextCount ()) {
             yearIndex = index;
             Game303FlipdotView.instance.SelectYear (yearIndex);
         }
+        return yearIndex;
     }
 
     public void SetColorCoverAlpha (float alpha) {
@@ -207,6 +213,7 @@ public class Game303Manager : StateMachine {
     //By Hugo
     [SerializeField] private GameIntEvent onSelectLangEvnt;
     [SerializeField] private GameEvent onPlayerEnterEvnt;
+    [SerializeField] private GameIntEvent onNaviIdxEvnt;
     private void RaiseLanguageSelectSOEvent()
     {
         onSelectLangEvnt.Raise((int)currentLanguage);

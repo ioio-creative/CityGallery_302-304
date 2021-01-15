@@ -1,14 +1,28 @@
-﻿using System.Collections;
+﻿using RoboRyanTron.Unite2017.Events;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Game303FlipDotEventHandler : MonoBehaviour
 {
     private Game303Mediator mediator => Game303Mediator.instance;
+    private Game303Manager manager => Game303Manager.instance;
 
-    public void OnUserEnter()
+    //internal event
+    [SerializeField]
+    private GameIntEvent navigationIndexEvntIO;
+
+    [Header("Debug")]
+    [SerializeField]
+    private int currentNaviIdx = 0;
+
+    public void OnEnterRangeInternal()
     {
-        mediator.ChangeStatus(Status.Tutorial);
+        if (manager.CheckStatus(Status.Idle))
+        {
+            mediator.ChangeStatus(Status.SelectLanguage);
+            currentNaviIdx = 0;
+        }
     }
 
     public void OnUserLeave()
@@ -28,13 +42,29 @@ public class Game303FlipDotEventHandler : MonoBehaviour
         mediator.ChangeStatus(Status.Confirm);
     }
 
-    public void OnTutorialLeft()
+    public void OnHandCursorLeft()
     {
-        mediator.SelectLeft();
+        if (manager.CheckStatus(Status.Tutorial))
+        {
+            mediator.SelectLeft();
+        }
+        else if (manager.CheckStatus(Status.SelectYear))
+        {
+            currentNaviIdx = mediator.SelectYear(currentNaviIdx - 1);
+            navigationIndexEvntIO.Raise(currentNaviIdx);
+        }
     }
 
-    public void OnTutorialRight()
+    public void OnHandCursorRight()
     {
-        mediator.SelectRight();
+        if (manager.CheckStatus(Status.Tutorial))
+        {
+            mediator.SelectRight();
+        }
+        else if (manager.CheckStatus(Status.SelectYear))
+        {
+            currentNaviIdx = mediator.SelectYear(currentNaviIdx + 1);
+            navigationIndexEvntIO.Raise(currentNaviIdx);
+        }
     }
 }

@@ -104,15 +104,15 @@ public class SocketNaviEvent : MonoBehaviour
         return new JSONObject(sendDic);
     }
 
-    public void EmitNaviLeft()
-    {
-        IoComponent.Emit(naviLeftEvnt);
-    }
+    //public void EmitNaviLeft()
+    //{
+    //    IoComponent.Emit(naviLeftEvnt);
+    //}
 
-    public void EmitNaviRight()
-    {
-        IoComponent.Emit(naviRightEvnt);
-    }
+    //public void EmitNaviRight()
+    //{
+    //    IoComponent.Emit(naviRightEvnt);
+    //}
 
     public void EmitEnter()
     {
@@ -130,25 +130,13 @@ public class SocketNaviEvent : MonoBehaviour
     {
         var packet = GetJsonArg("index", idx);
         IoComponent.Emit(naviIdxEvnt, packet);
-        Debug.Log("[SocketIO]Sent Packet: " + packet.ToString());
+        Debug.Log("[SocketIO]Sent Nav Idx Packet: " + packet.ToString());
     }
 
     public void EmitSelectLang(int idx)
     {
         var packet = GetJsonArg("index", idx);
         IoComponent.Emit(langIdxEvnt, packet);
-        Debug.Log("[SocketIO]Sent Packet: " + packet.ToString());
+        Debug.Log("[SocketIO]Sent Lang Idx Packet: " + packet.ToString());
     }
-
-    public struct JsonIntArg
-    {
-        public object data;
-    }
-
-    public struct JsonData
-    {
-        public object index;
-
-
-    }
-}
+}    

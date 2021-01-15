@@ -9,7 +9,7 @@ public class PlayerTimeout : MonoBehaviour
     public UnityEvent AllPlayersLeft;
 
     [SerializeField]
-    private FloatReferenceArray bodyDistances;
+    private FloatReference closestDistance;
 
     [SerializeField]
     private float outOfRangeDistance;
@@ -39,7 +39,7 @@ public class PlayerTimeout : MonoBehaviour
         {
             timer += Time.deltaTime;
 
-            if (AnybodyWithinDistance())
+            if (closestDistance <= outOfRangeDistance)
             {
                 timer = 0;
             }
@@ -57,14 +57,14 @@ public class PlayerTimeout : MonoBehaviour
 
     private IEnumerator CheckPlayerLeave()
     {
-        yield return new WaitUntil(() => !AnybodyWithinDistance());
+        yield return new WaitUntil(() => closestDistance > outOfRangeDistance);
         
         if (timeoutRoutine == null)
         {
             timeoutRoutine = StartCoroutine(LeaveRoomAfterTimeout(leavingTimeout)); 
         }
         
-        yield return new WaitUntil(() => AnybodyWithinDistance());
+        yield return new WaitUntil(() => closestDistance <= outOfRangeDistance);
         if (timeoutRoutine != null)
         {
             StopCoroutine(timeoutRoutine);
@@ -82,20 +82,20 @@ public class PlayerTimeout : MonoBehaviour
         StopAllCoroutines();
     }
 
-    private bool AnybodyWithinDistance()
-    {
-        var dists = bodyDistances.GetArray();
+    //private bool AnybodyWithinDistance()
+    //{
+    //    var dists = closestDistance.GetArray();
 
-        foreach (var d in dists)
-        {
-            if (d <= outOfRangeDistance )
-            {
-                return true;
-            }
-        }
+    //    foreach (var d in dists)
+    //    {
+    //        if (d <= outOfRangeDistance)
+    //        {
+    //            return true;
+    //        }
+    //    }
 
-        return false;
-    }
+    //    return false;
+    //}
     
     public void OnPlayerEnter()
     {

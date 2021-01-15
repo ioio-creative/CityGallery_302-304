@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 7467803514826746851}
   - component: {fileID: 1431337558710550235}
   - component: {fileID: 7274101594063783378}
-  - component: {fileID: 6660501409177177294}
   - component: {fileID: 6167733298423699317}
   - component: {fileID: 7779157868988495761}
+  - component: {fileID: 9063683345788253981}
+  - component: {fileID: 5496339026590481253}
   m_Layer: 0
   m_Name: Mediator
   m_TagString: Untagged
@@ -61,6 +62,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 953bc65e79b868e44aff96b98b454d39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  navigationIndexEvntIO: {fileID: 11400000, guid: 9e56573597dfd40498033e261d1453b0,
+    type: 2}
+  currentNaviIdx: 0
 --- !u!114 &1431337558710550235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,12 +77,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e299084dd6b333459077884b308299e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: b9ba6838bb84dab4b88b6d9c8c225960, type: 2}
+  Event: {fileID: 11400000, guid: e3529b7886d35e9499d5094ed352d57c, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7467803514826746851}
-        m_MethodName: OnUserEnter
+        m_MethodName: OnEnterRangeInternal
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -107,33 +111,6 @@ MonoBehaviour:
       - m_Target: {fileID: 7467803514826746851}
         m_MethodName: OnUserLeave
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &6660501409177177294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 583220001654548612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da6d12c140e63454a9f87d4b470b3456, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 9e56573597dfd40498033e261d1453b0, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7467803514826746851}
-        m_MethodName: OnNavigationIndex
-        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -188,6 +165,60 @@ MonoBehaviour:
       - m_Target: {fileID: 7467803514826746851}
         m_MethodName: OnSelectIndex
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &9063683345788253981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583220001654548612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e299084dd6b333459077884b308299e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 581718cb68402b34c98f3fdc702f6b37, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7467803514826746851}
+        m_MethodName: OnHandCursorLeft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5496339026590481253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583220001654548612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e299084dd6b333459077884b308299e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 29fe3bec9d0f38b44a583f584b551739, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7467803514826746851}
+        m_MethodName: OnHandCursorRight
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -253,3 +284,4 @@ MonoBehaviour:
   sandEffectClearBackObjectTime: 0
   onSelectLangEvnt: {fileID: 11400000, guid: 47e2150b75e19d44f9c2cc4118b812ab, type: 2}
   onPlayerEnterEvnt: {fileID: 11400000, guid: b9ba6838bb84dab4b88b6d9c8c225960, type: 2}
+  onNaviIdxEvnt: {fileID: 11400000, guid: 9e56573597dfd40498033e261d1453b0, type: 2}

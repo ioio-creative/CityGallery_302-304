@@ -1,4 +1,5 @@
-﻿using SOVariables;
+﻿using RoboRyanTron.Unite2017.Events;
+using SOVariables;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,30 +8,45 @@ using UnityEngine.Events;
 public class EnterByBodyDistance : MonoBehaviour
 {
     [SerializeField]
-    private FloatReferenceArray bodyDistances;
+    private FloatReference closestDistance;
     [SerializeField]
     private float enterDist;
-    private float minDist;
 
-    private bool isIdle = true;
-    public UnityEvent OnEnterThresholdFromIdle;
+    [SerializeField]
+    private Vector2 idleDistMappingRange;
 
-    
+    //internal event
+    [SerializeField]
+    private GameEvent enterRangeEvnt;
+
+    private bool isIdle;
+
+
+    private void Start()
+    {
+        isIdle = true;
+    }
+
     private void Update()
     {
         if (Game303Manager.instance.CheckStatus(Status.Idle))
         {
-            if (bodyDistances.FloatRefs.Length > 0)
+            if (closestDistance < enterDist)
             {
-                minDist = Mathf.Min(bodyDistances.GetArray());
-                if (minDist < enterDist)
-                {
-                    OnEnterThresholdFromIdle?.Invoke();
-                    Game303Manager.instance.ChangeStatus(Status.Tutorial);
-                    isIdle = false;
-                }
-            } 
+                OnEnterThresholdFromIdle();                  
+            }
+            else
+            {
+                float dist01 = Mathf.InverseLerp(idleDistMappingRange.x, idleDistMappingRange.y, closestDistance);
+                Game303Mediator.instance.SetColorCoverAlpha(Mathf.Max(0.1f, dist01));
+            }         
         }
 
+    }
+
+    public void OnEnterThresholdFromIdle()
+    {
+        isIdle = false;
+        enterRangeEvnt?.Raise();
     }
 }

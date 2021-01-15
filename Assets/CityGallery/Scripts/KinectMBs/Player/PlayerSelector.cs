@@ -13,6 +13,10 @@ public class PlayerSelector : MonoBehaviour
     private KinectPlayersList playersList;
     [SerializeField]
     private FloatReferenceArray bodyDistances;
+    [SerializeField]
+    private FloatReference closestDistance;
+    [SerializeField]
+    private bool manualDistance = false;
 
     [SerializeField]
     private Kinect.JointType referenceJoint;
@@ -36,6 +40,7 @@ public class PlayerSelector : MonoBehaviour
     private void Awake()
     {
         bodyDistances.Clear();
+        closestDistance.Variable.SetValue(10);
     }
 
     private void FixedUpdate()
@@ -60,6 +65,22 @@ public class PlayerSelector : MonoBehaviour
             _bodyDistances[i] = refJoints[i].Position.DistanceFromOrigin();
         }
         bodyDistances.SetArray(_bodyDistances);
+
+        if (!manualDistance)
+        {
+            switch (trackedPlayers)
+            {
+                case 1:
+                    closestDistance.Variable.SetValue(bodyDistances.FloatRefs[0].Value);
+                    break;
+                case int _ when trackedPlayers > 1:
+                    closestDistance.Variable.SetValue(Mathf.Min(bodyDistances.GetArray()));
+                    break;
+                default:
+                    closestDistance.Variable.SetValue(10);
+                    break;
+            }
+        }
     }
 
     private List<Kinect.Joint> GetJointFromBodiesByType(Kinect.JointType type)

@@ -57,10 +57,6 @@ public class FlipDotWaveView : MonoBehaviour
     private float lineWidthMax;
     private float widthDampVelocity;
 
-    //Debug
-    [SerializeField]
-    private bool manualDistance;
-
     private void Awake()
     {
         InitializeLambdaParams();
@@ -73,71 +69,79 @@ public class FlipDotWaveView : MonoBehaviour
 
     private void Update()
     {
-        float minDist = manualDistance ? closestDist.Value : inRangeDistance + 1;
-        if (!isIdle && (manualDistance || AnybodyWithinRange(out minDist)))
+        if (isIdle)
         {
-            if (!manualDistance)
-            {
-                closestDist.Variable.SetValue(minDist);
-            }
-            
-            //smooth transition to mapped value
-            mappedDist01 = Mathf.InverseLerp(-inRangeDistance, -enterGameDistance, -closestDist);
-            //lambda
-            lambdaModifier = Mathf.SmoothDamp(lambdaModifier, mappedDist01, ref lambdaDampVelocity, 0.2f);
-            wave.Harmonics[0].Lambda =  -Mathf.Lerp(-lambdaRange.y, -lambdaRange.x, lambdaModifier);
-            //lambdaRange.y + (lambdaRang.x - lambdaRange.y) * lambdaModifier;
+            if (AnybodyWithinRange())
+            { 
+                //smooth transition to mapped value
+                mappedDist01 = Mathf.InverseLerp(-inRangeDistance, -enterGameDistance, -closestDist);
+                //lambda
+                lambdaModifier = Mathf.SmoothDamp(lambdaModifier, mappedDist01, ref lambdaDampVelocity, 0.2f);
+                wave.Harmonics[0].Lambda = -Mathf.Lerp(-lambdaRange.y, -lambdaRange.x, lambdaModifier);
+                //lambdaRange.y + (lambdaRang.x - lambdaRange.y) * lambdaModifier;
 
-            //amp
-            ampModifier = Mathf.SmoothDamp(ampModifier, mappedDist01 * ampMultiplier, ref ampDampVelocity, 0.2f);
-            wave.Harmonics[0].Amp = ampModifier;
+                //amp
+                ampModifier = Mathf.SmoothDamp(ampModifier, mappedDist01 * ampMultiplier, ref ampDampVelocity, 0.2f);
+                wave.Harmonics[0].Amp = ampModifier;
 
-            //speed
-            speedModifier = Mathf.SmoothDamp(speedModifier, mappedDist01, ref speedDampVelocity, 0.2f);
-            wave.Harmonics[0].Speed = speedRange.x + (speedRange.y - speedRange.x) * speedModifier;
+                //speed
+                speedModifier = Mathf.SmoothDamp(speedModifier, mappedDist01, ref speedDampVelocity, 0.2f);
+                wave.Harmonics[0].Speed = speedRange.x + (speedRange.y - speedRange.x) * speedModifier;
                 //Mathf.Lerp(speedRange.x, speedRange.y, speedModifier);
 
-            //width
-            lr.widthMultiplier = Mathf.SmoothDamp(lr.widthMultiplier, Mathf.Lerp(lineWidthMin, lineWidthMax, mappedDist01), ref widthDampVelocity, 1f);
+                //width
+                lr.widthMultiplier = Mathf.SmoothDamp(lr.widthMultiplier, Mathf.Lerp(lineWidthMin, lineWidthMax, mappedDist01), ref widthDampVelocity, 1f);
+            }
+            else
+            {
+                //smooth return to ref value
+                //lambda
+                lambdaModifier = Mathf.SmoothDamp(lambdaModifier, 0, ref lambdaDampVelocity, 1f);
+                wave.Harmonics[0].Lambda = -Mathf.Lerp(-lambdaRange.y, -lambdaRange.x, lambdaModifier);
+
+                //amp
+                ampModifier = Mathf.SmoothDamp(ampModifier, 0, ref ampDampVelocity, 0.2f);
+                wave.Harmonics[0].Amp = ampModifier;
+
+                //width
+                lr.widthMultiplier = Mathf.SmoothDamp(lr.widthMultiplier, Mathf.Lerp(lineWidthMin, lineWidthMax, mappedDist01), ref widthDampVelocity, 1f);
+            }
         }
         else
         {
-            //smooth return to ref value
-            //lambda
-            lambdaModifier = Mathf.SmoothDamp(lambdaModifier, 0, ref lambdaDampVelocity, 1f);
-            wave.Harmonics[0].Lambda = -Mathf.Lerp(-lambdaRange.y, -lambdaRange.x, lambdaModifier);
-
             //amp
             ampModifier = Mathf.SmoothDamp(ampModifier, 0, ref ampDampVelocity, 0.2f);
             wave.Harmonics[0].Amp = ampModifier;
 
             //width
-            lr.widthMultiplier = Mathf.SmoothDamp(lr.widthMultiplier, lineWidthMin, ref widthDampVelocity, 1f);
+            //lr.widthMultiplier = Mathf.SmoothDamp(0, lineWidthMin, ref widthDampVelocity, 1f);
         }
     }
 
-    private bool AnybodyWithinRange(out float minDistInRange)
+    private bool AnybodyWithinRange()
     {
-        var dists = bodyDistances.GetArray();
+        return closestDist < inRangeDistance;
+        
+        //var dists = bodyDistances.GetArray();
 
-        minDistInRange = inRangeDistance;
-        if (dists.Length > 0)
-        {
-            minDistInRange = Mathf.Min(dists);
+        //if (dists.Length > 0)
+        //{
+        //    minDistInRange = Mathf.Min(dists);
 
-            if (minDistInRange <= inRangeDistance)
-            {
-                return true;
-            }
-        }
+        //    if (minDistInRange <= inRangeDistance)
+        //    {
+        //        return true;
+        //    }
+        //}
 
-        return false;
+        //return false;
     }
 
     private void InitializeLambdaParams()
     {
         //refLambda = wave.Harmonics[0].Lambda;
         lr = wave.GetComponent<LineRenderer>();
+        isIdle = true;
     }
 
     private void ResetView()
@@ -152,6 +156,11 @@ public class FlipDotWaveView : MonoBehaviour
     public void FlipDotWaveIdleToggle(bool on)
     {
         isIdle = on;
+
+        if (isIdle)
+        {
+            ResetView();
+        }
     }
 
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7334626223500479612}
   - component: {fileID: 7334626223500479615}
   - component: {fileID: 7334626223500479614}
+  - component: {fileID: 7653323808614754655}
   - component: {fileID: 7334626223500479609}
   - component: {fileID: 7334626223500479608}
   m_Layer: 9
@@ -78,9 +79,33 @@ MonoBehaviour:
   playerManager: {fileID: 7334626223500479615}
   playersList: {fileID: 11400000, guid: 0e489df9b3cd2364f8e62fda43ab0fcd, type: 2}
   bodyDistances: {fileID: 11400000, guid: b10eca0a12f6ce744b0da1001b7efd7f, type: 2}
+  closestDistance:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 23d76365ec036a444a93f9963ca1606d, type: 2}
+  manualDistance: 0
   referenceJoint: 20
   referencePoint: {x: 0, y: 0, z: 0}
   selectionRadius: 1.5
+--- !u!114 &7653323808614754655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7334626223500479602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d416b8c3ce7d67b45af94577dd5e3f0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closestDistance:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 23d76365ec036a444a93f9963ca1606d, type: 2}
+  enterDist: 1.3
+  idleDistMappingRange: {x: 1.31, y: 2}
+  enterRangeEvnt: {fileID: 11400000, guid: e3529b7886d35e9499d5094ed352d57c, type: 2}
 --- !u!114 &7334626223500479609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,7 +132,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  bodyDistances: {fileID: 11400000, guid: b10eca0a12f6ce744b0da1001b7efd7f, type: 2}
+  closestDistance:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 23d76365ec036a444a93f9963ca1606d, type: 2}
   outOfRangeDistance: 1.8
   leavingTimeout: 120
   isIdle: 1
@@ -123,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e299084dd6b333459077884b308299e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: b9ba6838bb84dab4b88b6d9c8c225960, type: 2}
+  Event: {fileID: 11400000, guid: e3529b7886d35e9499d5094ed352d57c, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
