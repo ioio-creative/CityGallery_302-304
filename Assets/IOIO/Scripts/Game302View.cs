@@ -46,6 +46,7 @@ public class Game302View : MonoBehaviour {
         leftCircleSelect.DOScale (1, 0).SetDelay (0.2f);
         rightCircleSelect.DOScale (0, 0);
         triangle.DOMoveX (triangleStartPosition.x, 0.2f);
+        triangle.DOScale (1, 0);
     }
 
     public void SelectRightCircle () {
@@ -54,14 +55,15 @@ public class Game302View : MonoBehaviour {
         leftCircleSelect.DOScale (0, 0);
         rightCircleSelect.DOScale (1, 0).SetDelay (0.2f);
         triangle.DOMoveX (-triangleStartPosition.x, 0.2f);
+        triangle.DOScale (1, 0);
     }
 
     public void ShowTutorialPage () {
-        leftCircle.DOScale (2.2f, 0.2f);
+        leftCircle.DOScale (1, 0.2f);
         rightCircle.DOScale (1, 0.2f);
-        leftCircleSelect.DOScale (1, 0).SetDelay (0.2f);
+        leftCircleSelect.DOScale (0, 0);
         rightCircleSelect.DOScale (0, 0);
-        triangle.DOScale (1, 0.5f);
+        triangle.DOScale (0, 0.5f);
         line.DOScaleX (1, 0.5f);
     }
 

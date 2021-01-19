@@ -317,39 +317,83 @@ public class Game303TutorialView : MonoBehaviour {
     }
 
     public void OnSelectPageTCButtonClick () {
-        Game303Manager.instance.SelectLanguage (Language.TC);
-        Game303Manager.instance.ChangeStatus (Status.Tutorial);
+        if (Game303Manager.instance != null) {
+            Game303Manager.instance.SelectLanguage (Language.TC);
+            Game303Manager.instance.ChangeStatus (Status.Tutorial);
+        }
+        else {
+            Game302Manager.instance.SelectLanguage (Language.TC);
+            Game302Manager.instance.ChangeStatus (Status.Tutorial);
+        }
     }
 
     public void OnSelectPageENButtonClick () {
-        Game303Manager.instance.SelectLanguage (Language.EN);
-        Game303Manager.instance.ChangeStatus (Status.Tutorial);
+        if (Game303Manager.instance != null) {
+            Game303Manager.instance.SelectLanguage (Language.EN);
+            Game303Manager.instance.ChangeStatus (Status.Tutorial);
+        }
+        else {
+            Game302Manager.instance.SelectLanguage (Language.EN);
+            Game302Manager.instance.ChangeStatus (Status.Tutorial);
+        }
     }
 
     public void OnGlobalPageTCButtonClick () {
-        Game303Manager.instance.SelectLanguage (Language.TC);
+        if (Game303Manager.instance != null) {
+            Game303Manager.instance.SelectLanguage (Language.TC);
+        }
+        else {
+            Game302Manager.instance.SelectLanguage (Language.TC);
+        }
     }
 
     public void OnGlobalPageENButtonClick () {
-        Game303Manager.instance.SelectLanguage (Language.EN);
+        if (Game303Manager.instance != null) {
+            Game303Manager.instance.SelectLanguage (Language.EN);
+        }
+        else {
+            Game302Manager.instance.SelectLanguage (Language.EN);
+        }
     }
 
     public void OnSkipTutorialButtonClick () {
-        Game303Manager.instance.ChangeStatus (Status.SelectYear);
+        if (Game303Manager.instance != null) {
+            Game303Manager.instance.ChangeStatus (Status.SelectYear);
+        }
+        else {
+            Game302Manager.instance.ChangeStatus (Status.SelectYear);
+        }
     }
 
     public void OnConfirmButtonClick () {
-        Game303Manager.instance.ChangeStatus (Status.Ready);
+        if (Game303Manager.instance != null) {
+            Game303Manager.instance.ChangeStatus (Status.Ready);
+        }
+        else {
+            Game302Manager.instance.ChangeStatus (Status.Ready);
+        }
     }
 
     public void OnReadyButtonClick () {
-        if (Game303Manager.instance.CheckStatus (Status.Ready)) {
-            Game303Manager.instance.ChangeStatus (Status.SelectYear);
+        if (Game303Manager.instance != null) {
+            if (Game303Manager.instance.CheckStatus (Status.Ready)) {
+                Game303Manager.instance.ChangeStatus (Status.SelectYear);
+            }
+        }
+        else {
+            if (Game302Manager.instance.CheckStatus (Status.Ready)) {
+                Game302Manager.instance.ChangeStatus (Status.SelectYear);
+            }
         }
     }
 
     public void OnReplayButtonClick () {
-        Game303Manager.instance.ChangeStatus (Status.Tutorial);
+        if (Game303Manager.instance != null) {
+            Game303Manager.instance.ChangeStatus (Status.Tutorial);
+        }
+        else {
+            Game302Manager.instance.ChangeStatus (Status.Tutorial);
+        }
     }
 
 }

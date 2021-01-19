@@ -25,6 +25,7 @@ public class Game303Manager : StateMachine {
         Game303Mediator.instance.setColorCoverAlphaDelegate += SetColorCoverAlpha;
         Game303Mediator.instance.selectDelegate += Select;
         Game303Mediator.instance.selectYearDelegate += SelectYear;
+        Game303Mediator.instance.selectLanguageDelegate += SelectLanguage;
         Game303Mediator.instance.changeStatusDelegate += ChangeStatus;
         ChangeStatus (Status.Idle);
     }
@@ -203,6 +204,13 @@ public class Game303Manager : StateMachine {
 
     public void SetColorCoverAlpha (float alpha) {
         Game303TutorialView.instance.SetColorCoverAlpha (alpha);
+    }
+
+    public void SelectLanguage (int index) {
+        currentLanguage = (Language)index;
+        Game303TutorialView.instance.SwitchLanguage ((Language)index);
+        //By Hugo
+        RaiseLanguageSelectSOEvent ();
     }
 
     public void SelectLanguage (Language language) {

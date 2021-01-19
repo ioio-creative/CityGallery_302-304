@@ -15,20 +15,41 @@ public class Game302Debug : MonoBehaviour {
     }
 
     void Update () {
+        if (Input.GetKeyDown (KeyCode.Keypad1)) {
+            Game302Mediator.instance.SetColorCoverAlpha (0.1f);
+        }
+        if (Input.GetKeyDown (KeyCode.Keypad2)) {
+            Game302Mediator.instance.SetColorCoverAlpha (0.2f);
+        }
+        if (Input.GetKeyDown (KeyCode.Keypad3)) {
+            Game302Mediator.instance.SetColorCoverAlpha (0.3f);
+        }
+
         if (Input.GetKeyDown (KeyCode.A)) {
             Game302Mediator.instance.SelectLeft ();
         }
         if (Input.GetKeyDown (KeyCode.D)) {
             Game302Mediator.instance.SelectRight ();
         }
-
         if (Input.GetKeyDown (KeyCode.Alpha1)) {
-            Game302Mediator.instance.ChangeStatus (Status.Tutorial);
+            Game302Mediator.instance.ChangeStatus (Status.Idle);
         }
         if (Input.GetKeyDown (KeyCode.Alpha2)) {
-            Game302Mediator.instance.ChangeStatus (Status.SelectYear);
+            Game302Mediator.instance.ChangeStatus (Status.PlayerIn);
         }
         if (Input.GetKeyDown (KeyCode.Alpha3)) {
+            Game302Mediator.instance.ChangeStatus (Status.SelectLanguage);
+        }
+        if (Input.GetKeyDown (KeyCode.Alpha4)) {
+            Game302Mediator.instance.ChangeStatus (Status.Tutorial);
+        }
+        if (Input.GetKeyDown (KeyCode.Alpha5)) {
+            Game302Mediator.instance.ChangeStatus (Status.Ready);
+        }
+        if (Input.GetKeyDown (KeyCode.Alpha6)) {
+            Game302Mediator.instance.ChangeStatus (Status.SelectYear);
+        }
+        if (Input.GetKeyDown (KeyCode.Alpha7)) {
             Game302Mediator.instance.ChangeStatus (Status.Confirm);
         }
 
@@ -46,6 +67,13 @@ public class Game302Debug : MonoBehaviour {
         }
         if (Input.GetKeyDown (KeyCode.B)) {
             Game302Mediator.instance.SelectYear (4);
+        }
+
+        if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+            Game302Mediator.instance.SelectLanguage (0);
+        }
+        if (Input.GetKeyDown (KeyCode.RightArrow)) {
+            Game302Mediator.instance.SelectLanguage (1);
         }
     }
 

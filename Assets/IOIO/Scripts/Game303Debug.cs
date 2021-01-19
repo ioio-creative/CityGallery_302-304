@@ -65,6 +65,13 @@ public class Game303Debug : MonoBehaviour {
         if (Input.GetKeyDown (KeyCode.V)) {
             Game303Mediator.instance.SelectYear (3);
         }
+
+        if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+            Game303Mediator.instance.SelectLanguage (0);
+        }
+        if (Input.GetKeyDown (KeyCode.RightArrow)) {
+            Game303Mediator.instance.SelectLanguage (1);
+        }
     }
 
 }

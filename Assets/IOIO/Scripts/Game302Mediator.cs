@@ -6,10 +6,13 @@ public class Game302Mediator : MonoBehaviour {
 
     public static Game302Mediator instance;
 
+    public delegate void SetColorCoverAlphaDelegate (float alpha);
+    public SetColorCoverAlphaDelegate setColorCoverAlphaDelegate;
+
     public delegate void SelectDelegate (Direction direction);
     public SelectDelegate selectDelegate;
 
-    public delegate void SelectYearDelegate (int index);
+    public delegate int SelectYearDelegate (int index);
     public SelectYearDelegate selectYearDelegate;
 
     public delegate void SelectLanguageDelegate (int index);
@@ -22,6 +25,10 @@ public class Game302Mediator : MonoBehaviour {
         instance = this;
     }
 
+    public void SetColorCoverAlpha (float alpha) {
+        setColorCoverAlphaDelegate.Invoke (alpha);
+    }
+
     public void SelectLeft () {
         selectDelegate.Invoke (Direction.Left);
     }
@@ -30,8 +37,8 @@ public class Game302Mediator : MonoBehaviour {
         selectDelegate.Invoke (Direction.Right);
     }
 
-    public void SelectYear (int index) {
-        selectYearDelegate.Invoke (index);
+    public int SelectYear (int index) {
+        return selectYearDelegate.Invoke (index);
     }
 
     public void SelectLanguage (int index) {
