@@ -1311,7 +1311,7 @@ GameObject:
   - component: {fileID: 1626877599}
   - component: {fileID: 1626877601}
   m_Layer: 8
-  m_Name: FlipDotWave303
+  m_Name: FlipDotWave302
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1925,7 +1925,7 @@ GameObject:
   - component: {fileID: 1879263925}
   - component: {fileID: 1879263924}
   m_Layer: 0
-  m_Name: Wave-303
+  m_Name: Wave-302
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2661,7 +2661,7 @@ PrefabInstance:
     - target: {fileID: 8880238745648575359, guid: ededa1973328579489941b3f507836cb,
         type: 3}
       propertyPath: m_Name
-      value: TutorialViewGroup
+      value: TutorialViewGroup303
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ededa1973328579489941b3f507836cb, type: 3}
@@ -2741,7 +2741,7 @@ PrefabInstance:
     - target: {fileID: 9116151460766238973, guid: e5b891f236e548642a10560a2df78de5,
         type: 3}
       propertyPath: m_Name
-      value: FlipDotIO303
+      value: FlipDotIO302
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5b891f236e548642a10560a2df78de5, type: 3}
