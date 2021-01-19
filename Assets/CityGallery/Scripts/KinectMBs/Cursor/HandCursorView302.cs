@@ -5,15 +5,13 @@ using Kinect = Windows.Kinect;
 
 public class HandCursorView302 : HandCursorBase
 {
-    public static float CursorDepth = 0;
-
     public bool CursorOn;
 
-    private KinectPlayer302 selectedPlayer;
+    private KinectPlayer302 selectedPlayer => base.players.SelectedPlayer as KinectPlayer302;
 
     private void Update()
     {
-        selectedPlayer = base.players.SelectedPlayer as KinectPlayer302;
+
         if (selectedPlayer == null)
         {
             CursorOn = false;

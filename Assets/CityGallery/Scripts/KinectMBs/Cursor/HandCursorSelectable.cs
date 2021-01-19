@@ -18,7 +18,7 @@ public class HandCursorSelectable : MonoBehaviour
     private void Start()
     {
         var pos = transform.position;
-        pos.z = HandCursorView302.CursorDepth;
+        pos.z = HandCursorBase.CursorDepth;
     }
 
     private void FixedUpdate()
@@ -31,7 +31,12 @@ public class HandCursorSelectable : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        isStaying = true;
+        isStaying = false;
+        var cursor = collision.GetComponent<HandCursorBase>();
+        if (cursor != null)
+        {
+            isStaying = cursor.IsHandCursorRaised();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

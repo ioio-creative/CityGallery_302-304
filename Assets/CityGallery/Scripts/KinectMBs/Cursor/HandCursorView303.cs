@@ -9,11 +9,10 @@ public class HandCursorView303 : HandCursorBase
 
     public bool CursorOn;
 
-    private KinectPlayer303 selectedPlayer;
+    private KinectPlayer303 selectedPlayer => base.players.SelectedPlayer as KinectPlayer303;
 
     private void Update()
     {
-        selectedPlayer = base.players.SelectedPlayer as KinectPlayer303;
         if (selectedPlayer == null)
         {
             CursorOn = false;

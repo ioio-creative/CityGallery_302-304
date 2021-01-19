@@ -3,6 +3,8 @@ using Kinect = Windows.Kinect;
 
 public class HandCursorBase : MonoBehaviour
 {
+    public static float CursorDepth = 0;
+
     [SerializeField]
     protected bool LeftHand;
 
@@ -27,5 +29,12 @@ public class HandCursorBase : MonoBehaviour
 
             transform.position = assignedPos;
         }
+    }
+
+    public virtual bool IsHandCursorRaised()
+    {
+        var selectedPlayerJoints = players.SelectedPlayer.BodyRaw.Joints;
+        var handJointToCheck = LeftHand ? selectedPlayerJoints[Kinect.JointType.HandLeft] : selectedPlayerJoints[Kinect.JointType.HandRight];
+        return handJointToCheck.Position.Y >= selectedPlayerJoints[Kinect.JointType.SpineShoulder].Position.Y;
     }
 }

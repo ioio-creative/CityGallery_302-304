@@ -10,21 +10,29 @@ using UnityEngine;
 using System.Linq;
 
 [Serializable]
-public struct PanelDimension
+public struct PanelConfig
 {
     public int id;
     public int startX;
     public int startY;
     public int width;
     public int height;
+    public string ip;
     public int rxPort;
+}
+
+[Serializable]
+public struct IPAddressConfig
+{
+    public string ip;
+    public int port;
 }
 
 // filpdot config
 [Serializable]
 public struct FlipDotSettings
 {
-    public PanelDimension[] panels; /* = [
+    public PanelConfig[] panels; /* = [
                                             {
                                                "startX": 0,
                                                "startY": 7,
@@ -34,9 +42,8 @@ public struct FlipDotSettings
                                             ...
                                          ]; */
 
-    public string comPort;          // = "COM1";
-    public string ip;               // ip for udp / tcp
-    public int[] rxPorts;
+    public string comPort;          // = "COM1";       
+    public IPAddressConfig[] rxAddresses;   // ip:port addresses for udp / tcp
     public int baudRate;            // = 57600;
     public Parity parity;           // = 0; // = Parity.None;
     public int dataBits;            // = 8;
@@ -62,10 +69,10 @@ public class FlipDotIO : MonoBehaviour
     [SerializeField]
     private FlipDotProtocol protocol;
     [SerializeField]
-    private int[] ipPorts;
+    private IPAddressConfig[] ipAddresses;
 
     private SerialPort sp;
-    private Dictionary<int, object> portClientDictionary = new Dictionary<int, object>();
+    private Dictionary<IPAddressConfig, object> portClientDictionary = new Dictionary<IPAddressConfig, object>();
     private UdpClient[] udpClients;
     private TcpClient[] tcpClients;
 
@@ -87,24 +94,24 @@ public class FlipDotIO : MonoBehaviour
                 }
                 break;
             case FlipDotProtocol.UDP:
-                udpClients = new UdpClient[ipPorts.Length];
-                for (int i = 0; i < ipPorts.Length; i++)
+                udpClients = new UdpClient[ipAddresses.Length];
+                for (int i = 0; i < ipAddresses.Length; i++)
                 {
                     udpClients[i] = new UdpClient();
-                    IPEndPoint ep = new IPEndPoint(IPAddress.Parse(settings.ip), ipPorts[i]); // endpoint where server is listening
+                    IPEndPoint ep = new IPEndPoint(IPAddress.Parse(ipAddresses[i].ip), ipAddresses[i].port); // endpoint where server is listening
                     udpClients[i].Connect(ep);
-                    portClientDictionary.Add(ipPorts[i], udpClients[i]);
-                    Debug.Log("UDP Connected:[" + settings.ip + ":" + ipPorts[i] + "]");
+                    portClientDictionary.Add(ipAddresses[i], udpClients[i]);
+                    Debug.Log("UDP Connected:[" + ipAddresses[i].ip + ":" + ipAddresses[i].port + "]");
                 }
                 break;
             case FlipDotProtocol.TCP:
-                tcpClients = new TcpClient[ipPorts.Length];
-                for (int i = 0; i < ipPorts.Length; i++)
+                tcpClients = new TcpClient[ipAddresses.Length];
+                for (int i = 0; i < ipAddresses.Length; i++)
                 {
                     tcpClients[i] = new TcpClient();
-                    IPEndPoint ep = new IPEndPoint(IPAddress.Parse(settings.ip), ipPorts[i]); // endpoint where server is listening
+                    IPEndPoint ep = new IPEndPoint(IPAddress.Parse(ipAddresses[i].ip), ipAddresses[i].port); // endpoint where server is listening
                     tcpClients[i].Connect(ep);
-                    portClientDictionary.Add(ipPorts[i], tcpClients[i]);
+                    portClientDictionary.Add(ipAddresses[i], tcpClients[i]);
                 }
                 break;
         }
@@ -157,7 +164,7 @@ public class FlipDotIO : MonoBehaviour
         dotsInFlipdot = 0;
         for (int i = 0; i < settings.panels.Length; dotsInFlipdot += settings.panels[i].width * settings.panels[i].height, i++);
 
-        ipPorts = settings.rxPorts;
+        ipAddresses = settings.rxAddresses;
     }
 
     private byte[][] Build_message(int[] fullImg, bool topToBottomStriding = false)
@@ -173,7 +180,7 @@ public class FlipDotIO : MonoBehaviour
         for (int i = 0; i < msg.Length; i++)
         {
             msg[i] = new byte[settings.panels[i].width];
-            PanelDimension panel = settings.panels[i];
+            PanelConfig panel = settings.panels[i];
             int xs = panel.startX;
             int ys = panel.startY;
             int w = panel.width;
@@ -235,7 +242,7 @@ public class FlipDotIO : MonoBehaviour
         return result;
     }
 
-    private void SendToScreen(byte screen_id, byte[] data, int rxPort = -1, bool refresh = true)
+    private void SendToScreen(byte screen_id, byte[] data, IPAddressConfig ipAddress = default, bool refresh = true)
     {
         byte[] formattedMsg = Format_message(screen_id, data, refresh);
 
@@ -259,7 +266,7 @@ public class FlipDotIO : MonoBehaviour
                 {
                     object udp = default;
                     
-                    if (portClientDictionary.TryGetValue(rxPort, out udp))
+                    if (portClientDictionary.TryGetValue(ipAddress, out udp))
                     {
                         (udp as UdpClient).Send(formattedMsg, formattedMsg.Length);
                     }
@@ -268,7 +275,7 @@ public class FlipDotIO : MonoBehaviour
             case FlipDotProtocol.TCP:
                 if (formattedMsg.Length > 0)
                 {
-                    TcpClient tcp = (TcpClient)portClientDictionary[rxPort];
+                    TcpClient tcp = (TcpClient)portClientDictionary[ipAddress];
 
                     if (tcp.Connected)
                     {
@@ -301,25 +308,29 @@ public class FlipDotIO : MonoBehaviour
                 SendToScreen((byte)(1), msg[0]);
                 for (int i = 0; i < msg.Length; i++)
                 {
-                    SendToScreen((byte)(i + 3), msg[i], settings.panels[i].rxPort);
+                    SendToScreen((byte)(i + 3), msg[i]);
                 }
                 break;
             case FlipDotProtocol.UDP:
             case FlipDotProtocol.TCP:
-                foreach (var port in ipPorts)
+                foreach (var address in ipAddresses)
                 {
                     //One block of dummy message because of unknown connection issue
-                    SendToScreen((byte)(1), msg[0], port);
+                    SendToScreen((byte)(1), msg[0], address);
                 }
 
                 for (int i = 0; i < msg.Length; i++)
                 {
-                    SendToScreen((byte)settings.panels[i].id, msg[i], settings.panels[i].rxPort);
+                    SendToScreen((byte)settings.panels[i].id, msg[i], GetSavedIPAddress(settings.panels[i].ip, settings.panels[i].rxPort));
                 }
                 break;
         }     
     }
 
+    private IPAddressConfig GetSavedIPAddress(string _ip, int _port)
+    {
+        return ipAddresses.Where(x => x.ip == _ip && x.port == _port).FirstOrDefault();
+    }
 
     public void SendFlipDotImage(int[] imageArray)
     {
