@@ -15,6 +15,9 @@ public class Game303Mediator : MonoBehaviour {
     public delegate int SelectYearDelegate (int index);
     public SelectYearDelegate selectYearDelegate;
 
+    public delegate void SelectLanguageDelegate (int index);
+    public SelectLanguageDelegate selectLanguageDelegate;
+
     public delegate void ChangeStatusDelegate (Status status);
     public ChangeStatusDelegate changeStatusDelegate;
 
@@ -36,6 +39,10 @@ public class Game303Mediator : MonoBehaviour {
 
     public int SelectYear (int index) {
         return selectYearDelegate.Invoke (index);
+    }
+
+    public void SelectLanguage (int index) {
+        selectLanguageDelegate.Invoke (index);
     }
 
     public void ChangeStatus (Status targetStatus) {
