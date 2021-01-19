@@ -51,6 +51,8 @@ public class Game302FlipDotEventHandler : MonoBehaviour
         else if (manager.CheckStatus(Status.SelectYear))
         {
             //currentNaviIdx = mediator.SelectYear(currentNaviIdx - 1);
+            currentNaviIdx--;
+            mediator.SelectYear(currentNaviIdx);
             navigationIndexEvntIO.Raise(currentNaviIdx);
         }
     }
@@ -64,6 +66,8 @@ public class Game302FlipDotEventHandler : MonoBehaviour
         else if (manager.CheckStatus(Status.SelectYear))
         {
             //currentNaviIdx = mediator.SelectYear(currentNaviIdx + 1);
+            currentNaviIdx++;
+            mediator.SelectYear(currentNaviIdx);
             navigationIndexEvntIO.Raise(currentNaviIdx);
         }
     }
