@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5119724820556168383}
   - component: {fileID: 6004704637209159465}
   m_Layer: 8
-  m_Name: FlipDotCam303
+  m_Name: FlipDotCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,12 +141,11 @@ MonoBehaviour:
   settings:
     panels: []
     comPort: 
-    ip: 
-    rxPorts: 
+    rxAddresses: []
     baudRate: 0
     parity: 0
     dataBits: 0
     stopBits: 0
     lineStride: 0
   protocol: 1
-  ipPorts: 
+  ipAddresses: []
