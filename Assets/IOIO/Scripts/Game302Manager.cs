@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using RoboRyanTron.Unite2017.Events;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -101,4 +102,25 @@ public class Game302Manager : StateMachine {
         Game302View.instance.SelectYear (currentYearIndex);
     }
 
+
+    //By Hugo
+    [SerializeField] private GameIntEvent onSelectLangEvnt;
+    [SerializeField] private GameEvent onTutorialEvnt;
+    [SerializeField] private GameEvent onPlayerEnterEvnt;
+    [SerializeField] private GameIntEvent onNaviIdxEvnt;
+    private void RaiseLanguageSelectSOEvent()
+    {
+        //onSelectLangEvnt.Raise((int)currentLanguage);
+    }
+
+    private void RaiseTutorialSOEvent()
+    {
+        onTutorialEvnt.Raise();
+    }
+
+    private void RaisePlayerEnterSOEventFromIdle()
+    {
+        onPlayerEnterEvnt.Raise();
+        onNaviIdxEvnt.Raise(0);
+    }
 }
