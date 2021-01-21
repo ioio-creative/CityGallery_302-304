@@ -19,7 +19,7 @@ public class PlayerTimeout : MonoBehaviour
     /// </summary>
     [SerializeField]
     [Tooltip("user leave timeout in seconds")]
-    private float leavingTimeout;
+    private FloatReference leavingTimeout;
 
     [SerializeField]
     private bool isIdle = true;

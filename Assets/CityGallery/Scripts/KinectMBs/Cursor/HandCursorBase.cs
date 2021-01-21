@@ -33,6 +33,7 @@ public class HandCursorBase : MonoBehaviour
 
     public virtual bool IsHandCursorRaised()
     {
+        if (!players.HaveInRangePlayers) return false;
         var selectedPlayerJoints = players.SelectedPlayer.BodyRaw.Joints;
         var handJointToCheck = LeftHand ? selectedPlayerJoints[Kinect.JointType.HandLeft] : selectedPlayerJoints[Kinect.JointType.HandRight];
         return handJointToCheck.Position.Y >= selectedPlayerJoints[Kinect.JointType.SpineShoulder].Position.Y;

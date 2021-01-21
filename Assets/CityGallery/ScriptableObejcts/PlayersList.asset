@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: PlayersList
   m_EditorClassIdentifier: 
   players: []
-  SelectedPlayer: {fileID: 0}
+  selectedPlayer: {fileID: 0}
+  inRangeThreshold:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: c3219143516822246b8926063ec04451, type: 2}

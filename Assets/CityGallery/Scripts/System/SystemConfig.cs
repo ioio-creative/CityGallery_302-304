@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SOVariables;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,11 @@ public class SystemConfig : MonoBehaviour
     [SerializeField]
     private Vector2 screenDimension;
 
+    [SerializeField]
+    private FloatVariable playerInRangeThresholdMax;
+    [SerializeField]
+    private FloatVariable idleTimeout;
+
 
     private void Awake()
     {
@@ -28,6 +34,10 @@ public class SystemConfig : MonoBehaviour
         config = ConfigJson.LoadJsonData(System.IO.File.ReadAllText(configPath));
 
         screenDimension = new Vector2(config.displayWidth, config.displayHeight);
+
+        playerInRangeThresholdMax.InitializeValue(config.playerRangeThresholdMax);
+
+        idleTimeout.InitializeValue(config.idleTimeout);
 
         if (screenDimension.x > 0 && screenDimension.y > 0)
         {
@@ -44,6 +54,11 @@ public struct ConfigJson
 
     public int displayWidth;
     public int displayHeight;
+
+    public float playerRangeThresholdMax;
+    public float playerRangeThresholdMin;
+
+    public float idleTimeout;
 
     public static ConfigJson LoadJsonData(string jsonData) => JsonUtility.FromJson<ConfigJson>(jsonData);
 }

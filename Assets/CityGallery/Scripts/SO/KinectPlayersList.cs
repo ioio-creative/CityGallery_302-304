@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using SOVariables;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -15,6 +16,12 @@ public class KinectPlayersList : ScriptableObject
     private KinectPlayer selectedPlayer;
     public KinectPlayer SelectedPlayer => selectedPlayer;
 
+    [SerializeField]
+    private FloatReference inRangeThreshold;
+
+    private bool haveInRangePlayers;
+    public bool HaveInRangePlayers => haveInRangePlayers;
+
     public void SetPlayersFromDictionary(Dictionary
         <ulong, KinectPlayer>.ValueCollection dictValues)
     {
@@ -30,6 +37,7 @@ public class KinectPlayersList : ScriptableObject
         
         KinectPlayer selection = null;
         float distComparer = 10000f;
+        haveInRangePlayers = false;
         foreach (var player in TrackedPlayers)
         {
             //var projJoint = ProjectedPointOntoPlane(player.BodyRaw.Joints[refJointType].Position,refFloor);
@@ -42,6 +50,8 @@ public class KinectPlayersList : ScriptableObject
                 {
                     distComparer = distFromRefCSP;
                     selection = player;
+
+                    haveInRangePlayers = distFromRefCSP <= inRangeThreshold;
                 } 
             }
         }

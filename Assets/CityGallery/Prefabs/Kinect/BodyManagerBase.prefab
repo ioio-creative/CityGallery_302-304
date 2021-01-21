@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7334626223500479609}
   - component: {fileID: 7334626223500479608}
   m_Layer: 9
-  m_Name: BodyManager
+  m_Name: BodyManagerBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,7 +117,10 @@ MonoBehaviour:
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 23d76365ec036a444a93f9963ca1606d, type: 2}
   outOfRangeDistance: 1.8
-  leavingTimeout: 120
+  leavingTimeout:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 4149ad36a577f2244a0d4295c1cc7595, type: 2}
   isIdle: 1
 --- !u!114 &7334626223500479608
 MonoBehaviour:
