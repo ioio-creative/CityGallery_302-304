@@ -1,11 +1,8 @@
 ﻿using RoboRyanTron.Unite2017.Events;
 using SOVariables;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class EnterByBodyDistance : MonoBehaviour
+public class EnterByBodyDistance303 : MonoBehaviour
 {
     [SerializeField]
     private FloatReference closestDistance;
