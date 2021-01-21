@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: closestBodyDistance
   m_EditorClassIdentifier: 
   DeveloperDescription: 
-  initValue: 1.18
-  runtimeValue: 1.18
+  initValue: 2.58
+  runtimeValue: 10

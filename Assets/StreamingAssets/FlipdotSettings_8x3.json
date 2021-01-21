@@ -215,6 +215,222 @@
         "height": 7,
         "ip":"10.0.1.222",
         "rxPort": 5006
+      },
+      {
+        "id": 7,
+        "startX": 112,
+        "startY": 7,
+        "width":  28,
+        "height": 7,
+        "ip":"10.0.1.222",
+        "rxPort": 5006
+      },
+      {
+        "id": 8,
+        "startX": 112, 
+        "startY": 0, 
+        "width":  28,
+        "height": 7,
+        "ip":"10.0.1.222",
+        "rxPort": 5006
+      },
+      {
+        "id": 9,
+        "startX": 140,
+        "startY": 7,
+        "width":  28,
+        "height": 7,
+        "ip":"10.0.1.222",
+        "rxPort": 5006
+      },
+      {
+        "id": 10,
+        "startX": 140,
+        "startY": 0,
+        "width":  28,
+        "height": 7,
+        "ip":"10.0.1.222",
+        "rxPort": 5006
+      },
+      {
+        "id": 11,
+        "startX": 112, 
+        "startY": 21,
+        "width":  28,
+        "height": 7,
+        "ip":"10.0.1.222",
+        "rxPort": 5006
+      },
+      {
+        "id": 12,
+        "startX": 112, 
+        "startY": 14,
+        "width":  28,
+        "height": 7,
+        "ip":"10.0.1.222",
+        "rxPort": 5006
+      },
+      {
+        "id": 3,
+        "startX": 140,
+        "startY": 21,
+        "width":  28,
+        "height": 7,
+        "ip":"10.0.1.222",
+        "rxPort": 5007
+      },
+      {
+        "id": 4,
+        "startX": 140,
+        "startY": 14,
+        "width":  28,
+        "height": 7,
+        "ip":"10.0.1.222",
+        "rxPort": 5007
+      },
+      {
+        "id": 5,
+        "startX": 112,
+        "startY": 35,
+        "width":  28,
+        "height": 7,
+        "ip":"10.0.1.222",
+        "rxPort": 5007
+      },
+      {
+        "id": 6,
+        "startX": 112,
+        "startY": 28,
+        "width":  28,
+        "height": 7,
+        "ip":"10.0.1.222",
+        "rxPort": 5007
+      },
+      {
+        "id": 7,
+        "startX": 140,
+        "startY": 35,
+        "width":  28,
+        "height": 7,
+        "ip":"10.0.1.222",
+        "rxPort": 5007
+      },
+      {
+        "id": 8,
+        "startX": 140,
+        "startY": 28,
+        "width":  28,
+        "height": 7,
+        "ip":"10.0.1.222",
+        "rxPort": 5007
+      },
+      {
+        "id": 9,
+        "startX": 168,
+        "startY": 7,
+        "width":  28,
+        "height": 7,
+        "ip":"10.0.1.222",
+        "rxPort": 5007
+      },
+      {
+        "id": 10,
+        "startX": 168, 
+        "startY": 0, 
+        "width":  28,
+        "height": 7,
+        "ip":"10.0.1.222",
+        "rxPort": 5007
+      },
+      {
+        "id": 11,
+        "startX": 196,
+        "startY": 7,
+        "width":  28,
+        "height": 7,
+        "ip":"10.0.1.222",
+        "rxPort": 5007
+      },
+      {
+        "id": 12,
+        "startX": 196,
+        "startY": 0,
+        "width":  28,
+        "height": 7,
+        "ip":"10.0.1.222",
+        "rxPort": 5007
+      },
+      {
+        "id": 3,
+        "startX": 168, 
+        "startY": 21,
+        "width":  28,
+        "height": 7,
+        "ip":"10.0.1.222",
+        "rxPort": 5008
+      },
+      {
+        "id": 4,
+        "startX": 168, 
+        "startY": 14,
+        "width":  28,
+        "height": 7,
+        "ip":"10.0.1.222",
+        "rxPort": 5008
+      },
+      {
+        "id": 5,
+        "startX": 196,
+        "startY": 21,
+        "width":  28,
+        "height": 7,
+        "ip":"10.0.1.222",
+        "rxPort": 5008
+      },
+      {
+        "id": 6,
+        "startX": 196,
+        "startY": 14,
+        "width":  28,
+        "height": 7,
+        "ip":"10.0.1.222",
+        "rxPort": 5008
+      },
+      {
+        "id": 7,
+        "startX": 168,
+        "startY": 35,
+        "width":  28,
+        "height": 7,
+        "ip":"10.0.1.222",
+        "rxPort": 5008
+      },
+      {
+        "id": 8,
+        "startX": 168,
+        "startY": 28,
+        "width":  28,
+        "height": 7,
+        "ip":"10.0.1.222",
+        "rxPort": 5008
+      },
+      {
+        "id": 9,
+        "startX": 196,
+        "startY": 35,
+        "width":  28,
+        "height": 7,
+        "ip":"10.0.1.222",
+        "rxPort": 5008
+      },
+      {
+        "id": 10,
+        "startX": 196,
+        "startY": 28,
+        "width":  28,
+        "height": 7,
+        "ip":"10.0.1.222",
+        "rxPort": 5008
       }
   ],
   "comPort": "COM3",

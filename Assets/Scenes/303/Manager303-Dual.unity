@@ -300,6 +300,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8531154053121603767, guid: 3b3ff6280c563ec40923ae5841b04df9,
+        type: 3}
+      propertyPath: _KinectDebugCam
+      value: 
+      objectReference: {fileID: 1513380343}
     - target: {fileID: 8531154053121603770, guid: 3b3ff6280c563ec40923ae5841b04df9,
         type: 3}
       propertyPath: m_Name

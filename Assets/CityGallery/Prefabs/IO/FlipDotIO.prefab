@@ -92,7 +92,7 @@ MonoBehaviour:
   flipDotRT_ARGB32: {fileID: 0}
   flipDotTex2D_RGBA32: {fileID: 0}
   flipDotIOSharpClass: {fileID: 9116151460766238971}
-  updateInterval: 0.067
+  updateInterval: 0.065
 --- !u!1 &9116151460766238973
 GameObject:
   m_ObjectHideFlags: 0
