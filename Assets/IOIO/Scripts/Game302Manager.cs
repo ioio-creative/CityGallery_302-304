@@ -185,9 +185,12 @@ public class Game302Manager : StateMachine {
     }
 
     public int SelectYear (int index) {
-        previousYearIndex = currentYearIndex;
-        currentYearIndex = index;
-        Game302View.instance.SelectYear (currentYearIndex);
+        if (index >= 0 && index < Game302View.instance.YearTextCount())
+        {
+            previousYearIndex = currentYearIndex;
+            currentYearIndex = index;
+            Game302View.instance.SelectYear (currentYearIndex);
+        }
         return currentYearIndex;
     }
 
