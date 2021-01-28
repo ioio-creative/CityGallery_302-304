@@ -90,12 +90,7 @@ public class Game302Manager : StateMachine {
         Game302View.instance.HideConfirmPage ();
         Game302View.instance.ShowTutorialPage ();
 
-        try {
-            RaiseTutorialSOEvent ();
-        }
-        catch {
-
-        }
+        RaiseTutorialSOEvent ();       
     }
 
     protected override void OnTutorialStatusStay () {
@@ -122,6 +117,11 @@ public class Game302Manager : StateMachine {
         Game302View.instance.HideTutorialPage ();
         Game302View.instance.ShowSelectPage ();
         Game303TutorialView.instance.ActivePageBlock ();
+
+        if (previousStatus == Status.Ready || previousStatus == Status.Tutorial)
+        {
+            RaisePlayerEnterSOEventFromIdle();
+        }
     }
 
     protected override void OnSelectYearStatusStay () {
@@ -217,7 +217,7 @@ public class Game302Manager : StateMachine {
     [SerializeField] private GameIntEvent onNaviIdxEvnt;
     private void RaiseLanguageSelectSOEvent()
     {
-        //onSelectLangEvnt.Raise((int)currentLanguage);
+        onSelectLangEvnt.Raise((int)currentLanguage);
     }
 
     private void RaiseTutorialSOEvent()
