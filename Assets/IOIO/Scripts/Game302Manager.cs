@@ -113,13 +113,13 @@ public class Game302Manager : StateMachine {
     }
 
     protected override void OnSelectYearStatusEnter () {
-        currentYearIndex = 0;
         Game302View.instance.HideTutorialPage ();
         Game302View.instance.ShowSelectPage ();
         Game303TutorialView.instance.ActivePageBlock ();
 
         if (previousStatus == Status.Ready || previousStatus == Status.Tutorial)
         {
+            currentYearIndex = 0;
             RaisePlayerEnterSOEventFromIdle();
         }
     }
@@ -153,8 +153,7 @@ public class Game302Manager : StateMachine {
                 Game302View.instance.SelectRightCircle ();
             }
         }
-        if (CheckStatus (Status.SelectYear) ||
-            CheckStatus (Status.Confirm)) {
+        if (CheckStatus (Status.SelectYear)) {
             if (direction == Direction.Left) {
                 if (currentYearIndex > 0) {
                     previousYearIndex = currentYearIndex;
