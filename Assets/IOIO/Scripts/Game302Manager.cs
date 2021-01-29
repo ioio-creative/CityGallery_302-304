@@ -117,8 +117,7 @@ public class Game302Manager : StateMachine {
         Game302View.instance.ShowSelectPage ();
         Game303TutorialView.instance.ActivePageBlock ();
 
-        if (previousStatus == Status.Ready || previousStatus == Status.Tutorial)
-        {
+        if (previousStatus == Status.Ready || previousStatus == Status.Tutorial) {
             currentYearIndex = 0;
             RaisePlayerEnterSOEventFromIdle();
         }
@@ -184,8 +183,7 @@ public class Game302Manager : StateMachine {
     }
 
     public int SelectYear (int index) {
-        if (index >= 0 && index < Game302View.instance.YearTextCount())
-        {
+        if (index >= 0 && index < Game302View.instance.YearTextCount()) {
             previousYearIndex = currentYearIndex;
             currentYearIndex = index;
             Game302View.instance.SelectYear (currentYearIndex);
@@ -193,15 +191,12 @@ public class Game302Manager : StateMachine {
         return currentYearIndex;
     }
 
-        public void SetColorCoverAlpha (float alpha) {
+    public void SetColorCoverAlpha (float alpha) {
         Game303TutorialView.instance.SetColorCoverAlpha (alpha);
     }
 
     public void SelectLanguage (int index) {
-        currentLanguage = (Language)index;
-        Game303TutorialView.instance.SwitchLanguage ((Language)index);
-        //By Hugo
-        RaiseLanguageSelectSOEvent ();
+        SelectLanguage((Language)index);
     }
 
     public void SelectLanguage (Language language) {

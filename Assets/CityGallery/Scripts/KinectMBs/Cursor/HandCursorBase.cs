@@ -36,6 +36,8 @@ public class HandCursorBase : MonoBehaviour
         if (!players.HaveInRangePlayers) return false;
         var selectedPlayerJoints = players.SelectedPlayer.BodyRaw.Joints;
         var handJointToCheck = LeftHand ? selectedPlayerJoints[Kinect.JointType.HandLeft] : selectedPlayerJoints[Kinect.JointType.HandRight];
+        //var handStateToCheck = LeftHand ? s
+        if (handJointToCheck.TrackingState == Kinect.TrackingState.Inferred) return false;
         return handJointToCheck.Position.Y >= selectedPlayerJoints[Kinect.JointType.SpineShoulder].Position.Y;
     }
 }

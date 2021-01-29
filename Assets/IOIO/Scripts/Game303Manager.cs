@@ -132,8 +132,7 @@ public class Game303Manager : StateMachine {
             Game303SequenceView.instance.Clear (sandEffectClearBackObjectTime);
         }
         else {
-            if (previousStatus == Status.Ready || previousStatus == Status.Tutorial)
-            {
+            if (previousStatus == Status.Ready || previousStatus == Status.Tutorial) {
                 RaisePlayerEnterSOEventFromIdle();
             }
 
@@ -180,11 +179,11 @@ public class Game303Manager : StateMachine {
             if (direction == Direction.Left) {
                 if (yearIndex > 0) {
                     yearIndex -= 1;
-                    Game303FlipdotView.instance.SelectYear (yearIndex);
+                    Game303FlipdotView.instance.SelectYear(yearIndex);
                 }
             }
             if (direction == Direction.Right) {
-                if (yearIndex < Game303FlipdotView.instance.YearTextCount () - 1) {
+                if (yearIndex < Game303FlipdotView.instance.YearTextCount() - 1) {
                     yearIndex += 1;
                     Game303FlipdotView.instance.SelectYear (yearIndex);
                 }
@@ -193,7 +192,7 @@ public class Game303Manager : StateMachine {
     }
 
     public int SelectYear (int index) {
-        if (index >= 0 && index < Game303FlipdotView.instance.YearTextCount ()) {
+        if (index >= 0 && index < Game303FlipdotView.instance.YearTextCount()) {
             yearIndex = index;
             Game303FlipdotView.instance.SelectYear (yearIndex);
         }
@@ -205,10 +204,7 @@ public class Game303Manager : StateMachine {
     }
 
     public void SelectLanguage (int index) {
-        currentLanguage = (Language)index;
-        Game303TutorialView.instance.SwitchLanguage ((Language)index);
-        //By Hugo
-        RaiseLanguageSelectSOEvent ();
+        SelectLanguage((Language)index);
     }
 
     public void SelectLanguage (Language language) {
