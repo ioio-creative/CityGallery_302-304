@@ -36,6 +36,26 @@ public class Game302View : MonoBehaviour {
         triangleStartPosition = triangle.position;
     }
 
+    public void ShowLine()
+    {
+        line.DOScaleX(1, 0.5f);
+    }
+
+    public void ShowLine(float delay)
+    {
+        line.DOScaleX(1, 0.5f).SetDelay(delay);
+    }
+
+    public void HideLine()
+    {
+        line.DOScaleX(0, 0.5f);
+    }
+
+    public void HideLine(float delay)
+    {
+        line.DOScaleX(0, 0.5f).SetDelay(delay);
+    }
+
     public int YearTextCount () {
         return yearTextSmalls.Count;
     }
@@ -64,7 +84,6 @@ public class Game302View : MonoBehaviour {
         leftCircleSelect.DOScale (0, 0);
         rightCircleSelect.DOScale (0, 0);
         triangle.DOScale (0, 0.5f);
-        line.DOScaleX (1, 0.5f);
     }
 
     public void HideTutorialPage () {
@@ -93,7 +112,6 @@ public class Game302View : MonoBehaviour {
             yearTextSmalls[cnt].DOScale (0, 0);
             yearTextBigs[cnt].DOScale (1, 0);
         }
-        line.DOScaleX (0, 0);
     }
 
     public void HideConfirmPage () {

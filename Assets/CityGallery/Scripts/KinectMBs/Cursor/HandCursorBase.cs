@@ -34,10 +34,12 @@ public class HandCursorBase : MonoBehaviour
     public virtual bool IsHandCursorRaised()
     {
         if (!players.HaveInRangePlayers) return false;
-        var selectedPlayerJoints = players.SelectedPlayer.BodyRaw.Joints;
+        var selectedPlayer = players.SelectedPlayer;
+        var selectedPlayerJoints = selectedPlayer.BodyRaw.Joints;
         var handJointToCheck = LeftHand ? selectedPlayerJoints[Kinect.JointType.HandLeft] : selectedPlayerJoints[Kinect.JointType.HandRight];
-        //var handStateToCheck = LeftHand ? s
-        if (handJointToCheck.TrackingState == Kinect.TrackingState.Inferred) return false;
+        var handStateToCheck = LeftHand ? selectedPlayer.BodyRaw.HandLeftState : selectedPlayer.BodyRaw.HandRightState;
+        if (handStateToCheck == Kinect.HandState.NotTracked || handStateToCheck == Kinect.HandState.Unknown) return false;
+        if (handJointToCheck.TrackingState != Kinect.TrackingState.Tracked) return false;
         return handJointToCheck.Position.Y >= selectedPlayerJoints[Kinect.JointType.SpineShoulder].Position.Y;
     }
 }

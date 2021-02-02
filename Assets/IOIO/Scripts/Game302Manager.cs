@@ -40,6 +40,7 @@ public class Game302Manager : StateMachine {
         else {
             Game302View.instance.HideTutorialPage ();
         }
+        Game302View.instance.HideLine();
         Game303TutorialView.instance.HideSelectLanguagePage ();
         Game303TutorialView.instance.HideLeftHandPage ();
         Game303TutorialView.instance.HideRightHandPage ();
@@ -113,6 +114,7 @@ public class Game302Manager : StateMachine {
     }
 
     protected override void OnSelectYearStatusEnter () {
+        Game302View.instance.ShowLine();
         Game302View.instance.HideTutorialPage ();
         Game302View.instance.ShowSelectPage ();
         Game303TutorialView.instance.ActivePageBlock ();
@@ -128,6 +130,7 @@ public class Game302Manager : StateMachine {
     }
 
     protected override void OnConfirmStatusEnter () {
+        Game302View.instance.HideLine();
         Game302View.instance.ShowConfirmPage ();
     }
 
