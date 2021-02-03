@@ -32,14 +32,20 @@ public class Game303FlipDotEventHandler : MonoBehaviour
 
     public void OnNavigationIndex(int idx)
     {
-        mediator.ChangeStatus(Status.SelectYear);
-        mediator.SelectYear(idx);
+        if (!manager.CheckStatus(Status.Idle) && !manager.CheckStatus(Status.SelectLanguage))
+        {
+            mediator.ChangeStatus(Status.SelectYear);
+            mediator.SelectYear(idx);
+        }
     }
 
     public void OnSelectIndex(int idx) 
     {
-        mediator.SelectYear(idx);
-        mediator.ChangeStatus(Status.Confirm);
+        if (manager.CheckStatus(Status.SelectYear) || manager.CheckStatus(Status.Confirm))
+        {
+            mediator.SelectYear(idx);
+            mediator.ChangeStatus(Status.Confirm);
+        }
     }
 
     public void OnHandCursorLeft()

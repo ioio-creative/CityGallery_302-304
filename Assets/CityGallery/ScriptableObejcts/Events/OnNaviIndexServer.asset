@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b7443a1e4aedc249b88004d9cfe4018, type: 3}
   m_Name: OnNaviIndexServer
   m_EditorClassIdentifier: 
-  sentInt: 3
+  sentInt: 2
