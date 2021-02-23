@@ -8,6 +8,7 @@ public class Game303ImageLoader : MonoBehaviour {
 
     public static Game303ImageLoader instance;
 
+    public Texture2D mountain;
     public List<Texture2D> textures1900 = new List<Texture2D> ();
     public List<Texture2D> textures1945 = new List<Texture2D> ();
     public List<Texture2D> textures1985 = new List<Texture2D> ();
@@ -24,6 +25,7 @@ public class Game303ImageLoader : MonoBehaviour {
 
     [System.Obsolete]
     void Start () {
+        LoadMountain ();
         folderPath1900 = string.Concat (Application.dataPath, "/../External/1900/");
         folderPath1945 = string.Concat (Application.dataPath, "/../External/1945/");
         folderPath1985 = string.Concat (Application.dataPath, "/../External/1985/");
@@ -35,8 +37,27 @@ public class Game303ImageLoader : MonoBehaviour {
 
     }
 
+    private void LoadMountain () {
+        StartCoroutine (Flow ());
+        IEnumerator Flow () {
+            string path = string.Concat (Application.dataPath, "/../External/Mountain.png");
+            byte[] fileData = File.ReadAllBytes (path);
+            Texture2D rawTexture = new Texture2D (2, 2);
+            yield return new WaitForEndOfFrame ();
+            rawTexture.LoadImage (fileData);
+            yield return new WaitForEndOfFrame ();
+            mountain = rawTexture;
+
+            Sprite sprite = Sprite.Create (mountain,
+            new Rect (0.0f, 0.0f, mountain.width, mountain.height),
+            new Vector2 (0.5f, 0.5f), 1);
+            GameObject.Find ("Mountain").GetComponent<SpriteRenderer> ().sprite = sprite;
+        }
+    }
+
     [System.Obsolete]
     IEnumerator LoadTextures () {
+
         string[] files1900 = Directory.GetFiles (folderPath1900);
         string[] files1945 = Directory.GetFiles (folderPath1945);
         string[] files1985 = Directory.GetFiles (folderPath1985);
@@ -73,7 +94,7 @@ public class Game303ImageLoader : MonoBehaviour {
             }
         }
 
-        yield return new WaitForEndOfFrame ();
+    yield return new WaitForEndOfFrame ();
         StartCoroutine (CreateSprites ());
     }
 
