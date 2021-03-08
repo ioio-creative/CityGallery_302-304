@@ -46,10 +46,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsFileName: SandDropSettings.json
-  sandDropIp:
-    ip: 
-    port: 0
-  message: PLAY
+  sandDropConfig:
+    address:
+      ip: 
+      port: 0
+    userEnterDelay: 0
+    selectYearDelay: 0
+  userEnterDelay: {fileID: 11400000, guid: d0387ce36b59dec4aa8351ce9bc26ce0, type: 2}
+  selectYearDelay: {fileID: 11400000, guid: 8223e2a89a8ed0949b041446a3dfb7d8, type: 2}
+  onPlayerEnterEvnt: {fileID: 11400000, guid: b9ba6838bb84dab4b88b6d9c8c225960, type: 2}
+  message: 1
 --- !u!114 &6800615441787811657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,11 +74,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6800615441787811654}
         m_MethodName: DropSandIO
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -89,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e299084dd6b333459077884b308299e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: b9ba6838bb84dab4b88b6d9c8c225960, type: 2}
+  Event: {fileID: 11400000, guid: bb828c698e8169744bfe82d06f066479, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:

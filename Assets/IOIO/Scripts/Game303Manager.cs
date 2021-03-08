@@ -1,4 +1,6 @@
 ﻿using RoboRyanTron.Unite2017.Events;
+using SOVariables;
+using System.Collections;
 using UnityEngine;
 
 public class Game303Manager : StateMachine {
@@ -219,6 +221,7 @@ public class Game303Manager : StateMachine {
     [SerializeField] private GameEvent onTutorialEvnt;
     [SerializeField] private GameEvent onPlayerEnterEvnt;
     [SerializeField] private GameIntEvent onNaviIdxEvnt;
+
     private void RaiseLanguageSelectSOEvent()
     {
         onSelectLangEvnt.Raise((int)currentLanguage);
@@ -230,7 +233,7 @@ public class Game303Manager : StateMachine {
     }
 
     private void RaisePlayerEnterSOEventFromIdle()
-    {
+    {  
         onPlayerEnterEvnt.Raise();
         onNaviIdxEvnt.Raise(0);
     }
