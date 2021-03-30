@@ -7,6 +7,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 422771033, guid: ededa1973328579489941b3f507836cb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 422771033, guid: ededa1973328579489941b3f507836cb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1827733558, guid: ededa1973328579489941b3f507836cb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1827733558, guid: ededa1973328579489941b3f507836cb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8880238744023904925, guid: ededa1973328579489941b3f507836cb,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -17,10 +33,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -700
       objectReference: {fileID: 0}
+    - target: {fileID: 8880238744366332076, guid: ededa1973328579489941b3f507836cb,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880238744366332076, guid: ededa1973328579489941b3f507836cb,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8880238744537560409, guid: ededa1973328579489941b3f507836cb,
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880238745095284768, guid: ededa1973328579489941b3f507836cb,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880238745095284768, guid: ededa1973328579489941b3f507836cb,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8880238745441165613, guid: ededa1973328579489941b3f507836cb,
         type: 3}
@@ -136,6 +172,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TutorialViewGroup-Single
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880238745775889357, guid: ededa1973328579489941b3f507836cb,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880238745775889357, guid: ededa1973328579489941b3f507836cb,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ededa1973328579489941b3f507836cb, type: 3}

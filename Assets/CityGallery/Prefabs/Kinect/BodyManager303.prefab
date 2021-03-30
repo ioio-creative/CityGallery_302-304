@@ -16,8 +16,11 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 23d76365ec036a444a93f9963ca1606d, type: 2}
-  enterDist: 1.3
-  idleDistMappingRange: {x: 1.31, y: 2}
+  enterDist:
+    UseConstant: 0
+    ConstantValue: 1.3
+    Variable: {fileID: 11400000, guid: 0d8942fbe7a574d45aac8a1782580f63, type: 2}
+  idleDistMappingRange: {x: 1.36, y: 3}
   enterRangeEvnt: {fileID: 11400000, guid: e3529b7886d35e9499d5094ed352d57c, type: 2}
 --- !u!1001 &1417909140586542280
 PrefabInstance:

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class Game303ImageLoader : MonoBehaviour {
 
@@ -138,7 +139,11 @@ public class Game303ImageLoader : MonoBehaviour {
                 new Rect (0.0f, 0.0f, textures2019[cnt].width, textures2019[cnt].height),
                 new Vector2 (0.5f, 0.5f), 1);
             Game303SequenceView.instance.buildingSequences[3].sprites.Add (sprite);
+
         }
+        //Also Add Last Image to Idle Building
+        yield return new WaitUntil(() => IdleBuilding303.instance != null);
+        IdleBuilding303.instance.SetBuildingSprite(Game303SequenceView.instance.buildingSequences[3].sprites.Last());
         StartCoroutine (ClearTextures ());
     }
 

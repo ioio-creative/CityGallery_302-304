@@ -3,7 +3,12 @@ guid: d00874425fadc5c4ea62bbd21c531d52
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - bodyDistances: {fileID: 11400000, guid: b10eca0a12f6ce744b0da1001b7efd7f, type: 2}
+  - wave: {instanceID: 0}
+  - inRangeDistance: {fileID: 11400000, guid: c3219143516822246b8926063ec04451, type: 2}
+  - enterGameDistance: {fileID: 11400000, guid: 0d8942fbe7a574d45aac8a1782580f63,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

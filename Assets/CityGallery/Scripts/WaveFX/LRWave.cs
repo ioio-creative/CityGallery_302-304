@@ -44,6 +44,9 @@ public class LRWave : MonoBehaviour
     private Vector3[] superpositionPoints;
 
     [SerializeField]
+    private bool masterWindow;
+
+    [SerializeField]
     private LineRenderer line;
 
     [SerializeField]
@@ -97,12 +100,18 @@ public class LRWave : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        RenderWave();
+        if (Application.isEditor)
+        {
+            RenderWave(); 
+        }
     }
 
     private void OnDrawGizmosSelected()
     {
-        CalcPoints();
+        if (Application.isEditor)
+        {
+            CalcPoints();
+        }
     }
 #endif
 
@@ -167,6 +176,11 @@ public class LRWave : MonoBehaviour
                 }
             }
             superpositionPoints[i] = new Vector3(i * DomainIncrement, superposedValue);
+        }
+
+        if (masterWindow)
+        {
+            ApplyMasterHanningWindow(ref superpositionPoints);
         }
     }
 
@@ -295,6 +309,14 @@ public class LRWave : MonoBehaviour
                 }
             }
 
+        }
+    }
+
+    private void ApplyMasterHanningWindow(ref Vector3[] input)
+    {
+        for (int i = 0; i < input.Length; i++)
+        {
+            input[i].y *= 0.5f * (1f - Mathf.Cos(Mathf.PI * 2 * i / (input.Length)));
         }
     }
 

@@ -31,7 +31,6 @@ public class PlayerSelector : MonoBehaviour
     };
         
     
-
     [SerializeField]
     private float selectionRadius;
 
@@ -51,7 +50,6 @@ public class PlayerSelector : MonoBehaviour
         {
             SetBodyDistances();
         }
-
     }
 
     private void SetBodyDistances()

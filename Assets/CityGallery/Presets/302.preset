@@ -6,7 +6,7 @@ Preset:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 303KLN
+  m_Name: 302
   m_TargetType:
     m_NativeTypeID: 129
     m_ManagedTypePPtr: {fileID: 0}
@@ -62,7 +62,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: productName
-    value: CityGallery_303_KLN
+    value: CityGallery_302
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: defaultCursor
@@ -526,7 +526,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: bundleVersion
-    value: 0.9
+    value: 0.8
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: preloadedAssets.Array.size

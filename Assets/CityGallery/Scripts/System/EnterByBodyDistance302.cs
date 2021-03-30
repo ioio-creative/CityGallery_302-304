@@ -7,7 +7,7 @@ public class EnterByBodyDistance302 : MonoBehaviour
     [SerializeField]
     private FloatReference closestDistance;
     [SerializeField]
-    private float enterDist;
+    private FloatReference enterDist;
 
     [SerializeField]
     private Vector2 idleDistMappingRange;

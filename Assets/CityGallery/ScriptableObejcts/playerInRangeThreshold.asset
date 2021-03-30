@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: playerInRangeThreshold
   m_EditorClassIdentifier: 
   DeveloperDescription: Max distance that qualifies a player as in-range
-  initValue: 1.8
-  runtimeValue: 1.8
+  initValue: 3
+  runtimeValue: 3

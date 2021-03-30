@@ -23,6 +23,8 @@ public class SystemConfig : MonoBehaviour
     [SerializeField]
     private FloatVariable playerInRangeThresholdMax;
     [SerializeField]
+    private FloatVariable playerEnterGameThreshold;
+    [SerializeField]
     private FloatVariable idleTimeout;
 
 
@@ -36,6 +38,7 @@ public class SystemConfig : MonoBehaviour
         screenDimension = new Vector2(config.displayWidth, config.displayHeight);
 
         playerInRangeThresholdMax.InitializeValue(config.playerRangeThresholdMax);
+        playerEnterGameThreshold.InitializeValue(config.playerRangeThresholdMin);
 
         idleTimeout.InitializeValue(config.idleTimeout);
 

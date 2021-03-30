@@ -26,7 +26,7 @@ public class Game303FlipdotView : MonoBehaviour {
 
     [Header ("Debug")]
     [SerializeField] private Vector2 tutorialSelectorStartPosition;
-    [SerializeField] private Vector2 sandStartPosition;
+    [SerializeField] private Vector2 sandStartLocalPosition;
 
     void Awake () {
         instance = this;
@@ -34,7 +34,7 @@ public class Game303FlipdotView : MonoBehaviour {
 
     void Start () {
         tutorialSelectorStartPosition = tutorialSelector.position;
-        sandStartPosition = sand.position;
+        sandStartLocalPosition = sand.localPosition;
     }
 
     public void ShowLine () {
@@ -125,9 +125,16 @@ public class Game303FlipdotView : MonoBehaviour {
         }
     }
 
-    public void PassSand () {
-        sand.DOMoveX (-sandStartPosition.x, Game303ConfigData.instance.sandEffectMoveTime).SetEase (Ease.Linear);
-        sand.DOMoveX (sandStartPosition.x, 0).SetDelay (Game303ConfigData.instance.sandEffectMoveTime);
+    public void PassSand (bool flipDirection = false) {
+        //sand.DOMoveX (-sandStartPosition.x, Game303ConfigData.instance.sandEffectMoveTime).SetEase (Ease.Linear);
+        //sand.DOMoveX (sandStartPosition.x, 0).SetDelay (Game303ConfigData.instance.sandEffectMoveTime);
+
+        var startPositionY = flipDirection ? -sandStartLocalPosition.y : sandStartLocalPosition.y;
+
+        var effectMoveTime = flipDirection ? 2f : Game303ConfigData.instance.sandEffectMoveTime; 
+
+        sand.DOLocalMoveY(startPositionY, 0);
+        sand.DOLocalMoveY(-startPositionY, effectMoveTime).SetEase(Ease.Linear);
     }
 
 }

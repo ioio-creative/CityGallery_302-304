@@ -12,10 +12,29 @@ using RoboRyanTron.Unite2017.Events;
 
 public class SandIOControl : MonoBehaviour
 {
+    public static SandIOControl Instance => instance;
+    private static SandIOControl instance;
     public enum SandTransition
     {
-        USER_ENTER,
-        SELECT_YEAR
+        IDLE,
+        //on select language enter
+        ACTIVATE,
+        //on select language
+        L0,
+        //on left hand raised
+        L1,
+        //on right hand raised
+        R1,
+        //on confirm
+        C1,
+        //on skip
+        SKIP,
+        //on restart
+        RESTART,
+        //on select year
+        SELECT_YEAR,
+        //on year entered
+        YEAR_ENTER
     }
 
     [SerializeField]
@@ -27,6 +46,8 @@ public class SandIOControl : MonoBehaviour
     [SerializeField]
     private FloatVariable selectYearDelay;
     [SerializeField]
+    private FloatVariable yearEnteredDelay;
+    [SerializeField]
     private GameEvent onPlayerEnterEvnt;
 
     [SerializeField]
@@ -34,6 +55,10 @@ public class SandIOControl : MonoBehaviour
 
     private UdpClient udpClient;
 
+    private void Awake()
+    {
+        instance = this;
+    }
     private void OnEnable()
     {
         LoadSettingsFile();
@@ -50,15 +75,6 @@ public class SandIOControl : MonoBehaviour
             udpClient.Dispose();
         }
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            DropSandIO();
-        }
-    }
-
     private void LoadSettingsFile()
     {
         string jsonFilePath = Path.Combine(Application.streamingAssetsPath, settingsFileName);
@@ -67,6 +83,8 @@ public class SandIOControl : MonoBehaviour
 
         userEnterDelay.InitializeValue(sandDropConfig.userEnterDelay);
         selectYearDelay.InitializeValue(sandDropConfig.selectYearDelay);
+        yearEnteredDelay.InitializeValue(sandDropConfig.yearEnteredDelay);
+
         if (!string.IsNullOrEmpty(sandDropConfig.sandCmd))
         {
             message = sandDropConfig.sandCmd;
@@ -83,40 +101,76 @@ public class SandIOControl : MonoBehaviour
         }
     }
 
-    private IEnumerator DropSandDelayed(float delay, Action callback = null)
+    private IEnumerator DelayedPlayerEnter(float delay)
     {
         yield return new WaitForSeconds(delay);
-
-        SendCommandToUdp(message);
-        if (callback != null)
-        {
-            callback.Invoke();
-        }
+        onPlayerEnterEvnt.Raise();
     }
 
-    public void DropSandIO(int transitionIdx)
+    private IEnumerator DropSandDelayed(float delay1, float delay2 = 0)
     {
-        SandTransition transition = (SandTransition)transitionIdx;
+        yield return new WaitForSeconds(delay1);
+        DropSandIO(SandTransition.SELECT_YEAR);
+        yield return new WaitForSeconds(delay2);
+        DropSandIO(SandTransition.YEAR_ENTER);
+    }
+
+    private void DropSandIO(SandTransition transition)
+    {
         switch (transition)
         {
-            case SandTransition.USER_ENTER:
-                StartCoroutine(DropSandDelayed(userEnterDelay, () =>
-                {
-                    onPlayerEnterEvnt.Raise();
-                }));
+            case SandTransition.IDLE:
+            default:
+                SendCommandToUdp(sandDropConfig.idleCmd);
+                break;
+            case SandTransition.ACTIVATE:
+                SendCommandToUdp(sandDropConfig.activeCmd);
+                break;
+            case SandTransition.L0:
+                SendCommandToUdp(sandDropConfig.leftReadyCmd);
+                break;
+            case SandTransition.L1:
+                SendCommandToUdp(sandDropConfig.leftDoneCmd);
+                break;
+            case SandTransition.R1:
+                SendCommandToUdp(sandDropConfig.rightDoneCmd);
+                break;
+            case SandTransition.C1:
+                SendCommandToUdp(sandDropConfig.confirmDoneCmd);
+                break;
+            case SandTransition.SKIP:
+                SendCommandToUdp(sandDropConfig.skipCmd);
+                break;
+            case SandTransition.RESTART:
+                SendCommandToUdp(sandDropConfig.restartCmd);
                 break;
             case SandTransition.SELECT_YEAR:
-                StartCoroutine(DropSandDelayed(selectYearDelay));
+                SendCommandToUdp(sandDropConfig.sandCmd);
                 break;
-            default:
+            case SandTransition.YEAR_ENTER:
+                SendCommandToUdp(sandDropConfig.slideCmd);
                 break;
         }
     }
 
-    public void DropSandIO()
+    public static void SendSandIO(SandTransition transition)
     {
-        SendCommandToUdp(message);
+        if (instance != null)
+        {
+            instance.DropSandIO(transition);
+        }
     }
+
+    public void OnTutorialConfirmed()
+    {
+        StartCoroutine(DelayedPlayerEnter(userEnterDelay));
+    }
+
+    public void OnSelectYearConfirmed()
+    {
+        StartCoroutine(DropSandDelayed(selectYearDelay, yearEnteredDelay));
+    }
+
 }
 
 [Serializable]
@@ -125,5 +179,16 @@ public struct SandDropConfig
     public IPAddressConfig address;
     public float userEnterDelay;
     public float selectYearDelay;
+    public float yearEnteredDelay;
+
+    public string idleCmd;
+    public string activeCmd;
+    public string leftReadyCmd;
+    public string leftDoneCmd;
+    public string rightDoneCmd;
+    public string confirmDoneCmd;
+    public string skipCmd;
+    public string restartCmd;
     public string sandCmd;
+    public string slideCmd;
 }

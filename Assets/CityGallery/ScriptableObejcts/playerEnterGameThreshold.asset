@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b7443a1e4aedc249b88004d9cfe4018, type: 3}
-  m_Name: OnNaviIndexServer
+  m_Script: {fileID: 11500000, guid: 5a75d960efe688f4daff322d1ddec3ed, type: 3}
+  m_Name: playerEnterGameThreshold
   m_EditorClassIdentifier: 
-  sentInt: 3
+  DeveloperDescription: max distance that qualifies as player entered game
+  initValue: 1.35
+  runtimeValue: 1.35

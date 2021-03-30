@@ -52,8 +52,20 @@ MonoBehaviour:
       port: 0
     userEnterDelay: 0
     selectYearDelay: 0
+    yearEnteredDelay: 0
+    idleCmd: 
+    activeCmd: 
+    leftReadyCmd: 
+    leftDoneCmd: 
+    rightDoneCmd: 
+    confirmDoneCmd: 
+    skipCmd: 
+    restartCmd: 
+    sandCmd: 
+    slideCmd: 
   userEnterDelay: {fileID: 11400000, guid: d0387ce36b59dec4aa8351ce9bc26ce0, type: 2}
   selectYearDelay: {fileID: 11400000, guid: 8223e2a89a8ed0949b041446a3dfb7d8, type: 2}
+  yearEnteredDelay: {fileID: 11400000, guid: 5af54301750668a46a0392481c232476, type: 2}
   onPlayerEnterEvnt: {fileID: 11400000, guid: b9ba6838bb84dab4b88b6d9c8c225960, type: 2}
   message: 1
 --- !u!114 &6800615441787811657
@@ -73,8 +85,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6800615441787811654}
-        m_MethodName: DropSandIO
-        m_Mode: 3
+        m_MethodName: OnSelectYearConfirmed
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -100,7 +112,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6800615441787811654}
-        m_MethodName: DropSandIO
+        m_MethodName: OnTutorialConfirmed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

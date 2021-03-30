@@ -1,9 +1,19 @@
 {
   "address": {
-    "ip": "10.0.1.63",
+    "ip": "10.0.1.52",
     "port": 5000
   },
-  "userEnterDelay": 5,
-  "selectYearDelay": 2.5,
-  "sandCmd": "1"
+  "userEnterDelay": 1,
+  "selectYearDelay": 0.8,
+  "yearEnteredDelay": 1.2,
+  "idleCmd": "idle",
+  "activeCmd": "A0",
+  "leftReadyCmd": "L0",
+  "leftDoneCmd": "L1",
+  "rightDoneCmd": "R1",
+  "confirmDoneCmd": "C1",
+  "skipCmd": "skip",
+  "restartCmd": "restart",
+  "sandCmd": "S0",
+  "slideCmd": "slide"
 }
