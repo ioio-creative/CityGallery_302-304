@@ -254,7 +254,7 @@ public class FlipDotIO : MonoBehaviour
                     {
                         sp.Write(formattedMsg, 0, formattedMsg.Length);
                     }
-                    catch (Exception e)
+                    catch
                     {
                         //Debug.LogWarning(e.Message);
                     }

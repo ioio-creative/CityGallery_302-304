@@ -73,11 +73,17 @@ MonoBehaviour:
   naviIdxEvnt: navigationIndex
   selectIdxEvnt: selectIndex
   langIdxEvnt: selectLang
+  homeEvnt: backToHome
+  touchEvnt: onTouchStart
   naviLeftEvnt: navigationLeft
   naviRightEvnt: navigationRight
   naviIdxSOEventServer: {fileID: 11400000, guid: 7afa4241dd4f80f4fb3acc636f4ed0f2,
     type: 2}
   selectIdxSOEventServer: {fileID: 11400000, guid: 1f02b2884d173574aa4999ce9e02a836,
+    type: 2}
+  onUserLeaveSOEventServer: {fileID: 11400000, guid: 0fc81bbfb3e1d44428231d0f9a4d22d3,
+    type: 2}
+  onTouchDownSOEventServer: {fileID: 11400000, guid: 26e64eec491bdae42b176855c92a5429,
     type: 2}
 --- !u!114 &791912034289143343
 MonoBehaviour:

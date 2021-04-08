@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using SOVariables;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,10 @@ public class IdleBuilding303 : MonoBehaviour
 
     [SerializeField]
     private KinectPlayersList playerDetectList;
+    [SerializeField]
+    private FloatVariable closestBodyPosition;
+    [SerializeField]
+    private FloatVariable playerInRangeMax;
 
 
     private void Awake()
@@ -24,14 +29,23 @@ public class IdleBuilding303 : MonoBehaviour
 
     private void Update()
     {
-        if (playerDetectList.TrackedPlayers.Count == 0 && Game303Manager.instance.CheckStatus(Status.Idle))
+        if (Game303Manager.instance.CheckStatus(Status.Idle))
         {
-            maskAnim.SetBool("pulse", true);            
+            maskAnim.SetBool("pulse", ShouldActivatePulsePredicate());   
         }
         else
         {
             maskAnim.SetBool("pulse", false);
         }
+    }
+
+    private bool ShouldActivatePulsePredicate()
+    {
+        if (!Game303Manager.instance.CheckStatus(Status.Idle)) return false;
+    
+        if (playerDetectList.TrackedPlayers == null || playerDetectList.TrackedPlayers.Count == 0) return true;
+
+        return closestBodyPosition > playerInRangeMax;     
     }
 
     public void SetBuildingSprite(Sprite sprite)
@@ -48,4 +62,6 @@ public class IdleBuilding303 : MonoBehaviour
     {
         building.color = Color.clear;
     }
+
+
 }

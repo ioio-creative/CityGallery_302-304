@@ -58,18 +58,18 @@ public class Game303TutorialView : MonoBehaviour {
 
     [Header ("Confirm")]
     [SerializeField] private Transform confirmButton;
-    //[SerializeField] private Transform confirmDescShort;
+    [SerializeField] private Transform confirmDescShort;
     [SerializeField] private Transform confirmDescLong;
 
     [Header ("Ready")]
     [SerializeField] private Transform readyButton;
     [SerializeField] private Transform readyText;
-    //[SerializeField] private Transform readyDescShort;
+    [SerializeField] private Transform readyDescShort;
     [SerializeField] private Transform readyDescLong;
    
     [Header ("Debug")]
     [SerializeField] private float waveCooldownTimer;
-    private IEnumerator unactivePageBlockCoroutine;
+    private Coroutine unactivePageBlockCoroutine;
 
     void Awake () {
         instance = this;
@@ -194,14 +194,14 @@ public class Game303TutorialView : MonoBehaviour {
         WholePageColorEffect ();
         mainCircleFillbar.GetComponent<Image> ().DOFillAmount (0.75f, 0.5f);
         confirmButton.DOScale (1, 0.5f);
-        //confirmDescShort.DOScale (1, 0.5f);
+        confirmDescShort.DOScale (1, 0.5f);
         confirmDescLong.DOScale (1, 0.5f);
     }
 
     public void HideConfirmPage () {
         confirmButton.DOKill ();
         confirmButton.DOScale (0, 0);
-        //confirmDescShort.DOScale (0, 0.5f);
+        confirmDescShort.DOScale (0, 0.5f);
         confirmDescLong.DOScale (0, 0.5f);
     }
 
@@ -212,7 +212,7 @@ public class Game303TutorialView : MonoBehaviour {
         mainCircle.DOScale (0, 0f);
         readyButton.DOScale (1, 0f);
         readyText.DOScale (1, 0.5f);
-        //readyDescShort.DOScale (1, 0.5f);
+        readyDescShort.DOScale (1, 0.5f);
         readyDescLong.DOScale (1, 0.5f);
         skipButton.DOScale (0, 0.5f);
         replayButton.DOScale (1, 0.5f);
@@ -223,7 +223,7 @@ public class Game303TutorialView : MonoBehaviour {
         tutorialRight.DOScale (0, 0.5f);
         readyButton.DOScale (0, 0f);
         readyText.DOScale (0, 0.5f);
-        //readyDescShort.DOScale (0, 0.5f);
+        readyDescShort.DOScale (0, 0.5f);
         readyDescLong.DOScale (0, 0.5f);
         replayButton.DOScale (0, 0.5f);
         skipButton.DOScale (0, 0.5f);
@@ -232,7 +232,10 @@ public class Game303TutorialView : MonoBehaviour {
     }
 
     public void ActivePageBlock () {
-        StopCoroutine (unactivePageBlockCoroutine);
+        if (unactivePageBlockCoroutine != null)
+        {
+            StopCoroutine (unactivePageBlockCoroutine);
+        }
         pageBlock.GetComponent<MaskableGraphic> ().raycastTarget = true;
         pageBlock.GetComponent<MaskableGraphic> ().DOFade (1, 0.5f);
     }
@@ -243,11 +246,16 @@ public class Game303TutorialView : MonoBehaviour {
     }
 
     public void UnactivePageBlock (float delay) {
-        unactivePageBlockCoroutine = Flow ();
-        StartCoroutine (unactivePageBlockCoroutine);
+        if (unactivePageBlockCoroutine != null)
+        {
+            StopCoroutine(unactivePageBlockCoroutine);
+            unactivePageBlockCoroutine = null;
+        }
+        unactivePageBlockCoroutine = StartCoroutine(Flow());       
         IEnumerator Flow () {
             yield return new WaitForSeconds (delay);
             UnactivePageBlock ();
+            unactivePageBlockCoroutine = null;
         }
     }
 
@@ -266,9 +274,9 @@ public class Game303TutorialView : MonoBehaviour {
             rightHandDescShort.Find ("TC").DOScale (1, 0);
             rightHandDescLong.Find ("TC").DOScale (1, 0);
             confirmButton.Find ("TC").DOScale (1, 0);
-            //confirmDescShort.Find ("TC").DOScale (1, 0);
+            confirmDescShort.Find ("TC").DOScale (1, 0);
             confirmDescLong.Find ("TC").DOScale (1, 0);
-            //readyDescShort.Find ("TC").DOScale (1, 0);
+            readyDescShort.Find ("TC").DOScale (1, 0);
             readyDescLong.Find ("TC").DOScale (1, 0);
             readyText.Find ("TC").DOScale (1, 0);
 
@@ -277,9 +285,9 @@ public class Game303TutorialView : MonoBehaviour {
             rightHandDescShort.Find ("EN").DOScale (0, 0);
             rightHandDescLong.Find ("EN").DOScale (0, 0);
             confirmButton.Find ("EN").DOScale (0, 0);
-            //confirmDescShort.Find ("EN").DOScale (0, 0);
+            confirmDescShort.Find ("EN").DOScale (0, 0);
             confirmDescLong.Find ("EN").DOScale (0, 0);
-            //readyDescShort.Find ("EN").DOScale (0, 0);
+            readyDescShort.Find ("EN").DOScale (0, 0);
             readyDescLong.Find ("EN").DOScale (0, 0);
             readyText.Find ("EN").DOScale (0, 0);
         }
@@ -297,9 +305,9 @@ public class Game303TutorialView : MonoBehaviour {
             rightHandDescShort.Find ("TC").DOScale (0, 0);
             rightHandDescLong.Find ("TC").DOScale (0, 0);
             confirmButton.Find ("TC").DOScale (0, 0);
-            //confirmDescShort.Find ("TC").DOScale (0, 0);
+            confirmDescShort.Find ("TC").DOScale (0, 0);
             confirmDescLong.Find ("TC").DOScale (0, 0);
-            //readyDescShort.Find ("TC").DOScale (0, 0);
+            readyDescShort.Find ("TC").DOScale (0, 0);
             readyDescLong.Find ("TC").DOScale (0, 0);
             readyText.Find ("TC").DOScale (0, 0);
 
@@ -308,9 +316,9 @@ public class Game303TutorialView : MonoBehaviour {
             rightHandDescShort.Find ("EN").DOScale (1, 0);
             rightHandDescLong.Find ("EN").DOScale (1, 0);
             confirmButton.Find ("EN").DOScale (1, 0);
-            //confirmDescShort.Find ("EN").DOScale (1, 0);
+            confirmDescShort.Find ("EN").DOScale (1, 0);
             confirmDescLong.Find ("EN").DOScale (1, 0);
-            //readyDescShort.Find ("EN").DOScale (1, 0);
+            readyDescShort.Find ("EN").DOScale (1, 0);
             readyDescLong.Find ("EN").DOScale (1, 0);
             readyText.Find ("EN").DOScale (1, 0);
         }

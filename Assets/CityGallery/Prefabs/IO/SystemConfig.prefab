@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2054204519108452872
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2054204519108452875}
+  - component: {fileID: 2054204519108452874}
+  m_Layer: 0
+  m_Name: SystemConfig
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2054204519108452875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054204519108452872}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2054204519108452874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054204519108452872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e7678bdb3d27e4dabeb903275bf125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  configJsonFile: config.json
+  config:
+    debug: 0
+    socketUrl: 
+    displayWidth: 0
+    displayHeight: 0
+    playerRangeThresholdMax: 0
+    playerRangeThresholdMin: 0
+    playerLeaveRangeThreshold: 0
+    idleTimeout: 0
+  screenDimension: {x: 0, y: 0}
+  playerInRangeThresholdMax: {fileID: 11400000, guid: c3219143516822246b8926063ec04451,
+    type: 2}
+  playerEnterGameThreshold: {fileID: 11400000, guid: 0d8942fbe7a574d45aac8a1782580f63,
+    type: 2}
+  playerLeaveGameThreshold: {fileID: 11400000, guid: d48352254cb6aaa41b893c5b86af895c,
+    type: 2}
+  idleTimeout: {fileID: 11400000, guid: 4149ad36a577f2244a0d4295c1cc7595, type: 2}

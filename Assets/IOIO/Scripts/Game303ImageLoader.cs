@@ -10,6 +10,7 @@ public class Game303ImageLoader : MonoBehaviour {
     public static Game303ImageLoader instance;
 
     public Texture2D mountain;
+    public Texture2D building;
     public List<Texture2D> textures1900 = new List<Texture2D> ();
     public List<Texture2D> textures1945 = new List<Texture2D> ();
     public List<Texture2D> textures1985 = new List<Texture2D> ();
@@ -27,6 +28,7 @@ public class Game303ImageLoader : MonoBehaviour {
     [System.Obsolete]
     void Start () {
         LoadMountain ();
+        LoadBuilding ();
         folderPath1900 = string.Concat (Application.dataPath, "/../External/1900/");
         folderPath1945 = string.Concat (Application.dataPath, "/../External/1945/");
         folderPath1985 = string.Concat (Application.dataPath, "/../External/1985/");
@@ -53,6 +55,30 @@ public class Game303ImageLoader : MonoBehaviour {
             new Rect (0.0f, 0.0f, mountain.width, mountain.height),
             new Vector2 (0.5f, 0.5f), 1);
             GameObject.Find ("Mountain").GetComponent<SpriteRenderer> ().sprite = sprite;
+        }
+    }
+
+    private void LoadBuilding()
+    {
+        StartCoroutine(Flow());
+        IEnumerator Flow()
+        {
+            string path = string.Concat(Application.dataPath, "/../External/Building.png");
+            byte[] fileData = File.ReadAllBytes(path);
+            Texture2D rawTexture = new Texture2D(2, 2);
+            rawTexture.filterMode = FilterMode.Point;
+            yield return new WaitForEndOfFrame();
+            rawTexture.LoadImage(fileData);
+            yield return new WaitForEndOfFrame();
+            building = rawTexture;
+
+            Sprite sprite = Sprite.Create(building,
+            new Rect(0.0f, 0.0f, building.width, building.height),
+            new Vector2(0.5f, 0.5f), 1);
+
+            //Also Add Last Image to Idle Building
+            yield return new WaitUntil(() => IdleBuilding303.instance != null);
+            IdleBuilding303.instance.SetBuildingSprite(sprite);
         }
     }
 
@@ -141,9 +167,6 @@ public class Game303ImageLoader : MonoBehaviour {
             Game303SequenceView.instance.buildingSequences[3].sprites.Add (sprite);
 
         }
-        //Also Add Last Image to Idle Building
-        yield return new WaitUntil(() => IdleBuilding303.instance != null);
-        IdleBuilding303.instance.SetBuildingSprite(Game303SequenceView.instance.buildingSequences[3].sprites.Last());
         StartCoroutine (ClearTextures ());
     }
 

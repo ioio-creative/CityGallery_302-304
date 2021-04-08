@@ -1,9 +1,10 @@
 {
   "debug": false,
   "socketUrl": "ws://localhost:80/socket.io/?EIO=4&transport=websocket",
-  "displayWidth": 3840,
+  "displayWidth": 1920,
   "displayHeight": 1080,
   "playerRangeThresholdMax": 3.0,
   "playerRangeThresholdMin": 1.35,
-  "idleTimeout": 10
+  "idlePlayerRangeThreshold": 2.0,
+  "idleTimeout": 60
 }

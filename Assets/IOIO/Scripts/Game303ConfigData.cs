@@ -9,6 +9,7 @@ public class Game303ConfigData : MonoBehaviour {
 
     [Header ("Config")]
     public float sandEffectMoveTime;
+    public float genericTransitionMoveTime;
 
     [Header ("Debug")]
     [SerializeField] private string[] configs;
@@ -40,6 +41,7 @@ public class Game303ConfigData : MonoBehaviour {
         if (fileLoaded) {
             try {
                 sandEffectMoveTime = float.Parse (dictionary[nameof(sandEffectMoveTime)]);
+                genericTransitionMoveTime = float.Parse(dictionary[nameof(genericTransitionMoveTime)]);
                 dataLoaded = true;
             }
             catch {

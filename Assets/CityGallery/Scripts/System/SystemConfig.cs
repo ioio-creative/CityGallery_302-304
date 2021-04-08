@@ -25,6 +25,8 @@ public class SystemConfig : MonoBehaviour
     [SerializeField]
     private FloatVariable playerEnterGameThreshold;
     [SerializeField]
+    private FloatVariable playerLeaveGameThreshold;
+    [SerializeField]
     private FloatVariable idleTimeout;
 
 
@@ -39,7 +41,8 @@ public class SystemConfig : MonoBehaviour
 
         playerInRangeThresholdMax.InitializeValue(config.playerRangeThresholdMax);
         playerEnterGameThreshold.InitializeValue(config.playerRangeThresholdMin);
-
+        
+        playerLeaveGameThreshold.InitializeValue(config.idlePlayerRangeThreshold);
         idleTimeout.InitializeValue(config.idleTimeout);
 
         if (screenDimension.x > 0 && screenDimension.y > 0)
@@ -61,6 +64,7 @@ public struct ConfigJson
     public float playerRangeThresholdMax;
     public float playerRangeThresholdMin;
 
+    public float idlePlayerRangeThreshold;
     public float idleTimeout;
 
     public static ConfigJson LoadJsonData(string jsonData) => JsonUtility.FromJson<ConfigJson>(jsonData);

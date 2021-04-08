@@ -12,7 +12,7 @@ public class PlayerTimeout : MonoBehaviour
     private FloatReference closestDistance;
 
     [SerializeField]
-    private float outOfRangeDistance;
+    private FloatReference outOfRangeDistance;
 
     /// <summary>
     /// user leave timeout in seconds
@@ -101,5 +101,10 @@ public class PlayerTimeout : MonoBehaviour
     {
         isIdle = false;
         //StartCoroutine(CheckPlayerLeave());
+    }
+
+    public void ResetIdleTimer() 
+    {
+        timer = 0;
     }
 }

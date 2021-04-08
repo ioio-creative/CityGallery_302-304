@@ -5,7 +5,7 @@ using Kinect = Windows.Kinect;
 
 public class HandCursorView303 : HandCursorBase
 {
-    public static float CursorDepth = 0;
+    public static new float CursorDepth = 0;
 
     public bool CursorOn;
 

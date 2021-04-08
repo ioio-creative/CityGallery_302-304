@@ -119,19 +119,19 @@ public class Game303FlipdotView : MonoBehaviour {
 
     public void HideSelectYearPage () {
         for (int cnt = 0; cnt < YearTextCount (); cnt++) {
-            yearTexts[cnt].DOScale (0, 0).SetDelay (Game303Manager.instance.sandEffectClearBackObjectTime);
-            yearTextBigs[cnt].DOScale (0, 0).SetDelay (Game303Manager.instance.sandEffectClearBackObjectTime);
-            yearSelectors[cnt].DOScale (0, 0).SetDelay (Game303Manager.instance.sandEffectClearBackObjectTime);
+            yearTexts[cnt].DOScale (0, 0).SetDelay (Game303Manager.instance.transitionClearBackObjectTime);
+            yearTextBigs[cnt].DOScale (0, 0).SetDelay (Game303Manager.instance.transitionClearBackObjectTime);
+            yearSelectors[cnt].DOScale (0, 0).SetDelay (Game303Manager.instance.transitionClearBackObjectTime);
         }
     }
 
-    public void PassSand (bool flipDirection = false) {
+    public void PassSand (bool generic = true) {
         //sand.DOMoveX (-sandStartPosition.x, Game303ConfigData.instance.sandEffectMoveTime).SetEase (Ease.Linear);
         //sand.DOMoveX (sandStartPosition.x, 0).SetDelay (Game303ConfigData.instance.sandEffectMoveTime);
 
-        var startPositionY = flipDirection ? -sandStartLocalPosition.y : sandStartLocalPosition.y;
+        var startPositionY = generic ? -sandStartLocalPosition.y : sandStartLocalPosition.y;
 
-        var effectMoveTime = flipDirection ? 2f : Game303ConfigData.instance.sandEffectMoveTime; 
+        var effectMoveTime = generic ? Game303ConfigData.instance.genericTransitionMoveTime : Game303ConfigData.instance.sandEffectMoveTime; 
 
         sand.DOLocalMoveY(startPositionY, 0);
         sand.DOLocalMoveY(-startPositionY, effectMoveTime).SetEase(Ease.Linear);

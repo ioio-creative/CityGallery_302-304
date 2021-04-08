@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7779157868988495761}
   - component: {fileID: 9063683345788253981}
   - component: {fileID: 5496339026590481253}
+  - component: {fileID: 5407610703855414234}
   m_Layer: 0
   m_Name: Mediator
   m_TagString: Untagged
@@ -227,6 +228,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5407610703855414234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583220001654548612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e299084dd6b333459077884b308299e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 0fc81bbfb3e1d44428231d0f9a4d22d3, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 583220001654548612}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &583220001793405888
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,6 +310,7 @@ MonoBehaviour:
   confirmPageShowed: 0
   yearIndex: 0
   sandEffectClearBackObjectTime: 0
+  transitionClearBackObjectTime: 0
   onSelectLangEvnt: {fileID: 11400000, guid: 47e2150b75e19d44f9c2cc4118b812ab, type: 2}
   onTutorialEvnt: {fileID: 11400000, guid: dcf476a0848a77d41a4699e2921db04a, type: 2}
   onPlayerEnterEvnt: {fileID: 11400000, guid: bb828c698e8169744bfe82d06f066479, type: 2}

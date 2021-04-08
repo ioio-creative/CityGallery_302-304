@@ -20,6 +20,10 @@ public class SocketNaviEvent : MonoBehaviour
     public string naviIdxEvnt = "navigationIndex";
     public string selectIdxEvnt = "navigationSelect";
     public string langIdxEvnt = "selectLang";
+    public string homeEvnt = "backToHome";
+
+    public string touchEvnt = "onTouchStart";
+
     [Header("deprecated socket events")]
     public string naviLeftEvnt = "navigationLeft";
     public string naviRightEvnt = "navigationRight";
@@ -29,6 +33,11 @@ public class SocketNaviEvent : MonoBehaviour
     private GameIntEvent naviIdxSOEventServer;
     [SerializeField]
     private GameIntEvent selectIdxSOEventServer;
+    [SerializeField]
+    private GameEvent onUserLeaveSOEventServer;
+
+    [SerializeField]
+    private GameEvent onTouchDownSOEventServer;
 
     private IEnumerator Start()
     {
@@ -51,6 +60,8 @@ public class SocketNaviEvent : MonoBehaviour
             IoComponent.On("disconnect", OnDisconnected);
             IoComponent.On(naviIdxEvnt, OnNavigationIndex);
             IoComponent.On(selectIdxEvnt, OnSelectIndex);
+            IoComponent.On(homeEvnt, OnBackToHome);
+            IoComponent.On(touchEvnt, OnTouchDown);
 
             IoComponent.Connect();
         }
@@ -95,6 +106,18 @@ public class SocketNaviEvent : MonoBehaviour
         Debug.Log("[SocketIO]Received SelectIndex:[" + idx + "]");
 
         selectIdxSOEventServer.Raise(idx);
+    }
+
+    private void OnBackToHome(SocketIOEvent obj)
+    {
+        Debug.Log("[SocketIO]Received BackToHome");
+        onUserLeaveSOEventServer.Raise();
+    }
+
+    private void OnTouchDown(SocketIOEvent obj)
+    {
+        Debug.Log("[SocketIO]Received Touch");
+        onTouchDownSOEventServer.Raise();
     }
 
     private JSONObject GetJsonArg(string fieldName, int sendInt)
