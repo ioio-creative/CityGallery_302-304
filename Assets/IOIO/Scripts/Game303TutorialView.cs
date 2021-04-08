@@ -39,6 +39,7 @@ public class Game303TutorialView : MonoBehaviour {
 
     [Header ("Idle Page")]
     [SerializeField] private Transform idlePageText;
+    [SerializeField] private Transform idleButton;
 
     [Header ("Select Language")]
     [SerializeField] private Transform tcButtonBig;
@@ -111,6 +112,7 @@ public class Game303TutorialView : MonoBehaviour {
         colorCover.DOKill ();
         colorCover.GetComponent<MaskableGraphic> ().DOColor (pageCoverNoPlayerColor, 0.5f);
         idlePageText.GetComponent<MaskableGraphic> ().DOFade (1, 0.5f);
+        idleButton.DOScale(1, 0.5f);
         mainCircle.DOScale (0, 0f);
         mainCircleFillbar.DOScale (0, 0f);
         leftLine.DOScaleX (1.5f, 0.5f);
@@ -121,6 +123,7 @@ public class Game303TutorialView : MonoBehaviour {
         colorCover.DOKill ();
         colorCover.GetComponent<MaskableGraphic> ().DOColor (pageCoverNoPlayerColor, 0.5f);
         idlePageText.GetComponent<MaskableGraphic> ().DOFade (0, 0.5f);
+        idleButton.DOScale(0, 0.5f);
     }
 
     public void ShowSelectLanguagePage () {
@@ -361,6 +364,26 @@ public class Game303TutorialView : MonoBehaviour {
         }
         else {
             Game302Manager.instance.SelectLanguage (Language.EN);
+        }
+    }
+
+
+    //Currently unused, instead assigned OnPlayerEnterRange Game Event directly to Button OnClick
+    public void OnIdleStartExperienceButtonClick()
+    {
+        if (Game303Manager.instance != null)
+        {
+            if (Game303Manager.instance.CheckStatus(Status.Idle))
+            {
+                Game303Manager.instance.ChangeStatus(Status.SelectLanguage);
+            }
+        }
+        else
+        {
+            if (Game302Manager.instance.CheckStatus(Status.Idle))
+            {
+                Game302Manager.instance.ChangeStatus(Status.SelectLanguage);
+            }
         }
     }
 
