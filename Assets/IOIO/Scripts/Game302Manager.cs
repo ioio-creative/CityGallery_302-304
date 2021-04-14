@@ -84,10 +84,12 @@ public class Game302Manager : StateMachine {
         leftCircleSelected = false;
         rightCircleSelected = false;
         confirmPageShowed = false;
+
         Game303TutorialView.instance.HideReadyPage ();
         Game303TutorialView.instance.HideSelectLanguagePage ();
         Game303TutorialView.instance.ShowLeftHandPage ();
 
+        Game302View.instance.HideLine();
         Game302View.instance.HideConfirmPage ();
         Game302View.instance.ShowTutorialPage ();
 
@@ -99,7 +101,10 @@ public class Game302Manager : StateMachine {
             if (!confirmPageShowed) {
                 confirmPageShowed = true;
                 Game303TutorialView.instance.HideRightHandPage ();
-                Game303TutorialView.instance.ShowConfirmPage ();
+
+                //Skip Confirm Page and directly go to Ready Status
+                //Game303TutorialView.instance.ShowConfirmPage ();
+                ChangeStatus(Status.Ready);
             }
         }
     }
@@ -139,7 +144,7 @@ public class Game302Manager : StateMachine {
     }
 
     public void Select (Direction direction) {
-        if (CheckStatus (Status.Tutorial)) {
+        if (CheckStatus (Status.Tutorial) || CheckStatus(Status.Ready)) {
             if (direction == Direction.Left) {
                 if (!leftCircleSelected) {
                     leftCircleSelected = true;

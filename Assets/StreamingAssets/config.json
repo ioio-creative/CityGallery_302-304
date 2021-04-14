@@ -3,7 +3,7 @@
   "socketUrl": "ws://localhost:80/socket.io/?EIO=4&transport=websocket",
   "displayWidth": 1920,
   "displayHeight": 1080,
-  "playerRangeThresholdMax": 3.0,
+  "playerRangeThresholdMax": 2.5,
   "playerRangeThresholdMin": 1.35,
   "idlePlayerRangeThreshold": 2.0,
   "idleTimeout": 60

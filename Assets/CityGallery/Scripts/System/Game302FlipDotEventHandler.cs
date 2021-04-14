@@ -50,7 +50,7 @@ public class Game302FlipDotEventHandler : MonoBehaviour
 
     public void OnHandCursorLeft()
     {
-        if (manager.CheckStatus(Status.Tutorial))
+        if (manager.CheckStatus(Status.Tutorial) || manager.CheckStatus(Status.Ready))
         {
             mediator.SelectLeft();
         }
@@ -64,7 +64,7 @@ public class Game302FlipDotEventHandler : MonoBehaviour
 
     public void OnHandCursorRight()
     {
-        if (manager.CheckStatus(Status.Tutorial))
+        if (manager.CheckStatus(Status.Tutorial) || manager.CheckStatus(Status.Ready))
         {
             mediator.SelectRight();
         }

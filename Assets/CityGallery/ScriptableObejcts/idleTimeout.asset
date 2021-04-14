@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: idleTimeout
   m_EditorClassIdentifier: 
   DeveloperDescription: seconds afterwhich idle mode will be triggered
-  initValue: 60
-  runtimeValue: 60
+  initValue: 9.4
+  runtimeValue: 9.4

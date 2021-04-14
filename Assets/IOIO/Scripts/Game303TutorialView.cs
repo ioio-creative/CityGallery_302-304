@@ -67,6 +67,7 @@ public class Game303TutorialView : MonoBehaviour {
     [SerializeField] private Transform readyText;
     [SerializeField] private Transform readyDescShort;
     [SerializeField] private Transform readyDescLong;
+    [SerializeField] private Transform readyHand;
    
     [Header ("Debug")]
     [SerializeField] private float waveCooldownTimer;
@@ -217,6 +218,7 @@ public class Game303TutorialView : MonoBehaviour {
         readyText.DOScale (1, 0.5f);
         readyDescShort.DOScale (1, 0.5f);
         readyDescLong.DOScale (1, 0.5f);
+        readyHand.DOScale(1, 0.5f);
         skipButton.DOScale (0, 0.5f);
         replayButton.DOScale (1, 0.5f);
     }
@@ -228,6 +230,7 @@ public class Game303TutorialView : MonoBehaviour {
         readyText.DOScale (0, 0.5f);
         readyDescShort.DOScale (0, 0.5f);
         readyDescLong.DOScale (0, 0.5f);
+        readyHand.DOScale(0, 0.5f);
         replayButton.DOScale (0, 0.5f);
         skipButton.DOScale (0, 0.5f);
         tcButtonSmall.DOScale (0, 0.5f);

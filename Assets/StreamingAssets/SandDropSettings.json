@@ -1,11 +1,11 @@
 {
   "address": {
-    "ip": "10.0.1.52",
+    "ip": "192.168.1.11",
     "port": 5000
   },
   "userEnterDelay": 1,
-  "selectYearDelay": 0.8,
-  "yearEnteredDelay": 1.2,
+  "selectYearDelay": 0.4,
+  "yearEnteredDelay": 10,
   "idleCmd": "idle",
   "activeCmd": "A0",
   "leftReadyCmd": "L0",

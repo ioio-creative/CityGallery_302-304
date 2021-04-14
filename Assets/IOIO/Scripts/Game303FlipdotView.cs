@@ -17,7 +17,8 @@ public class Game303FlipdotView : MonoBehaviour {
     [SerializeField] private Transform rightCircle;
     [SerializeField] private Transform leftCircleSelect;
     [SerializeField] private Transform rightCircleSelect;
-    [SerializeField] private Transform tutorialSelector;
+    //[SerializeField] private Transform tutorialSelector;
+    [SerializeField] private Transform tutorialMidLine;
 
     [Header ("Select")]
     [SerializeField] private List<Transform> yearTexts = new List<Transform> ();
@@ -33,7 +34,7 @@ public class Game303FlipdotView : MonoBehaviour {
     }
 
     void Start () {
-        tutorialSelectorStartPosition = tutorialSelector.position;
+        //tutorialSelectorStartPosition = tutorialSelector.position;
         sandStartLocalPosition = sand.localPosition;
     }
 
@@ -66,26 +67,28 @@ public class Game303FlipdotView : MonoBehaviour {
     }
 
     public void SelectLeftCircle () {
-        leftCircle.DOScale (2.2f, 0.2f);      
-        rightCircle.DOScale (1, 0.2f);
+        leftCircle.DOScale (1f, 0.2f);      
+        rightCircle.DOScale (0.5f, 0.2f);
         leftCircleSelect.DOScale (1, 0).SetDelay (0.2f);
         rightCircleSelect.DOScale (0, 0);
-        tutorialSelector.DOScale (1, 0.5f);
-        tutorialSelector.DOMoveX (tutorialSelectorStartPosition.x, 0.2f);
+        //tutorialSelector.DOScale (1, 0.5f);
+        //tutorialSelector.DOMoveX (tutorialSelectorStartPosition.x, 0.2f);
     }
 
     public void SelectRightCircle () {
-        leftCircle.DOScale (1, 0.2f);
-        rightCircle.DOScale (2.2f, 0.2f);
+        leftCircle.DOScale (0.5f, 0.2f);
+        rightCircle.DOScale (1f, 0.2f);
         leftCircleSelect.DOScale (0, 0);
         rightCircleSelect.DOScale (1, 0).SetDelay (0.2f);
-        tutorialSelector.DOScale (1, 0.5f);
-        tutorialSelector.DOMoveX (-tutorialSelectorStartPosition.x, 0.2f);
+        //tutorialSelector.DOScale (1, 0.5f);
+        //tutorialSelector.DOMoveX (-tutorialSelectorStartPosition.x, 0.2f);
     }
 
     public void ShowTutorialPage () {
-        leftCircle.DOScale (1, 0.2f);
-        rightCircle.DOScale (1, 0.2f);
+        leftCircle.DOScale (0.5f, 0.2f);
+        rightCircle.DOScale (0.5f, 0.2f);
+
+        tutorialMidLine.DOScaleY(1, 0.2f);
     }
 
     public void HideTutorialPage () {
@@ -93,7 +96,9 @@ public class Game303FlipdotView : MonoBehaviour {
         rightCircle.DOScale (0, 0.5f);
         leftCircleSelect.DOScale (0, 0);
         rightCircleSelect.DOScale (0, 0);
-        tutorialSelector.DOScale (0, 0.5f);
+        //tutorialSelector.DOScale (0, 0.5f);
+
+        tutorialMidLine.DOScaleY(0, 0.2f);
     }
 
     public void SelectYear (int index) {
@@ -118,10 +123,12 @@ public class Game303FlipdotView : MonoBehaviour {
     }
 
     public void HideSelectYearPage () {
+        float clearTime = Game303Manager.instance.CheckStatus(Status.Confirm) ? Game303Manager.instance.sandEffectClearBackObjectTime : Game303Manager.instance.transitionClearBackObjectTime;
+
         for (int cnt = 0; cnt < YearTextCount (); cnt++) {
-            yearTexts[cnt].DOScale (0, 0).SetDelay (Game303Manager.instance.transitionClearBackObjectTime);
-            yearTextBigs[cnt].DOScale (0, 0).SetDelay (Game303Manager.instance.transitionClearBackObjectTime);
-            yearSelectors[cnt].DOScale (0, 0).SetDelay (Game303Manager.instance.transitionClearBackObjectTime);
+            yearTexts[cnt].DOScale (0, 0).SetDelay (clearTime);
+            yearTextBigs[cnt].DOScale (0, 0).SetDelay (clearTime);
+            yearSelectors[cnt].DOScale (0, 0).SetDelay (clearTime);
         }
     }
 

@@ -53,7 +53,7 @@ public class IdleBuilding303 : MonoBehaviour
         building.sprite = sprite;
     }
 
-    public void ShowIdelBuilding()
+    public void ShowIdleBuilding()
     {
         building.color = Color.white;
     }

@@ -56,11 +56,11 @@ public class Game303Manager : StateMachine {
         Game303TutorialView.instance.HideReadyPage ();
         
         Game303TutorialView.instance.ShowIdlePage ();
-
+        Game303FlipdotView.instance.HideLine();
         //SandIO
         SandIOControl.SendSandIO(SandIOControl.SandTransition.IDLE);
         //IdleBuilding
-        IdleBuilding303.instance.ShowIdelBuilding();
+        IdleBuilding303.instance.ShowIdleBuilding();
     }
 
     protected override void OnIdleStatusStay () {
@@ -77,7 +77,8 @@ public class Game303Manager : StateMachine {
 
     protected override void OnSelectLanguageStatusEnter () {
         if (previousStatus == Status.Confirm ||
-            previousStatus == Status.SelectYear) {
+            previousStatus == Status.SelectYear) 
+        {
             Game303FlipdotView.instance.PassSand (true);
             Game303FlipdotView.instance.HideSelectYearPage ();
             Game303FlipdotView.instance.HideMountain (transitionClearBackObjectTime);
@@ -141,8 +142,8 @@ public class Game303Manager : StateMachine {
     }
 
     protected override void OnReadyStatusEnter () {
-        Game303FlipdotView.instance.ShowLine ();
-        Game303FlipdotView.instance.HideTutorialPage ();
+        //Game303FlipdotView.instance.ShowLine ();
+        //Game303FlipdotView.instance.HideTutorialPage ();
         Game303TutorialView.instance.HideConfirmPage ();
         Game303TutorialView.instance.ShowReadyPage ();
 
@@ -175,24 +176,30 @@ public class Game303Manager : StateMachine {
                 case Status.SelectYear:
                 case Status.Confirm:
                     break;
-                
+
                 case Status.Ready:
                     SandIOControl.SendSandIO(SandIOControl.SandTransition.C1);
-                    goto case Status.Tutorial;
-                
-                case Status.Tutorial:
                     RaisePlayerEnterSOEventFromIdle();
                     goto default;
                 
-                default:
+                case Status.Tutorial:
+                    RaisePlayerEnterSOEventFromIdle();
+                    SandIOControl.SendSandIO(SandIOControl.SandTransition.SKIP);
+                    goto default;
 
+                case Status.SelectLanguage:
+                case Status.Idle:
+                    SandIOControl.SendSandIO(SandIOControl.SandTransition.SKIP);
+                    goto default;
+                
+                default:
                     Game303FlipdotView.instance.PassSand(true);
                     Game303FlipdotView.instance.HideLine(transitionClearBackObjectTime);
                     Game303FlipdotView.instance.ShowMountain(transitionClearBackObjectTime);
                     Game303FlipdotView.instance.SelectYear(0, transitionClearBackObjectTime);
                     yearIndex = 0;
 
-                    SandIOControl.SendSandIO(SandIOControl.SandTransition.SKIP);
+                    
                     break;
             }
             
@@ -214,7 +221,7 @@ public class Game303Manager : StateMachine {
     }
 
     public void Select (Direction direction) {
-        if (CheckStatus (Status.Tutorial)) {
+        if (CheckStatus (Status.Tutorial) || CheckStatus(Status.Ready)) {
             if (direction == Direction.Left) {
                 if (!leftCircleSelected) {
                     leftCircleSelected = true;
@@ -293,5 +300,4 @@ public class Game303Manager : StateMachine {
         onPlayerEnterEvnt.Raise();
         onNaviIdxEvnt.Raise(0);
     }
-
 }

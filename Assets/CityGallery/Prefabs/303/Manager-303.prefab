@@ -244,8 +244,8 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 583220001654548612}
-        m_MethodName: 
+      - m_Target: {fileID: 7467803514826746851}
+        m_MethodName: OnServerHome
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

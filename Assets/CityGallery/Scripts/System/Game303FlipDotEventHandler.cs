@@ -27,7 +27,13 @@ public class Game303FlipDotEventHandler : MonoBehaviour
 
     public void OnUserLeave()
     {
-        mediator.ChangeStatus(Status.Idle);
+        mediator.ChangeStatus(Status.Idle);     
+    }
+
+    public void OnServerHome()
+    {
+        mediator.ChangeStatus(Status.SelectLanguage);
+        currentNaviIdx = 0;
     }
 
     public void OnNavigationIndex(int idx)
@@ -50,7 +56,7 @@ public class Game303FlipDotEventHandler : MonoBehaviour
 
     public void OnHandCursorLeft()
     {
-        if (manager.CheckStatus(Status.Tutorial))
+        if (manager.CheckStatus(Status.Tutorial) || manager.CheckStatus(Status.Ready))
         {
             mediator.SelectLeft();
         }
@@ -63,7 +69,7 @@ public class Game303FlipDotEventHandler : MonoBehaviour
 
     public void OnHandCursorRight()
     {
-        if (manager.CheckStatus(Status.Tutorial))
+        if (manager.CheckStatus(Status.Tutorial) || manager.CheckStatus(Status.Ready))
         {
             mediator.SelectRight();
         }

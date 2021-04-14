@@ -188,17 +188,15 @@ public class FlipDotWaveView : MonoBehaviour
         wave.Harmonics[0].Lambda = lambdaRange.y;
         lambdaModifier = 0;
         //width
-        lr.widthMultiplier = lineWidthMin;
+        DOTween.To(() => lr.widthMultiplier, f => lr.widthMultiplier = f, lineWidthMin, 0.2f);
+        //lr.widthMultiplier = lineWidthMin;
     }
 
     public void FlipDotWaveIdleToggle(bool on)
     {
         isIdle = on;
 
-        if (isIdle)
-        {
-            ResetView();
-        }
+        ResetView();
     }
 
     public void HideWave()

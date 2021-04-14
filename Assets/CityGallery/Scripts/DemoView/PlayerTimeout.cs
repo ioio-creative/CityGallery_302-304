@@ -22,38 +22,53 @@ public class PlayerTimeout : MonoBehaviour
     private FloatReference leavingTimeout;
 
     [SerializeField]
-    private bool isIdle = true;
-    public bool IsIdle => isIdle;
-    private float timer;
+    private bool toBeTimeout;
+    public bool ToBeTimeout => toBeTimeout;
+
+    [Header("Debug")]
+    [SerializeField] private float timer;
 
     private Coroutine timeoutRoutine;
 
     private void Start()
     {
-        isIdle = true;
+        toBeTimeout = false;
     }
 
     private void Update()
     {
-        if (!isIdle)
+        if (toBeTimeout)
         {
-            timer += Time.deltaTime;
-
             if (closestDistance <= outOfRangeDistance)
             {
-                timer = 0;
+                ResetIdleTimer();
+                toBeTimeout = false;
             }
 
-            if (timer > leavingTimeout)
+            timer += Time.deltaTime;
+
+            if (timer >= leavingTimeout)
             {
-                isIdle = true;
-                AllPlayersLeft?.Invoke();
-                Debug.Log("Player Left");
-                timer = 0;
+                TimeoutLeave();
             }
+        }
+        else
+        {
+            toBeTimeout = closestDistance > outOfRangeDistance;
+        }
+
+        if (Input.anyKey || Input.touchCount > 0)
+        {
+            ResetIdleTimer();
         }
     }
 
+    private void TimeoutLeave()
+    {
+        AllPlayersLeft?.Invoke();
+        Debug.Log("Player Left");
+        ResetIdleTimer();
+    }
 
     private IEnumerator CheckPlayerLeave()
     {
@@ -99,12 +114,18 @@ public class PlayerTimeout : MonoBehaviour
     
     public void OnPlayerEnter()
     {
-        isIdle = false;
+        toBeTimeout = true;
         //StartCoroutine(CheckPlayerLeave());
     }
 
     public void ResetIdleTimer() 
     {
         timer = 0;
+    }
+
+    public void OnServerLeave()
+    {
+        toBeTimeout = false;
+        ResetIdleTimer();
     }
 }

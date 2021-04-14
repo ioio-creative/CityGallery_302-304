@@ -16,7 +16,8 @@ public class Game302View : MonoBehaviour {
     [SerializeField] private Transform rightCircle;
     [SerializeField] private Transform leftCircleSelect;
     [SerializeField] private Transform rightCircleSelect;
-    [SerializeField] private Transform triangle;
+    //[SerializeField] private Transform triangle;
+    [SerializeField] private Transform tutorialMidLine;
 
     [Header ("Select")]
     [SerializeField] Transform yearContainer;
@@ -33,7 +34,7 @@ public class Game302View : MonoBehaviour {
 
     void Start () {
         viewScale = viewParent.localScale;
-        triangleStartPosition = triangle.position;
+        //triangleStartPosition = triangle.position;
     }
 
     public void ShowLine()
@@ -61,29 +62,31 @@ public class Game302View : MonoBehaviour {
     }
 
     public void SelectLeftCircle () {
-        leftCircle.DOScale (2.2f, 0.2f);
-        rightCircle.DOScale (1, 0.2f);
+        leftCircle.DOScale (1f, 0.2f);
+        rightCircle.DOScale (0.5f, 0.2f);
         leftCircleSelect.DOScale (1, 0).SetDelay (0.2f);
         rightCircleSelect.DOScale (0, 0);
-        triangle.DOMoveX (triangleStartPosition.x, 0.2f);
-        triangle.DOScale (1, 0);
+        //triangle.DOMoveX (triangleStartPosition.x, 0.2f);
+        //triangle.DOScale (1, 0);
     }
 
     public void SelectRightCircle () {
-        leftCircle.DOScale (1, 0.2f);
-        rightCircle.DOScale (2.2f, 0.2f);
+        leftCircle.DOScale (0.5f, 0.2f);
+        rightCircle.DOScale (1f, 0.2f);
         leftCircleSelect.DOScale (0, 0);
         rightCircleSelect.DOScale (1, 0).SetDelay (0.2f);
-        triangle.DOMoveX (-triangleStartPosition.x, 0.2f);
-        triangle.DOScale (1, 0);
+        //triangle.DOMoveX (-triangleStartPosition.x, 0.2f);
+        //triangle.DOScale (1, 0);
     }
 
     public void ShowTutorialPage () {
-        leftCircle.DOScale (1, 0.2f);
-        rightCircle.DOScale (1, 0.2f);
+        leftCircle.DOScale (0.5f, 0.2f);
+        rightCircle.DOScale (0.5f, 0.2f);
         leftCircleSelect.DOScale (0, 0);
         rightCircleSelect.DOScale (0, 0);
-        triangle.DOScale (0, 0.5f);
+        //triangle.DOScale (0, 0.5f);
+        
+        tutorialMidLine.DOScaleY(1, 0.2f);
     }
 
     public void HideTutorialPage () {
@@ -91,7 +94,9 @@ public class Game302View : MonoBehaviour {
         rightCircle.DOScale (0, 0.5f);
         leftCircleSelect.DOScale (0, 0);
         rightCircleSelect.DOScale (0, 0);
-        triangle.DOScale (0, 0.5f);
+        //triangle.DOScale (0, 0.5f);
+
+        tutorialMidLine.DOScaleY(0, 0.2f);
     }
 
     public void ShowSelectPage () {
